@@ -52,8 +52,8 @@ typedef struct			s_core
 int						ft_printf(const char *format, ...);
 char					*init_map(void);
 
-int						validation(char *data);
-
+int						validation(t_core *info, char *data);
+void					parsing(t_core *info, char *data);
 /*
 **	PRINTING
 */

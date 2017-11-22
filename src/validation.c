@@ -36,18 +36,19 @@
 // 	return (1);
 // }
 
-int						validation(char *av)
+int						validation(t_core *info, char *av)
 {
 	int			fd;
-	char		data[4];
+	char		data[DATA_SIZE + 1];
 
 	if ((fd = open(av, O_RDONLY)) < 0)
 		return (0);
-	if (!(read(fd, data, 4)))
+	if (!(read(fd, data, DATA_SIZE + 1)))
 		return (0);
-	printd(data);
-	ft_printf("is comp: %d\n", (int)data == COREWAR_EXEC_MAGIC);
-	ft_printf("data : %x\nmagic : %x\n", (int)data, COREWAR_EXEC_MAGIC);
-	// print_data(data);
+	// printd(data);
+	// ft_printf("is comp: %d\n", (int)data == COREWAR_EXEC_MAGIC);
+	// ft_printf("data : %x\nmagic : %x\n", (int)data, COREWAR_EXEC_MAGIC);
+	parsing(info, data);
+	print_data(data);
 	return (1);
 }

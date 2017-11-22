@@ -18,11 +18,11 @@ int				main(int argc, char **argv)
 	t_core		core;
 
 	i = 1;
-	while (i < argc && i < MAX_PLAYERS)
-		if (!validation(argv[i++]))
-			write(1, "error\n", 6);
 	core.map = init_map();
-	// print_map(core.map);
+	while (i < argc && i < MAX_PLAYERS)
+		if (!validation(&core, argv[i++]))
+			write(1, "error\n", 6);
+	print_map(core.map);
 
 	return (0);
 }
