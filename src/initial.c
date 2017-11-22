@@ -17,7 +17,7 @@ char					*init_map(void)
 	char	*map;
 
 	map = NULL;
-	if (!(map = (char *)malloc(sizeof(char) * MEM_SIZE)))
+	if (!(map = (char *)malloc(sizeof(char) * MEM_SIZE + 1)))
 		return (NULL);
 	else
 		ft_bzero(map, MEM_SIZE);

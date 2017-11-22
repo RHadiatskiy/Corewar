@@ -13,8 +13,6 @@
 #ifndef COREWAR_H
 # define COREWAR_H
 
-# define BUF_SIZE		10000
-
 /*
 **	Colorize an output of printf
 */
@@ -28,6 +26,9 @@
 # define MAGENTA 		"\x1b[35m"
 # define CYAN    		"\x1b[36m"
 # define BLACK   		"\x1b[37m"
+
+# define DATA_SIZE		PROG_NAME_LENGTH + COMMENT_LENGTH + 4 + (MEM_SIZE / 4)
+# define FORMAT			16
 
 /*
 ** ----------------------------
@@ -50,7 +51,15 @@ typedef struct			s_core
 
 int						ft_printf(const char *format, ...);
 char					*init_map(void);
-void					print_map(char *map);
+
 int						validation(char *data);
+
+/*
+**	PRINTING
+*/
+
+void					print_map(char *map);
+void					print_data(char *data);
+void					printd(char *data);
 
 #endif

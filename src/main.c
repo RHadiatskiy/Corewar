@@ -22,8 +22,7 @@ int				main(int argc, char **argv)
 		if (!validation(argv[i++]))
 			write(1, "error\n", 6);
 	core.map = init_map();
-	print_map(core.map);
-
+	// print_map(core.map);
 
 	return (0);
 }

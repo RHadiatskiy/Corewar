@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 20:46:13 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/11/20 20:46:14 by rhadiats         ###   ########.fr       */
+/*   Created: 2017/11/22 20:44:11 by rhadiats          #+#    #+#             */
+/*   Updated: 2017/11/22 20:44:14 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,35 @@ void					print_map(char *map)
 	int			x;
 	int			y;
 
-	x = 0;
-	while (x < sqrt(MEM_SIZE) && (x * y < MEM_SIZE))
+	x = -1;
+	while (++x < sqrt(MEM_SIZE) && (x * y < MEM_SIZE))
 	{
-		y = 0;
-		while (y < sqrt(MEM_SIZE) && (x * y < MEM_SIZE))
-			ft_printf("%.2x ", map[y++]);
-		ft_printf("%.2x\n", map[y]);
-		x++;
+		y = -1;
+		while (++y < sqrt(MEM_SIZE) && (x * y < MEM_SIZE))
+			ft_printf("%.2x ", *map++);
+		ft_printf("\n");
 	}
+}
+
+void					print_data(char *data)
+{
+	int			x;
+	int			y;
+
+	x = -1;
+	while (++x < (DATA_SIZE) / (FORMAT))
+	{	
+		y = -1;
+		while (++y < FORMAT)
+			ft_printf("%.2x ", *data++);
+		ft_printf("\n");
+	}
+	ft_printf("\n");
+}
+
+void					printd(char *data)
+{
+	while (*(data + 1))
+		ft_printf("%.2x ", *data++);
+	ft_printf("%.2x\n\n", *data);
 }
