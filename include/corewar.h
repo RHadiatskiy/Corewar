@@ -46,20 +46,22 @@
 
 typedef struct			s_core
 {
-	char				*map;
+	unsigned char		*map;
+	unsigned char		*data;
+	unsigned int		data_len;
 }						t_core;
 
 int						ft_printf(const char *format, ...);
-char					*init_map(void);
+unsigned char			*init_map(void);
 
 int						validation(t_core *info, char *data);
-void					parsing(t_core *info, char *data);
+void					parsing(t_core *info, unsigned char *data);
+
 /*
 **	PRINTING
 */
 
-void					print_map(char *map);
-void					print_data(char *data);
-void					printd(char *data);
+void					print_map(unsigned char *map);
+void					print_data(unsigned char *data, unsigned int len);
 
 #endif

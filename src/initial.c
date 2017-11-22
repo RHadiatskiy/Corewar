@@ -12,12 +12,12 @@
 
 #include "../include/corewar.h"
 
-char					*init_map(void)
+unsigned char				*init_map(void)
 {
-	char	*map;
+	unsigned char		*map;
 
 	map = NULL;
-	if (!(map = (char *)malloc(sizeof(char) * MEM_SIZE + 1)))
+	if (!(map = (unsigned char *)malloc(sizeof(unsigned char) * MEM_SIZE + 1)))
 		return (NULL);
 	else
 		ft_bzero(map, MEM_SIZE);

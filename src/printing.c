@@ -12,7 +12,7 @@
 
 #include "../include/corewar.h"
 
-void					print_map(char *map)
+void					print_map(unsigned char *map)
 {
 	int			x;
 	int			y;
@@ -27,13 +27,13 @@ void					print_map(char *map)
 	}
 }
 
-void					print_data(char *data)
+void					print_data(unsigned char *data, unsigned int len)
 {
 	int			x;
 	int			y;
 
 	x = -1;
-	while (++x < (DATA_SIZE) / (FORMAT))
+	while (++x < (int)len / (FORMAT))
 	{	
 		y = -1;
 		while (++y < FORMAT)
@@ -41,11 +41,4 @@ void					print_data(char *data)
 		ft_printf("\n");
 	}
 	ft_printf("\n");
-}
-
-void					printd(char *data)
-{
-	while (*(data + 1))
-		ft_printf("%.2x ", *data++);
-	ft_printf("%.2x\n\n", *data);
 }
