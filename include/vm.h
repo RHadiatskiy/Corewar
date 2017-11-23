@@ -72,6 +72,7 @@ t_player				*init_players(void);
 */
 
 int						read_file(t_core *core, char *av);
+int						read_args(t_core *core, int ac, char **av);
 
 /*
 **	VALIDATION

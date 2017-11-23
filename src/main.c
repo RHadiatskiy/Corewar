@@ -14,17 +14,18 @@
 
 int				main(int argc, char **argv)
 {
-	int			i;
-	t_core		core;
+	int				i;
+	t_core			core;
 
 	i = 1;
 	core.map = init_map();
 	core.players = init_players();
-	while (i < argc && i < MAX_PLAYERS)
-		if (!validation(&core, argv[i++]))
-			write(1, "error\n", 6);
+	if (!read_args(&core, argc, argv))
+	{
+		write(1, "error\n", 6);
+		return (0);
+	}
 	parsing(&core);
 	print_map(core.map);
-	print_players(core.players);
 	return (0);
 }

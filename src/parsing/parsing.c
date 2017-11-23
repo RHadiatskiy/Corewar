@@ -18,12 +18,11 @@ void					parsing(t_core *core)
 	int			i;
 	int			j;
 
-	i = -1;
 	tmplay = core->players;
 	while (tmplay)
 	{
+		i = -1;
 		j = ((MEM_SIZE) / get_players_size(core->players)) * (tmplay->id - 1);
-		ft_printf("j = %d\n", j);
 		while (++i < (int)tmplay->data_len)
 		{
 			if (i >= (PROG_NAME_LENGTH) + (COMMENT_LENGTH) + 16)

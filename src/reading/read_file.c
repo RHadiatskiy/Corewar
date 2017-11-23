@@ -12,6 +12,19 @@
 
 #include "../../include/vm.h"
 
+int						read_args(t_core *core, int ac, char **av)
+{
+	int					iter;
+
+	iter = 1;
+	if (ac < 2 || ac > MAX_PLAYERS + 1)
+		return (0);
+	while (iter < ac && iter <= MAX_PLAYERS)
+		if (!validation(core, av[iter++]))
+			return (0);
+	return (1);
+}
+
 int						read_file(t_core *core, char *av)
 {
 	int					fd;

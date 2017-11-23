@@ -23,7 +23,7 @@ void					print_map(unsigned char *map)
 		y = -1;
 		while (++y < sqrt(MEM_SIZE) && (x * y < MEM_SIZE))
 			if (*map)
-				ft_printf("%s%.2x%s ", GREEN, *map++, RESET);
+				ft_printf("%s%.2x%s ", CYAN, *map++, RESET);
 			else
 				ft_printf("%.2x ", *map++);
 		ft_printf("\n");
