@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_players_size.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 20:10:17 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/11/20 20:10:18 by rhadiats         ###   ########.fr       */
+/*   Created: 2017/11/23 17:16:01 by rhadiats          #+#    #+#             */
+/*   Updated: 2017/11/23 17:16:02 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/vm.h"
+#include "../../include/vm.h"
 
-int				main(int argc, char **argv)
+unsigned int			get_players_size(t_player *players)
 {
-	int			i;
-	t_core		core;
+	t_player		*iter;
+	unsigned int	size;			
 
-	i = 1;
-	core.map = init_map();
-	core.players = init_players();
-	while (i < argc && i < MAX_PLAYERS)
-		if (!validation(&core, argv[i++]))
-			write(1, "error\n", 6);
-	parsing(&core);
-	print_map(core.map);
-	print_players(core.players);
-	return (0);
+	size = 0;
+	iter = players;
+	while (iter)
+	{
+		size++;
+		iter = iter->next;
+	}
+	return (size);
 }

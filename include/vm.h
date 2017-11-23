@@ -47,15 +47,43 @@
 typedef struct			s_core
 {
 	unsigned char		*map;
-	unsigned char		*data;
-	unsigned int		data_len;
+	struct s_player		*players;
 }						t_core;
 
+typedef struct			s_player
+{
+	unsigned int		id;
+	unsigned char		*data;
+	unsigned int		data_len;
+	struct s_player		*next;
+}						t_player;
+
 int						ft_printf(const char *format, ...);
+
+/*
+**	INITIAL
+*/
+
 unsigned char			*init_map(void);
+t_player				*init_players(void);
+
+/*
+**	READING
+*/
+
+int						read_file(t_core *core, char *av);
+
+/*
+**	VALIDATION
+*/
 
 int						validation(t_core *info, char *data);
-void					parsing(t_core *info, unsigned char *data);
+
+/*
+**	PARSING
+*/
+
+void					parsing(t_core *info);
 
 /*
 **	PRINTING
@@ -63,5 +91,19 @@ void					parsing(t_core *info, unsigned char *data);
 
 void					print_map(unsigned char *map);
 void					print_data(unsigned char *data, unsigned int len);
+void					print_players(t_player *players);
+
+/*
+**	ADDITION
+*/
+
+void					add_player(t_player *players, unsigned char *data, \
+	unsigned int data_len);
+
+/*
+**	GETTING
+*/
+
+unsigned int			get_players_size(t_player *players);
 
 #endif

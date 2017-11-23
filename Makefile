@@ -5,12 +5,18 @@ FLAGS = -Wall -Wextra -Werror -g
 LIBFT = libft/libft.a
 LIBFTPRINTF= src/ft_printf/libftprintf.a
 
-SRC = src/main src/initial src/printing src/parsing \
-		src/validation
+SRC = src/main \
+		src/initial/initial \
+		src/printing/printing \
+		src/parsing/parsing \
+		src/validation/validation \
+		src/reading/read_file \
+		src/addition/add_player \
+		src/getting/get_players_size
 
 OBJ = $(addsuffix .o,$(SRC))
 
-all: lib ft_printf fractol
+all: lib ft_printf vm
 
 lib:
 	@make -C ./libft
@@ -18,7 +24,7 @@ lib:
 ft_printf:
 	@make -C ./src/ft_printf
 
-fractol: $(OBJ)
+vm: $(OBJ)
 	gcc -o $(NAME) $(FLAGS) $(OBJ) $(LIBFT) $(LIBFTPRINTF)
 
 %.o: %.c

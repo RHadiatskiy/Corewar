@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/corewar.h"
+#include "../../include/vm.h"
 
 void					print_map(unsigned char *map)
 {
@@ -22,7 +22,10 @@ void					print_map(unsigned char *map)
 	{
 		y = -1;
 		while (++y < sqrt(MEM_SIZE) && (x * y < MEM_SIZE))
-			ft_printf("%.2x ", *map++);
+			if (*map)
+				ft_printf("%s%.2x%s ", GREEN, *map++, RESET);
+			else
+				ft_printf("%.2x ", *map++);
 		ft_printf("\n");
 	}
 }
@@ -33,12 +36,27 @@ void					print_data(unsigned char *data, unsigned int len)
 	int			y;
 
 	x = -1;
-	while (++x < (int)len / (FORMAT))
-	{	
+	while (++x < ((int)len / (FORMAT) + (int)len % (FORMAT)))
+	{
 		y = -1;
 		while (++y < FORMAT)
 			ft_printf("%.2x ", *data++);
 		ft_printf("\n");
 	}
 	ft_printf("\n");
+}
+
+void					print_players(t_player *players)
+{
+	t_player	*tmp;
+
+	tmp = players;
+	ft_printf("--------------PLAYERS--------------\n");
+	while (tmp)
+	{
+		ft_printf("ID:\t\t%d\n", tmp->id);
+		ft_printf("LEN:\t\t%d\n", tmp->data_len);
+		tmp = tmp->next;
+		ft_printf("-----------------------------------\n");
+	}
 }

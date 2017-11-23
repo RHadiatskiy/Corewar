@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/corewar.h"
+#include "../../include/vm.h"
 
-unsigned char				*init_map(void)
+unsigned char			*init_map(void)
 {
 	unsigned char		*map;
 
@@ -22,4 +22,17 @@ unsigned char				*init_map(void)
 	else
 		ft_bzero(map, MEM_SIZE);
 	return (map);
+}
+
+t_player				*init_players(void)
+{
+	t_player			*player;
+
+	if (!(player = (t_player *)malloc(sizeof(t_player))))
+		return (NULL);
+	player->id = 0;
+	player->data = NULL;
+	player->data_len = 0;
+	player->next = NULL;
+	return (player);
 }

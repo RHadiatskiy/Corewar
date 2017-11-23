@@ -10,19 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/corewar.h"
+#include "../../include/vm.h"
 
-void					parsing(t_core *info, unsigned char *data)
+void					parsing(t_core *core)
 {
+	t_player	*tmplay;
 	int			i;
 	int			j;
 
 	i = -1;
-	j = 0;
-	while (++i < (int)info->data_len)
+	tmplay = core->players;
+	while (tmplay)
 	{
-		if (i >= (PROG_NAME_LENGTH) + (COMMENT_LENGTH) + 16)
-			// res = (res << 8) | (((char *)buf)[j++] & 0x000000ff)
-			info->map[j++] = (int)data[i];
+		j = ((MEM_SIZE) / get_players_size(core->players)) * (tmplay->id - 1);
+		ft_printf("j = %d\n", j);
+		while (++i < (int)tmplay->data_len)
+		{
+			if (i >= (PROG_NAME_LENGTH) + (COMMENT_LENGTH) + 16)
+				// res = (res << 8) | (((char *)buf)[j++] & 0x000000ff)
+				core->map[j++] = tmplay->data[i];
+		}
+		tmplay = tmplay->next;
 	}
 }
