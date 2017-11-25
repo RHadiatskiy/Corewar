@@ -26,6 +26,7 @@ int				main(int argc, char **argv)
 		return (0);
 	}
 	parsing(&core);
+	print_data(core.players);
 	print_map(core.map);
 	return (0);
 }

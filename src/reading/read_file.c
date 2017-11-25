@@ -40,7 +40,6 @@ int						read_file(t_core *core, char *av)
 	if (!(read(fd, data, len)))
 		perror ("can't reed the file");
 	add_player(core->players, data, len);
-	free(data);
 	close(fd);
 	return (1);
 }

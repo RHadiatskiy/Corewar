@@ -91,7 +91,7 @@ void					parsing(t_core *info);
 */
 
 void					print_map(unsigned char *map);
-void					print_data(unsigned char *data, unsigned int len);
+void					print_data(t_player *players);
 void					print_players(t_player *players);
 
 /*
