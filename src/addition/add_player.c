@@ -12,8 +12,7 @@
 
 #include "../../include/vm.h"
 
-void					add_player(t_player *players, unsigned char *data, \
-	unsigned int data_len)
+void					add_player(t_player *players, t_header *header, unsigned char *data, unsigned int size)
 {
 	t_player		*player;
 	t_player		*to_end;
@@ -22,16 +21,18 @@ void					add_player(t_player *players, unsigned char *data, \
 	if (players->id == 0)
 	{
 		players->id = 1;
+		players->header = header;
 		players->data = data;
-		players->data_len = data_len;
+		players->size = size;
 	}
 	else if ((player = (t_player *)malloc(sizeof(t_player))))
 	{
 		while (to_end->next)
 			to_end = to_end->next;
 		player->id = to_end->id + 1;
+		player->header = header;
 		player->data = data;
-		player->data_len = data_len;
+		player->size = size;
 		to_end->next = player;
 		player->next = NULL;
 	}

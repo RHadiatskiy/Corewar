@@ -32,7 +32,21 @@ t_player				*init_players(void)
 		return (NULL);
 	player->id = 0;
 	player->data = NULL;
-	player->data_len = 0;
+	player->size = 0;
+	player->header = NULL;
 	player->next = NULL;
 	return (player);
+}
+
+t_header				*init_header(unsigned int magic, unsigned char *name, unsigned char *comment, unsigned char *prog)
+{
+	t_header			*header;
+
+	if (!(header = (t_header *)malloc(sizeof(t_header))))
+		return (NULL);
+	header->magic = magic;
+	header->name = name;
+	header->comment = comment;
+	header->prog = prog;
+	return (header);
 }

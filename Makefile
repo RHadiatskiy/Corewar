@@ -12,7 +12,7 @@ SRC = src/main \
 		src/validation/validation \
 		src/reading/read_file \
 		src/addition/add_player \
-		src/getting/get_players_size
+		src/getting/getting_data
 
 OBJ = $(addsuffix .o,$(SRC))
 

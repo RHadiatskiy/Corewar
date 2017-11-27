@@ -30,6 +30,7 @@ int						read_file(t_core *core, char *av)
 	int					fd;
 	unsigned int		len;
 	unsigned char		*data;
+	header_t			*header;
 
 	if ((fd = open(av, O_RDONLY)) < 0)
 		perror ("can't open the file");
@@ -39,7 +40,8 @@ int						read_file(t_core *core, char *av)
 		perror ("can't allocate a memory");
 	if (!(read(fd, data, len)))
 		perror ("can't reed the file");
-	add_player(core->players, data, len);
+	parse_header(data, len);
+	add_player(core->players, header, data, len);
 	close(fd);
 	return (1);
 }

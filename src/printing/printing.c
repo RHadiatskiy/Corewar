@@ -42,9 +42,9 @@ void					print_data(t_player *players)
 	t_player = players;
 	while (t_player)
 	{
-		x = (int)t_player->data_len % (FORMAT) == 0 ? -1 : -2;
+		x = (int)t_player->size % (FORMAT) == 0 ? -1 : -2;
 		t_data = t_player->data;
-		while (++x < (int)t_player->data_len / (FORMAT))
+		while (++x < (int)t_player->size / (FORMAT))
 		{
 			y = -1;
 			while (++y < FORMAT)
@@ -61,6 +61,14 @@ void					print_data(t_player *players)
 	}
 }
 
+void					print_header(t_header *header)
+{
+	if (header)
+	{
+
+	}
+}
+
 void					print_players(t_player *players)
 {
 	t_player	*tmp;
@@ -70,7 +78,7 @@ void					print_players(t_player *players)
 	while (tmp)
 	{
 		printf("ID:\t\t%d\n", tmp->id);
-		printf("LEN:\t\t%d\n", tmp->data_len);
+		printf("LEN:\t\t%d\n", tmp->size);
 		tmp = tmp->next;
 		printf("-----------------------------------\n");
 	}

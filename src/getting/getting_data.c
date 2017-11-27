@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_players_size.c                                 :+:      :+:    :+:   */
+/*   getting_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 17:16:01 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/11/23 17:16:02 by rhadiats         ###   ########.fr       */
+/*   Created: 2017/11/27 13:20:10 by rhadiats          #+#    #+#             */
+/*   Updated: 2017/11/27 13:20:11 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,17 @@ unsigned int			get_players_size(t_player *players)
 		iter = iter->next;
 	}
 	return (size);
+}
+
+unsigned int			get_value_from_file(void *buf, unsigned int start, unsigned int len)
+{
+	unsigned int	res;
+
+	res = 0;
+	if (start < len)
+	{
+		while (start < len)
+			res = (res << 8) | (((char *)buf)[start++] & 0x000000ff);
+	}
+	return (res);
 }

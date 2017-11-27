@@ -54,9 +54,18 @@ typedef struct			s_player
 {
 	unsigned int		id;
 	unsigned char		*data;
-	unsigned int		data_len;
+	unsigned int		size;
+	struct header_s		*header;
 	struct s_player		*next;
 }						t_player;
+
+typedef struct			s_header
+{
+	unsigned int		magic;
+	unsigned char		*name;
+	unsigned char		*comment;
+	unsigned char		*prog;
+}						t_header;
 
 int						ft_printf(const char *format, ...);
 
@@ -66,6 +75,7 @@ int						ft_printf(const char *format, ...);
 
 unsigned char			*init_map(void);
 t_player				*init_players(void);
+t_header				*init_header(unsigned int magic, unsigned char *name, unsigned char *comment, unsigned char *prog);
 
 /*
 **	READING
@@ -84,7 +94,7 @@ int						validation(t_core *info, char *data);
 **	PARSING
 */
 
-void					parsing(t_core *info);
+t_header				*parse_header(void *data, unsigned int size);
 
 /*
 **	PRINTING
@@ -98,13 +108,13 @@ void					print_players(t_player *players);
 **	ADDITION
 */
 
-void					add_player(t_player *players, unsigned char *data, \
-	unsigned int data_len);
+void					add_player(t_player *players, t_header *header, unsigned char *data, unsigned int size);
 
 /*
 **	GETTING
 */
 
 unsigned int			get_players_size(t_player *players);
+unsigned int			get_value_from_file(void *buf, unsigned int start, unsigned int len);
 
 #endif
