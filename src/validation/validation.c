@@ -38,9 +38,16 @@
 
 int						validation(t_core *core, char *av)
 {
-	if (!read_file(core, av))
-		return (0);
-	// print_data(core->data, core->data_len);
+	int			ret;
 
-	return (1);
+	ret = 1;
+	if ((ret = read_file(core, av)) != 1)
+	{
+		ret == -1 ? write (1, "can't open the file\n", 20) : 0;
+		ret == -2 ? write (1, "can't allocate a memory\n", 24) : 0;
+		ret == -3 ? write (1, "can't reed the file\n", 20) : 0;
+		ret == -4 ? write (1, "invalid magic\n", 14) : 0;
+		return (0);
+	}
+	return (ret);
 }

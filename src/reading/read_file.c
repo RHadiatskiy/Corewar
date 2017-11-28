@@ -18,10 +18,13 @@ int						read_args(t_core *core, int ac, char **av)
 
 	iter = 1;
 	if (ac < 2 || ac > MAX_PLAYERS + 1)
+	{
+		write (1, "invalid number of parameters\n", 29);
 		return (0);
+	}
 	while (iter < ac && iter <= MAX_PLAYERS)
 		if (!validation(core, av[iter++]))
-			return (0);
+			exit (0);
 	return (1);
 }
 
@@ -30,18 +33,20 @@ int						read_file(t_core *core, char *av)
 	int					fd;
 	unsigned int		len;
 	unsigned char		*data;
-	header_t			*header;
+	t_header			*header;
 
 	if ((fd = open(av, O_RDONLY)) < 0)
-		perror ("can't open the file");
+		return (-1);
 	len = lseek(fd, 0, SEEK_END);
 	lseek(fd, 0, SEEK_SET);
 	if (!(data = (unsigned char *)malloc(sizeof(unsigned char) * len + 1)))
-		perror ("can't allocate a memory");
+		return (-2);
 	if (!(read(fd, data, len)))
-		perror ("can't reed the file");
-	parse_header(data, len);
-	add_player(core->players, header, data, len);
+		return (-3);
+	if (!(header = parse_header(data, len)))
+		return (-4);
+	else
+		add_player(core->players, header, data, len);
 	close(fd);
 	return (1);
 }

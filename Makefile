@@ -8,7 +8,7 @@ LIBFTPRINTF= src/ft_printf/libftprintf.a
 SRC = src/main \
 		src/initial/initial \
 		src/printing/printing \
-		src/parsing/parsing \
+		src/parsing/parse_header src/parsing/parse_map \
 		src/validation/validation \
 		src/reading/read_file \
 		src/addition/add_player \

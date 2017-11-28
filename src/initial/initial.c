@@ -38,15 +38,16 @@ t_player				*init_players(void)
 	return (player);
 }
 
-t_header				*init_header(unsigned int magic, unsigned char *name, unsigned char *comment, unsigned char *prog)
+t_header				*init_header(unsigned int magic, char *name, char *comment, char *prog)
 {
 	t_header			*header;
 
 	if (!(header = (t_header *)malloc(sizeof(t_header))))
 		return (NULL);
 	header->magic = magic;
-	header->name = name;
+	header->prog_name = name;
 	header->comment = comment;
 	header->prog = prog;
+	header->prog_size = 0;
 	return (header);
 }

@@ -21,12 +21,10 @@ int				main(int argc, char **argv)
 	core.map = init_map();
 	core.players = init_players();
 	if (!read_args(&core, argc, argv))
-	{
-		write(1, "error\n", 6);
 		return (0);
-	}
-	print_data(core.players);
+	insert_to_map(&core);
+	// print_headers(core.players);
+	// print_data(core.players);
 	print_map(core.map);
-	printf("%d\n", 65528 % MEM_SIZE);
 	return (0);
 }
