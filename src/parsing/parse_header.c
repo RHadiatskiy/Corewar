@@ -51,12 +51,10 @@ static char				*parse_comment(unsigned char *data, unsigned int len, unsigned in
 	char				*comment;
 	unsigned int		i;
 	unsigned int		start;
-	int 				ret;
 
 	start = sizeof(unsigned int) + (PROG_NAME_LENGTH) + 7;
 	i = 0;
 	comment = NULL;
-	ret = 0;
 	if ((comment = (char *)malloc(sizeof(char) * len)))
 	{
 		if (len < size)

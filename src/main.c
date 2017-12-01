@@ -14,10 +14,8 @@
 
 int				main(int argc, char **argv)
 {
-	int				i;
 	t_core			core;
 
-	i = 1;
 	core.map = init_map();
 	core.players = init_players();
 	if (!read_args(&core, argc, argv))
