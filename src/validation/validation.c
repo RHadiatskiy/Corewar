@@ -46,7 +46,8 @@ int						validation(t_core *core, char *av)
 		ret == -1 ? write (1, "can't open the file\n", 20) : 0;
 		ret == -2 ? write (1, "can't allocate a memory\n", 24) : 0;
 		ret == -3 ? write (1, "can't reed the file\n", 20) : 0;
-		ret == -4 ? write (1, "invalid magic\n", 14) : 0;
+		ret == -4 ? write (1, "invalid champ size\n", 19) : 0;
+		ret == -5 ? write (1, "invalid magic\n", 14) : 0;
 		return (0);
 	}
 	return (ret);

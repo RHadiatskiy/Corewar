@@ -39,7 +39,6 @@ static char				*parse_name(unsigned char *data, unsigned int len, unsigned int s
 		{
 			while (i < len && start < size)
 				name[i++] = data[start++];
-				// name[i++] = (res << 8) | (((char *)data)[start++] & 0x000000ff);
 		}
 		name[i] = '\0';
 	}

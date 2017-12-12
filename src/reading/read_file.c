@@ -43,8 +43,10 @@ int						read_file(t_core *core, char *av)
 		return (-2);
 	if (!(read(fd, data, len)))
 		return (-3);
-	if (!(header = parse_header(data, len)))
+	if (len - ((PROG_NAME_LENGTH) + (COMMENT_LENGTH) + 16) > CHAMP_MAX_SIZE)
 		return (-4);
+	if (!(header = parse_header(data, len)))
+		return (-5);
 	else
 		add_player(core->players, header, data, len);
 	close(fd);
