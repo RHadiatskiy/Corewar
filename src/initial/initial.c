@@ -51,3 +51,28 @@ t_header				*init_header(unsigned int magic, char *name, char *comment, char *pr
 	header->prog_size = 0;
 	return (header);
 }
+
+t_process				*init_process(void)
+{
+	t_process			*process;
+
+	if (!(process = (t_process *)malloc(sizeof(t_process))))
+		return (NULL);
+	process->pc = 0;
+	process->reg = (int *)malloc(sizeof(int) * REG_NUMBER);
+	ft_bzero(process->reg, REG_NUMBER);
+	process->next = NULL;
+	return (process);
+}
+
+void					init_game(t_core *core)
+{
+	while (core->process->pc < CYCLE_TO_DIE)
+	{
+		if (core->process->pc % 64 == 0)
+			printf("\n");
+		printf("%.2x", core->map[core->process->pc]);
+		core->process->pc++;
+	}
+	printf("\n");
+}

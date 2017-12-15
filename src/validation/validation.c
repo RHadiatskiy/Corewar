@@ -12,29 +12,19 @@
 
 #include "../../include/vm.h"
 
-// static int				valid_magic(char *data)
-// {
-// 	(void)data;
-// 	return (1);
-// }
+int						magic_error(char *dir)
+{
+	printf("Error: %s has an invalid header\n", dir);
+	return (0);
+}
 
-// static int				valid_prog_name(int data)
-// {
-// 	(void)data;
-// 	return (1);
-// }
-
-// static int				valid_prog_size(int data)
-// {
-// 	(void)data;
-// 	return (1);
-// }
-
-// static int				valid_comment(int data)
-// {
-// 	(void)data;
-// 	return (1);
-// }
+int						prog_size_error(char *dir, int len)
+{
+	len < 0 ? printf("Error: File champs is too small to be a champion\n") : \
+	printf("Error: File %s has too large a code (%d bytes > 682 bytes)\n", \
+		dir, len);
+	return (0);
+}
 
 int						validation(t_core *core, char *av)
 {
@@ -43,11 +33,9 @@ int						validation(t_core *core, char *av)
 	ret = 1;
 	if ((ret = read_file(core, av)) != 1)
 	{
-		ret == -1 ? write (1, "can't open the file\n", 20) : 0;
-		ret == -2 ? write (1, "can't allocate a memory\n", 24) : 0;
-		ret == -3 ? write (1, "can't reed the file\n", 20) : 0;
-		ret == -4 ? write (1, "invalid champ size\n", 19) : 0;
-		ret == -5 ? write (1, "invalid magic\n", 14) : 0;
+		ret == -1 ? printf("Can't read source file %s\n", av) : 0;
+		ret == -2 ? printf("can't allocate a memory for %s\n", av) : 0;
+		ret == -3 ? printf("can't read the file %s\n", av) : 0;
 		return (0);
 	}
 	return (ret);

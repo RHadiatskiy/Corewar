@@ -48,6 +48,7 @@ typedef struct			s_core
 {
 	unsigned char		*map;
 	struct s_player		*players;
+	struct s_process	*process;
 }						t_core;
 
 typedef struct			s_player
@@ -67,6 +68,13 @@ typedef struct			s_header
 	char				*prog;
 	unsigned int		prog_size;
 }						t_header;
+
+typedef struct			s_process
+{
+	unsigned int		pc;
+	int					*reg;
+	struct s_process	*next;
+}						t_process;
 
 // typedef struct			s_op
 // {
@@ -109,6 +117,8 @@ int						ft_printf(const char *format, ...);
 unsigned char			*init_map(void);
 t_player				*init_players(void);
 t_header				*init_header(unsigned int magic, char *name, char *comment, char *prog);
+t_process				*init_process(void);
+void					init_game(t_core *core);
 
 /*
 **	READING
@@ -121,6 +131,8 @@ int						read_args(t_core *core, int ac, char **av);
 **	VALIDATION
 */
 
+int						prog_size_error(char *dir, int len);
+int						magic_error(char *dir);
 int						validation(t_core *info, char *data);
 
 /*
