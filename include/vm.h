@@ -47,14 +47,17 @@
 typedef struct			s_core
 {
 	unsigned char		*map;
+	int 				cycle;
+	int 				cycle_to_die;
 	struct s_player		*players;
 	struct s_process	*process;
+	struct s_flags		*flags;
 }						t_core;
 
 typedef struct			s_player
 {
 	unsigned int		id;
-	unsigned char		*data;
+	int					number;
 	unsigned int		size;
 	struct s_header		*header;
 	struct s_player		*next;
@@ -73,8 +76,17 @@ typedef struct			s_process
 {
 	unsigned int		pc;
 	int					*reg;
+	unsigned int		carry : 1;
 	struct s_process	*next;
 }						t_process;
+
+typedef struct			s_flags
+{
+	unsigned int		dump : 1;
+	int					dump_cycle;
+	unsigned int		number : 1;
+	int					n;
+}						t_flags;
 
 // typedef struct			s_op
 // {
@@ -118,6 +130,7 @@ unsigned char			*init_map(void);
 t_player				*init_players(void);
 t_header				*init_header(unsigned int magic, char *name, char *comment, char *prog);
 t_process				*init_process(void);
+t_flags					*init_flags(void);
 void					init_game(t_core *core);
 
 /*
@@ -126,6 +139,7 @@ void					init_game(t_core *core);
 
 int						read_file(t_core *core, char *av);
 int						read_args(t_core *core, int ac, char **av);
+int						read_flags(t_core *core, char **av, int *i);
 
 /*
 **	VALIDATION
@@ -146,7 +160,7 @@ void					insert_to_map(t_core *core);
 **	PRINTING
 */
 
-void					print_map(unsigned char *map);
+void					print_map(t_core *core);
 void					print_data(t_player *players);
 void					print_players(t_player *players);
 void					print_prog_attr(char *name, unsigned int len);
@@ -157,7 +171,7 @@ void					print_headers(t_player *players);
 **	ADDITION
 */
 
-void					add_player(t_player *players, t_header *header, unsigned char *data, unsigned int size);
+void					add_player(t_player *players, t_header *header, unsigned int size, t_flags *flags);
 
 /*
 **	GETTING

@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_args.c                                        :+:      :+:    :+:   */
+/*   read_flags.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/15 17:53:22 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/12/15 17:53:24 by rhadiats         ###   ########.fr       */
+/*   Created: 2017/12/16 20:09:24 by rhadiats          #+#    #+#             */
+/*   Updated: 2017/12/16 20:09:25 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/vm.h"
 
-int						read_args(t_core *core, int ac, char **av)
+int						read_flags(t_core *core, char **av, int *i)
 {
-	int					iter;
-	int					players;
+	int			ret;
 
-	iter = 0;
-	players = 0;
-	if (ac < 2)
+	ret = 0;
+	while (av[(*i)])
 	{
-		write(1, "usage: ...\n", 11);
-		return (0);
-	}		
-	while (++iter < ac)
-	{
-		players += read_flags(core, av, &iter);
-		if (iter < ac)
-			if (!validation(core, av[iter]))
-				exit (0);
+		if (ft_strcmp(av[(*i)], "-d") == 0 && av[(*i) + 1])
+		{
+			core->flags->dump = 1;
+			core->flags->dump_cycle = ft_atoi(av[++(*i)]);
+			++(*i);
+		}
+		else if (ft_strcmp(av[(*i)], "-n") == 0 && av[(*i) + 1])
+		{
+			core->flags->number = 1;
+			core->flags->n = ft_atoi(av[++(*i)]);
+			++(*i);
+		}
+		else
+		{
+			ret = 1;
+			break ;
+		}
 	}
-	if (players > MAX_PLAYERS)
-	{
-		write (1, "Too many champions\n", 19);
-		return (0);
-	}
-	return (1);
+	return (ret);
 }

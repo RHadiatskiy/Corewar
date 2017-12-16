@@ -10,7 +10,7 @@ SRC = src/main \
 		src/printing/printing \
 		src/parsing/parse_header src/parsing/parse_map \
 		src/validation/validation \
-		src/reading/read_file src/reading/read_args\
+		src/reading/read_file src/reading/read_args src/reading/read_flags \
 		src/addition/add_player \
 		src/getting/getting_data
 

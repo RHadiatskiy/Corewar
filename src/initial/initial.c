@@ -31,7 +31,7 @@ t_player				*init_players(void)
 	if (!(player = (t_player *)malloc(sizeof(t_player))))
 		return (NULL);
 	player->id = 0;
-	player->data = NULL;
+	player->number = 0;
 	player->size = 0;
 	player->header = NULL;
 	player->next = NULL;
@@ -61,8 +61,22 @@ t_process				*init_process(void)
 	process->pc = 0;
 	process->reg = (int *)malloc(sizeof(int) * REG_NUMBER);
 	ft_bzero(process->reg, REG_NUMBER);
+	process->carry = 0;
 	process->next = NULL;
 	return (process);
+}
+
+t_flags					*init_flags(void)
+{
+	t_flags				*flags;
+
+	if (!(flags = (t_flags *)malloc(sizeof(t_flags))))
+		return (NULL);
+	flags->dump = 0;
+	flags->dump_cycle = 0;
+	flags->number = 0;
+	flags->n = 0;
+	return (flags);
 }
 
 void					init_game(t_core *core)

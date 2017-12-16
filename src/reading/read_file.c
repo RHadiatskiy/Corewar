@@ -33,7 +33,7 @@ int						read_file(t_core *core, char *av)
 	if (!(header = parse_header(data, len)))
 		return (magic_error(av));
 	else
-		add_player(core->players, header, data, len);
+		add_player(core->players, header, len, core->flags);
 	close(fd);
 	return (1);
 }
