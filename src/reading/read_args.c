@@ -20,10 +20,7 @@ int						read_args(t_core *core, int ac, char **av)
 	iter = 0;
 	players = 0;
 	if (ac < 2)
-	{
-		write(1, "usage: ...\n", 11);
-		return (0);
-	}		
+		return (print_usage());
 	while (++iter < ac)
 	{
 		players += read_flags(core, av, &iter);

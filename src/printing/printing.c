@@ -104,3 +104,11 @@ void					print_players(t_player *players)
 		}
 	}
 }
+
+int						print_usage(void)
+{
+	printf("Usage: ./corewar [-d n_cycles] [[-n number] <champion1.cor>] <...>\n");
+	printf("\t-d n_cycles\t: dumping the memory on the standard output at the end of nbr_cycles\n");
+	printf("\t-n number\t: sets the number of the next player\n");
+	return (0);
+}

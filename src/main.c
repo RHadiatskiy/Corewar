@@ -24,7 +24,8 @@ int				main(int argc, char **argv)
 	if (!read_args(&core, argc, argv))
 		return (0);
 	insert_to_map(&core);
-	print_map(&core);
+	if (core.flags->dump)
+		print_map(&core);
 	// init_game(&core);
 	return (0);
 }
