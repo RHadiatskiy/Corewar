@@ -33,5 +33,6 @@ int						read_args(t_core *core, int ac, char **av)
 		write (1, "Too many champions\n", 19);
 		return (0);
 	}
+	ft_sort_list(core->players);
 	return (1);
 }

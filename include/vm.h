@@ -181,5 +181,10 @@ void					add_player(t_player *players, t_header *header, unsigned int size, t_fl
 unsigned int			get_players_size(t_player *players);
 unsigned int			get_value_from_file(void *buf, unsigned int start, unsigned int len);
 
+/*
+**	OTHER
+*/
+
+void					ft_sort_list(t_player *players);
 
 #endif
