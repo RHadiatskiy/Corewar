@@ -36,6 +36,17 @@ static int				check_flag_n(t_core *core, char **av, int *i)
 	return (0);
 }
 
+static int				check_flags_clr(t_core *core, char **av, int *i)
+{
+	if (ft_strcmp(av[(*i)], "-clr") == 0)
+	{
+		core->flags->clr = 1;
+		++(*i);
+		return (1);
+	}
+	return (0);	
+}
+
 int						read_flags(t_core *core, char **av, int *i)
 {
 	int			ret;
@@ -45,7 +56,8 @@ int						read_flags(t_core *core, char **av, int *i)
 	core->flags->n = 0;
 	while (av[(*i)])
 	{
-		if (!check_flag_d(core, av, i) && !check_flag_n(core, av, i))
+		if (!check_flag_d(core, av, i) && !check_flag_n(core, av, i) && \
+			!check_flags_clr(core, av, i))
 		{
 			ret = 1;
 			break ;
