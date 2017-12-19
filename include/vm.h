@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#ifndef VM_H
+# define VM_H
 
 /*
 **	Colorize an output of printf
@@ -47,8 +47,8 @@
 typedef struct			s_core
 {
 	unsigned char		*map;
-	int 				cycle;
-	int 				cycle_to_die;
+	int					cycle;
+	int					cycle_to_die;
 	struct s_player		*players;
 	struct s_process	*process;
 	struct s_flags		*flags;
@@ -101,7 +101,7 @@ typedef struct			s_op
 	int					flag_direct_size;
 }						t_op;
 
-static t_op				op_tab[17] =
+static t_op				g_op_tab[17] =
 {
 	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
 	{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0},
@@ -128,10 +128,13 @@ static t_op				op_tab[17] =
 	{0, 0, {0}, 0, 0, 0, 0, 0}
 };
 
-static char				binary[16][5] = {"0000", "0001", "0010", "0011",
-										"0100", "0101", "0110", "0111",
-										"1000", "1001", "1010", "1011",
-										"1100", "1101", "1110", "1111"};
+static char				g_binary[16][5] =
+{
+	"0000", "0001", "0010", "0011",
+	"0100", "0101", "0110", "0111",
+	"1000", "1001", "1010", "1011",
+	"1100", "1101", "1110", "1111"
+};
 
 int						ft_printf(const char *format, ...);
 
@@ -141,7 +144,8 @@ int						ft_printf(const char *format, ...);
 
 unsigned char			*init_map(void);
 t_player				*init_players(void);
-t_header				*init_header(unsigned int magic, char *name, char *comment, char *prog);
+t_header				*init_header(unsigned int magic, char *name,
+									char *comment, char *prog);
 t_process				*init_process(void);
 t_flags					*init_flags(void);
 void					init_game(t_core *core);
@@ -185,14 +189,16 @@ int						print_usage(void);
 **	ADDITION
 */
 
-void					add_player(t_player *players, t_header *header, unsigned int size, t_flags *flags);
+void					add_player(t_player *players, t_header *header,
+									unsigned int size, t_flags *flags);
 
 /*
 **	GETTING
 */
 
 unsigned int			get_players_size(t_player *players);
-unsigned int			get_value_from_file(void *buf, unsigned int start, unsigned int len);
+unsigned int			get_value_from_file(void *buf, unsigned int start,
+											unsigned int len);
 
 /*
 **	OTHER
@@ -200,4 +206,5 @@ unsigned int			get_value_from_file(void *buf, unsigned int start, unsigned int l
 
 void					ft_sort_list(t_player *players);
 int						ft_findchr(char *str, char c);
+
 #endif
