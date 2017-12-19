@@ -1,43 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getting_data.c                                     :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/27 13:20:10 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/11/27 13:20:11 by rhadiats         ###   ########.fr       */
+/*   Created: 2017/04/21 16:46:03 by rhadiats          #+#    #+#             */
+/*   Updated: 2017/04/21 16:46:10 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/vm.h"
 
-unsigned int			get_players_size(t_player *players)
+void		f(uintmax_t value, int base, char *str, int *i)
 {
-	t_player		*iter;
-	unsigned int	size;			
+	char			*tmp;
 
-	size = 0;
-	iter = players;
-	while (iter)
-	{
-		size++;
-		iter = iter->next;
-	}
-	return (size);
+	tmp = "0123456789abcdef";
+	if (value >= (uintmax_t)base)
+		f(value / base, base, str, i);
+	str[(*i)++] = tmp[(value % base)];
 }
 
-unsigned int			get_value_from_map(void *buf, unsigned int start, unsigned int len)
+char		*ft_itoa_base(intmax_t value, int base)
 {
-	unsigned int	res;
-	unsigned int	i;
+	int				i;
+	char			*str;
 
-	res = 0;
 	i = 0;
-	if (i < len)
+	if (base < 2 || base > 16 || !(str = (char*)malloc(32)))
+		return (0);
+	if (value < 0)
 	{
-		while (i++ < len)
-			res = (res << 8) | (((unsigned char *)buf)[start++] & 0x000000ff);
+		str[i++] = '-';
+		value *= -1;
 	}
-	return (res);
+	f((uintmax_t)value, base, str, &i);
+	str[i] = '\0';
+	return (str);
 }

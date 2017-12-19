@@ -18,7 +18,7 @@ static unsigned int		parse_magic(void *data, unsigned int len, unsigned int size
 
 	magic = 0;
 	if (len < size)
-		magic = get_value_from_file(data, 0, len);
+		magic = get_value_from_map(data, 0, len);
 	if (magic != COREWAR_EXEC_MAGIC)
 		return (0);
 	return (magic);

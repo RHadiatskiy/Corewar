@@ -197,7 +197,7 @@ void					add_player(t_player *players, t_header *header,
 */
 
 unsigned int			get_players_size(t_player *players);
-unsigned int			get_value_from_file(void *buf, unsigned int start,
+unsigned int			get_value_from_map(void *buf, unsigned int start,
 											unsigned int len);
 
 /*
@@ -206,5 +206,7 @@ unsigned int			get_value_from_file(void *buf, unsigned int start,
 
 void					ft_sort_list(t_player *players);
 int						ft_findchr(char *str, char c);
+char					*ft_itoa_base(intmax_t value, int base);
+unsigned int			int_to_bin(unsigned int k);
 
 #endif

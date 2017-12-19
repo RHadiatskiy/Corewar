@@ -26,6 +26,8 @@ int				main(int argc, char **argv)
 	insert_to_map(&core);
 	core.flags->dump ? print_map(&core) : 0;
 	// init_game(&core);
-
+	printf("%d\n", g_op_tab[1].arg[0]);
+	printf("%x\n", get_value_from_map(core.map, 1, 1));
+	printf("%d\n", int_to_bin(get_value_from_map(core.map, 1, 1)));
 	return (0);
 }
