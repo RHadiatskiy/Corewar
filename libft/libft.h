@@ -105,5 +105,7 @@ int				ft_tolower(int c);
 int				ft_toupper(int c);
 int				ft_strisdigit(const char *s);
 void			ft_szero(void *s, size_t n);
+unsigned int	ft_to_bin(unsigned int k);
+char			*ft_itoa_base(intmax_t value, int base);
 
 #endif

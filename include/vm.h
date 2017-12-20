@@ -128,12 +128,25 @@ static t_op				g_op_tab[17] =
 	{0, 0, {0}, 0, 0, 0, 0, 0}
 };
 
-static char				g_binary[16][5] =
+static int				g_sizes[17][4] =
 {
-	"0000", "0001", "0010", "0011",
-	"0100", "0101", "0110", "0111",
-	"1000", "1001", "1010", "1011",
-	"1100", "1101", "1110", "1111"
+	{0, 1, 4, 2},
+	{0, 1, 4, 2},
+	{0, 1, 2, 2},
+	{0, 1, 2, 2},
+	{0, 1, 2, 2},
+	{0, 1, 4, 2},
+	{0, 1, 4, 2},
+	{0, 1, 4, 2},
+	{0, 1, 2, 2},
+	{0, 1, 2, 2},
+	{0, 1, 2, 2},
+	{0, 1, 2, 2},
+	{0, 1, 4, 2},
+	{0, 1, 2, 2},
+	{0, 1, 2, 2},
+	{0, 1, 2, 2},
+	{0, 0, 0, 0}
 };
 
 int						ft_printf(const char *format, ...);
@@ -199,6 +212,7 @@ void					add_player(t_player *players, t_header *header,
 unsigned int			get_players_size(t_player *players);
 unsigned int			get_value_from_map(void *buf, unsigned int start,
 											unsigned int len);
+int						get_next_index(int command, int value);
 
 /*
 **	OTHER
@@ -206,7 +220,5 @@ unsigned int			get_value_from_map(void *buf, unsigned int start,
 
 void					ft_sort_list(t_player *players);
 int						ft_findchr(char *str, char c);
-char					*ft_itoa_base(intmax_t value, int base);
-unsigned int			int_to_bin(unsigned int k);
 
 #endif

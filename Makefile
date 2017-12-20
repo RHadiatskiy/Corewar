@@ -12,9 +12,8 @@ SRC = src/main \
 		src/validation/validation \
 		src/reading/read_file src/reading/read_args src/reading/read_flags \
 		src/addition/add_player \
-		src/getting/getting_data \
-		src/other/sort_players src/other/ft_findchr src/other/ft_itoa_base \
-			src/other/int_to_bin
+		src/getting/getting_data src/getting/get_next_index \
+		src/other/sort_players src/other/ft_findchr
 
 OBJ = $(addsuffix .o,$(SRC))
 
