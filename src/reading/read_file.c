@@ -34,6 +34,7 @@ int						read_file(t_core *core, char *av)
 		return (magic_error(av));
 	else
 		add_player(core->players, header, len, core->flags);
+	free(data);
 	close(fd);
 	return (1);
 }

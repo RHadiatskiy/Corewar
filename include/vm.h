@@ -197,6 +197,7 @@ void					print_prog_attr(char *name, unsigned int len);
 void					print_header(t_header *header, unsigned int size);
 void					print_headers(t_player *players);
 int						print_usage(void);
+void					print_debug(t_core *core);
 
 /*
 **	ADDITION
