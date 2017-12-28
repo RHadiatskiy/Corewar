@@ -12,31 +12,20 @@
 
 #include "../../include/vm.h"
 
-// void					run_process(t_core *core)
-// {
-// 	t_process		*processes;
-
-// 	processes = core->process ? core->process : NULL;
-// 	while (processes)
-// 	{
-// 		while (processes->pc < core->cycle_to_die)
-// 		{
-
-// 		}
-// 		process = process->next;
-// 	}
-// }
-
-void					load_processes(t_core *core)
+void					run_processes(t_core *core)
 {
-	t_player		*iter;
-	unsigned int	size;
+	t_process		*process;
+	int				i;
 
-	size = get_players_size(core->players);
-	iter = core->players ? core->players : NULL;
-	while (iter)
+	i = 0;
+	while (core->cycle < core->cycle_to_die)
 	{
-		add_process(core->process, ((MEM_SIZE) / size) * (iter->id - 1));
-		iter = iter->next;
+		process = core->process ? core->process : NULL;
+		while (process)
+		{
+			run_player(core, process);
+			process = process->next;
+		}
+		core->cycle++;
 	}
 }

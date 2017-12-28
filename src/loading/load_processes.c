@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   load_processes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 20:10:17 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/11/20 20:10:18 by rhadiats         ###   ########.fr       */
+/*   Created: 2017/12/28 20:38:05 by rhadiats          #+#    #+#             */
+/*   Updated: 2017/12/28 20:38:06 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/vm.h"
+#include "../../include/vm.h"
 
-int				main(int argc, char **argv)
+void					load_processes(t_core *core)
 {
-	t_core			*core;
+	t_player		*iter;
+	unsigned int	size;
 
-	core = init_core();
-	if (read_args(core, argc, argv))
+	size = get_players_size(core->players);
+	iter = core->players ? core->players : NULL;
+	while (iter)
 	{
-		load_processes(core);
-		load_players_on_the_map(core);
-		core->flags->dump ? print_map(core) : 0;
-
-		// print_debug(core);
-		// print_processes(core->process);
-		run_processes(core);
+		add_process(core->process, ((MEM_SIZE) / size) * (iter->id - 1));
+		iter = iter->next;
 	}
-	return (0);
 }

@@ -184,7 +184,6 @@ int						validation(t_core *info, char *data);
 */
 
 t_header				*parse_header(unsigned char *data, unsigned int size);
-void					insert_to_map(t_core *core);
 
 /*
 **	PRINTING
@@ -207,7 +206,6 @@ void					print_processes(t_process *processes);
 void					add_player(t_player *players, t_header *header,
 									unsigned int size, t_flags *flags);
 void					add_process(t_process *processes, int start_pc);
-void					load_processes(t_core *core);
 
 /*
 **	GETTING
@@ -218,6 +216,20 @@ unsigned int			get_value_from_map(void *buf, unsigned int start,
 											unsigned int len);
 int						get_next_index(int command, int value);
 void					put_on_map(unsigned char *map, int start, int value);
+
+/*
+**	RUNNING
+*/
+
+void					run_processes(t_core *core);
+void					run_player(t_core *core, t_process *process);
+
+/*
+**	LOADING
+*/
+
+void					load_processes(t_core *core);
+void					load_players_on_the_map(t_core *core);
 
 /*
 **	OTHER

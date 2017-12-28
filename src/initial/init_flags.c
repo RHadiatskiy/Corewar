@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_flags.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 20:10:17 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/11/20 20:10:18 by rhadiats         ###   ########.fr       */
+/*   Created: 2017/12/28 20:48:20 by rhadiats          #+#    #+#             */
+/*   Updated: 2017/12/28 20:48:22 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/vm.h"
+#include "../../include/vm.h"
 
-int				main(int argc, char **argv)
+t_flags					*init_flags(void)
 {
-	t_core			*core;
+	t_flags				*flags;
 
-	core = init_core();
-	if (read_args(core, argc, argv))
-	{
-		load_processes(core);
-		load_players_on_the_map(core);
-		core->flags->dump ? print_map(core) : 0;
-
-		// print_debug(core);
-		// print_processes(core->process);
-		run_processes(core);
-	}
-	return (0);
+	if (!(flags = (t_flags *)malloc(sizeof(t_flags))))
+		return (NULL);
+	flags->dump = 0;
+	flags->dump_cycle = 0;
+	flags->number = 0;
+	flags->n = 0;
+	return (flags);
 }

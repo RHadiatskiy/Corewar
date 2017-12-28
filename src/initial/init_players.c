@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_players.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 20:10:17 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/11/20 20:10:18 by rhadiats         ###   ########.fr       */
+/*   Created: 2017/12/28 20:46:16 by rhadiats          #+#    #+#             */
+/*   Updated: 2017/12/28 20:46:17 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/vm.h"
+#include "../../include/vm.h"
 
-int				main(int argc, char **argv)
+t_player				*init_players(void)
 {
-	t_core			*core;
+	t_player			*player;
 
-	core = init_core();
-	if (read_args(core, argc, argv))
-	{
-		load_processes(core);
-		load_players_on_the_map(core);
-		core->flags->dump ? print_map(core) : 0;
-
-		// print_debug(core);
-		// print_processes(core->process);
-		run_processes(core);
-	}
-	return (0);
+	if (!(player = (t_player *)malloc(sizeof(t_player))))
+		return (NULL);
+	player->id = 0;
+	player->number = 0;
+	player->size = 0;
+	player->header = NULL;
+	player->next = NULL;
+	return (player);
 }

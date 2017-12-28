@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_header.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 20:10:17 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/11/20 20:10:18 by rhadiats         ###   ########.fr       */
+/*   Created: 2017/12/28 20:46:53 by rhadiats          #+#    #+#             */
+/*   Updated: 2017/12/28 20:46:54 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/vm.h"
+#include "../../include/vm.h"
 
-int				main(int argc, char **argv)
+t_header				*init_header(unsigned int magic, char *name, char *comment, char *prog)
 {
-	t_core			*core;
+	t_header			*header;
 
-	core = init_core();
-	if (read_args(core, argc, argv))
-	{
-		load_processes(core);
-		load_players_on_the_map(core);
-		core->flags->dump ? print_map(core) : 0;
-
-		// print_debug(core);
-		// print_processes(core->process);
-		run_processes(core);
-	}
-	return (0);
+	if (!(header = (t_header *)malloc(sizeof(t_header))))
+		return (NULL);
+	header->magic = magic;
+	header->prog_name = name;
+	header->comment = comment;
+	header->prog = prog;
+	header->prog_size = 0;
+	return (header);
 }
