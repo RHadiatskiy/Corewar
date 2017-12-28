@@ -32,8 +32,7 @@ int						read_file(t_core *core, char *av)
 			(COMMENT_LENGTH) + 16)));
 	if (!(header = parse_header(data, len)))
 		return (magic_error(av));
-	else
-		add_player(core->players, header, len, core->flags);
+	add_player(core->players, header, len, core->flags);
 	free(data);
 	close(fd);
 	return (1);

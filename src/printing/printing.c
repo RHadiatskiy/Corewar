@@ -107,8 +107,10 @@ void					print_players(t_player *players)
 
 int						print_usage(void)
 {
-	printf("Usage: ./corewar [-d n_cycles] [[-n number] <champion1.cor>] <...>\n");
-	printf("\t-d n_cycles\t: dumping the memory on the standard output at the end of nbr_cycles\n");
+	printf("Usage: ./corewar [-d n_cycles] ");
+	printf("[[-n number] <champion1.cor>] <...>\n");
+	printf("\t-d n_cycles\t: dumping the memory on the standard ");
+	printf("output at the end of nbr_cycles\n");
 	printf("\t-n number\t: sets the number of the next player\n");
 	return (0);
 }
@@ -123,13 +125,13 @@ void					print_debug(t_core *core)
 	while (i + 1 < MEM_SIZE)
 	{
 		cmd = get_value_from_map(core->map, i, 1);
-		if (cmd != 0 && g_op_tab[cmd - 1].codage_octal)
+		if (cmd != 0 && cmd <= 17 && g_op_tab[cmd - 1].codage_octal)
 		{
 			printf("command : %s\t\tpc : %x\tindex : %d\tnext index = %d\n", g_op_tab[cmd - 1].command, core->map[i], i,
 				get_next_index(get_value_from_map(core->map, i, 1) - 1, get_value_from_map(core->map, i + 1, 1)));
 			i += (2 + get_next_index(cmd - 1, get_value_from_map(core->map, i + 1, 1)));
 		}
-		else if (cmd != 0 && !g_op_tab[cmd - 1].codage_octal)
+		else if (cmd != 0 && cmd <= 17 && !g_op_tab[cmd - 1].codage_octal)
 		{
 			printf("command : %s\t\tpc : %x\tindex : %d\tnext index = %d\n", g_op_tab[cmd - 1].command, core->map[i], i,
 				get_next_index(get_value_from_map(core->map, i, 1) - 1, get_value_from_map(core->map, i + 1, 1)));
@@ -140,5 +142,21 @@ void					print_debug(t_core *core)
 			printf("command hasn't found\tpc : %x\tindex : %d\n", core->map[i], i);
 			i++;
 		}
+	}
+}
+
+void					print_processes(t_process *processes)
+{
+	t_process		*proc;
+	int				i;
+
+	i = 0;
+	proc = processes ? processes : NULL;
+	while (proc)
+	{
+		printf("------------------PROCESS %d------------------\n", ++i);
+		printf("PC:\t\t%d\n", proc->pc);
+		printf("REG:\t\t%d\n", proc->reg[0]);
+		proc = proc->next;
 	}
 }

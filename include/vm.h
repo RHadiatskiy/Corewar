@@ -74,7 +74,7 @@ typedef struct			s_header
 
 typedef struct			s_process
 {
-	unsigned int		pc;
+	int					pc;
 	int					*reg;
 	unsigned int		carry : 1;
 	struct s_process	*next;
@@ -161,7 +161,7 @@ t_header				*init_header(unsigned int magic, char *name,
 									char *comment, char *prog);
 t_process				*init_process(void);
 t_flags					*init_flags(void);
-void					init_game(t_core *core);
+t_core					*init_core(void);
 
 /*
 **	READING
@@ -198,6 +198,7 @@ void					print_header(t_header *header, unsigned int size);
 void					print_headers(t_player *players);
 int						print_usage(void);
 void					print_debug(t_core *core);
+void					print_processes(t_process *processes);
 
 /*
 **	ADDITION
@@ -205,6 +206,8 @@ void					print_debug(t_core *core);
 
 void					add_player(t_player *players, t_header *header,
 									unsigned int size, t_flags *flags);
+void					add_process(t_process *processes, int start_pc);
+void					load_processes(t_core *core);
 
 /*
 **	GETTING
@@ -214,6 +217,7 @@ unsigned int			get_players_size(t_player *players);
 unsigned int			get_value_from_map(void *buf, unsigned int start,
 											unsigned int len);
 int						get_next_index(int command, int value);
+void					put_on_map(unsigned char *map, int start, int value);
 
 /*
 **	OTHER

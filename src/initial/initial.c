@@ -58,7 +58,7 @@ t_process				*init_process(void)
 
 	if (!(process = (t_process *)malloc(sizeof(t_process))))
 		return (NULL);
-	process->pc = 0;
+	process->pc = -1;
 	process->reg = (int *)malloc(sizeof(int) * REG_NUMBER);
 	ft_bzero(process->reg, REG_NUMBER);
 	process->carry = 0;
@@ -79,14 +79,17 @@ t_flags					*init_flags(void)
 	return (flags);
 }
 
-void					init_game(t_core *core)
+t_core					*init_core(void)
 {
-	while (core->process->pc < CYCLE_TO_DIE)
-	{
-		if (core->process->pc % 64 == 0)
-			printf("\n");
-		printf("%.2x", core->map[core->process->pc]);
-		core->process->pc++;
-	}
-	printf("\n");
+	t_core				*core;
+
+	if (!(core = (t_core *)malloc(sizeof(t_core))))
+		return (NULL);
+	core->map = init_map();
+	core->cycle = 0;
+	core->cycle_to_die = CYCLE_TO_DIE;
+	core->players = init_players();
+	core->process = init_process();
+	core->flags = init_flags();
+	return (core);
 }

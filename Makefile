@@ -11,9 +11,11 @@ SRC = src/main \
 		src/parsing/parse_header src/parsing/parse_map \
 		src/validation/validation \
 		src/reading/read_file src/reading/read_args src/reading/read_flags \
-		src/addition/add_player \
-		src/getting/getting_data src/getting/get_next_index \
-		src/other/sort_players src/other/ft_findchr
+		src/addition/add_player src/addition/add_process \
+		src/getting/get_next_index src/getting/get_players_size \
+				src/getting/get_value_from_map src/getting/put_on_map \
+		src/other/sort_players src/other/ft_findchr \
+		src/running/run_process
 
 OBJ = $(addsuffix .o,$(SRC))
 
