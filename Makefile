@@ -15,8 +15,9 @@ SRC = src/main \
 		src/reading/read_file src/reading/read_args src/reading/read_flags \
 		src/addition/add_player src/addition/add_process \
 		src/getting/get_next_index src/getting/get_players_size \
-				src/getting/get_value_from_map src/getting/put_on_map \
+				src/getting/get_value_from_map \
 		src/other/sort_players src/other/ft_findchr \
+				src/other/put_value_on_the_map \
 		src/running/run_processes src/running/run_player \
 		src/loading/load_players_on_the_map src/loading/load_processes
 

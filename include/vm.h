@@ -236,5 +236,7 @@ void					load_players_on_the_map(t_core *core);
 
 void					ft_sort_list(t_player *players);
 int						ft_findchr(char *str, char c);
+void					put_value_on_the_map(unsigned char *map, int start,
+												int value);
 
 #endif

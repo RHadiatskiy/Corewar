@@ -12,7 +12,7 @@
 
 #include "../../include/vm.h"
 
-void					put_on_map(unsigned char *map, int start, int value)
+void					put_value_on_the_map(unsigned char *map, int start, int value)
 {
 	int				j;
 	int				i;
