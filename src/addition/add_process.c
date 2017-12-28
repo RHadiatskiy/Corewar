@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getting_data.c                                     :+:      :+:    :+:   */
+/*   add_process.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/27 13:20:10 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/11/27 13:20:11 by rhadiats         ###   ########.fr       */
+/*   Created: 2017/12/28 17:58:46 by rhadiats          #+#    #+#             */
+/*   Updated: 2017/12/28 17:58:47 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/vm.h"
 
-unsigned int			get_players_size(t_player *players)
+void					add_process(t_process *processes, int start_pc)
 {
-	t_player		*iter;
-	unsigned int	size;			
+	t_process		*proc;
+	t_process		*to_end;
 
-	size = 0;
-	iter = players;
-	while (iter)
+	to_end = processes;
+	if (processes->pc == -1)
 	{
-		size++;
-		iter = iter->next;
+		processes->pc = 0;
+		processes->reg[0] = -1;
 	}
-	return (size);
-}
-
-unsigned int			get_value_from_map(void *buf, unsigned int start, unsigned int len)
-{
-	unsigned int	res;
-	unsigned int	i;
-
-	res = 0;
-	i = 0;
-	if (i < len)
+	else
 	{
-		while (i++ < len)
-			res = (res << 8) | (((unsigned char *)buf)[start++] & 0x000000ff);
+		proc = init_process();
+		while (to_end->next)
+			to_end = to_end->next;
+		proc->pc = start_pc;
+		proc->reg[0] = -((to_end->reg[0] * -1) + 1);
+		to_end->next = proc;
+		proc->next = NULL;
 	}
-	return (res);
 }
