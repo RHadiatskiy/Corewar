@@ -175,8 +175,6 @@ int						read_flags(t_core *core, char **av, int *i);
 **	VALIDATION
 */
 
-int						prog_size_error(char *dir, int len);
-int						magic_error(char *dir);
 int						validation(t_core *info, char *data);
 
 /*
@@ -198,6 +196,8 @@ void					print_headers(t_player *players);
 int						print_usage(void);
 void					print_debug(t_core *core);
 void					print_processes(t_process *processes);
+int						print_prog_size_error(char *dir, int len);
+int						print_magic_error(char *dir);
 
 /*
 **	ADDITION
@@ -215,7 +215,6 @@ unsigned int			get_players_size(t_player *players);
 unsigned int			get_value_from_map(void *buf, unsigned int start,
 											unsigned int len);
 int						get_next_index(int command, int value);
-void					put_on_map(unsigned char *map, int start, int value);
 
 /*
 **	RUNNING

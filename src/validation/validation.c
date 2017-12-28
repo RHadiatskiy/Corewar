@@ -12,20 +12,6 @@
 
 #include "../../include/vm.h"
 
-int						magic_error(char *dir)
-{
-	printf("Error: %s has an invalid header\n", dir);
-	return (0);
-}
-
-int						prog_size_error(char *dir, int len)
-{
-	len < 0 ? printf("Error: File champs is too small to be a champion\n") : \
-	printf("Error: File %s has too large a code (%d bytes > 682 bytes)\n", \
-		dir, len);
-	return (0);
-}
-
 int						validation(t_core *core, char *av)
 {
 	int			ret;

@@ -9,7 +9,7 @@ SRC = src/main \
 		src/initial/init_core src/initial/init_flags \
 				src/initial/init_header src/initial/init_map \
 				src/initial/init_players src/initial/init_process \
-		src/printing/printing \
+		src/printing/print_debug src/printing/print_errors \
 		src/parsing/parse_header \
 		src/validation/validation \
 		src/reading/read_file src/reading/read_args src/reading/read_flags \
