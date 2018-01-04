@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_process.c                                     :+:      :+:    :+:   */
+/*   get_command_from_array.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/28 20:47:45 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/12/28 20:47:47 by rhadiats         ###   ########.fr       */
+/*   Created: 2018/01/04 18:23:01 by rhadiats          #+#    #+#             */
+/*   Updated: 2018/01/04 18:23:03 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/vm.h"
 
-t_process				*init_process(void)
+int						get_command_from_array(t_core *core, t_process *process, int key)
 {
-	t_process			*process;
-
-	if (!(process = (t_process *)malloc(sizeof(t_process))))
-		return (NULL);
-	process->pc = -1;
-	process->reg = (int *)malloc(sizeof(int) * REG_NUMBER);
-	ft_bzero(process->reg, REG_NUMBER);
-	process->carry = 0;
-	process->cycles_to_exec = 0;
-	process->next = NULL;
-	return (process);
+	load_commands();
+	return ((key >= 0 && key <= 15) ? (*g_commands[key - 1])(core, process) : 0);
 }

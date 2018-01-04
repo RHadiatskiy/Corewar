@@ -15,11 +15,20 @@ SRC = src/main \
 		src/reading/read_file src/reading/read_args src/reading/read_flags \
 		src/addition/add_player src/addition/add_process \
 		src/getting/get_next_index src/getting/get_players_size \
-				src/getting/get_value_from_map \
+				src/getting/get_value_from_map src/getting/get_command_from_array \
 		src/other/sort_players src/other/ft_findchr \
 				src/other/put_value_on_the_map \
 		src/running/run_processes src/running/run_player \
-		src/loading/load_players_on_the_map src/loading/load_processes
+		src/loading/load_players_on_the_map src/loading/load_processes \
+				src/loading/load_commands \
+		src/commands/command_add src/commands/command_aff src/commands/command_and \
+				src/commands/command_fork src/commands/command_ld \
+				src/commands/command_ldi src/commands/command_lfork \
+				src/commands/command_live src/commands/command_lld \
+				src/commands/command_lldi src/commands/command_or \
+				src/commands/command_st src/commands/command_sti \
+				src/commands/command_sub src/commands/command_xor \
+				src/commands/command_zjmp
 
 OBJ = $(addsuffix .o,$(SRC))
 

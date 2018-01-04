@@ -19,22 +19,26 @@ void					run_player(t_core *core, t_process *process)
 
 	cmd = get_value_from_map(core->map, process->pc, 1);
 	codage = get_value_from_map(core->map, process->pc + 1, 1);
-	if (cmd != 0 && cmd <= 17 && g_op_tab[cmd - 1].codage_octal)
+	if (cmd != 0 && cmd < 17 && g_op_tab[cmd - 1].codage_octal)
 	{
-		printf("command: %s\t\t", g_op_tab[cmd - 1].command);
-		printf("pc: %x\t", core->map[process->pc]);
-		printf("index: %d\t", process->pc);
-		printf("next: %d\t\t", get_next_index(cmd, codage));
-		printf("process: %d\t\n", process->reg[0]);
-		process->pc += (2 + get_next_index(cmd, codage));
+		if (process->cycles_to_exec == g_op_tab[cmd - 1].cycles)
+		{
+			get_command_from_array(core, process, cmd);
+			process->pc += (2 + get_next_index(cmd, codage));
+			process->cycles_to_exec = 1;
+		}
+		else
+			process->cycles_to_exec++;
 	}
-	else if (cmd != 0 && cmd <= 17 && !g_op_tab[cmd - 1].codage_octal)
+	else if (cmd != 0 && cmd < 17 && !g_op_tab[cmd - 1].codage_octal)
 	{
-		printf("command: %s\t\t", g_op_tab[cmd - 1].command);
-		printf("pc: %x\t", core->map[process->pc]);
-		printf("index: %d\t", process->pc);
-		printf("next: %d\t\t", get_next_index(cmd, codage));
-		printf("process: %d\t\n", process->reg[0]);
-		process->pc += (1 + g_sizes[cmd - 1][2]);
+		if (process->cycles_to_exec == g_op_tab[cmd - 1].cycles)
+		{
+			get_command_from_array(core, process, cmd);
+			process->pc += (1 + g_sizes[cmd - 1][2]);
+			process->cycles_to_exec = 1;
+		}
+		else
+			process->cycles_to_exec++;
 	}
 }

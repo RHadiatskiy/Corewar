@@ -77,6 +77,7 @@ typedef struct			s_process
 	int					pc;
 	int					*reg;
 	unsigned int		carry : 1;
+	int					cycles_to_exec;
 	struct s_process	*next;
 }						t_process;
 
@@ -215,6 +216,7 @@ unsigned int			get_players_size(t_player *players);
 unsigned int			get_value_from_map(void *buf, unsigned int start,
 											unsigned int len);
 int						get_next_index(int command, int value);
+int						get_command_from_array(t_core *core, t_process *process, int key);
 
 /*
 **	RUNNING
@@ -229,6 +231,7 @@ void					run_player(t_core *core, t_process *process);
 
 void					load_processes(t_core *core);
 void					load_players_on_the_map(t_core *core);
+void					load_commands(void);
 
 /*
 **	OTHER
@@ -238,5 +241,28 @@ void					ft_sort_list(t_player *players);
 int						ft_findchr(char *str, char c);
 void					put_value_on_the_map(unsigned char *map, int start,
 												int value);
+
+
+/*
+**	COMMANDS
+*/
+
+int						(*g_commands[16])(t_core *core, t_process *process);
+int						command_live(t_core *core, t_process *process);
+int						command_ld(t_core *core, t_process *process);
+int						command_st(t_core *core, t_process *process);
+int						command_add(t_core *core, t_process *process);
+int						command_sub(t_core *core, t_process *process);
+int						command_and(t_core *core, t_process *process);
+int						command_or(t_core *core, t_process *process);
+int						command_xor(t_core *core, t_process *process);
+int						command_zjmp(t_core *core, t_process *process);
+int						command_ldi(t_core *core, t_process *process);
+int						command_sti(t_core *core, t_process *process);
+int						command_fork(t_core *core, t_process *process);
+int						command_lld(t_core *core, t_process *process);
+int						command_lldi(t_core *core, t_process *process);
+int						command_lfork(t_core *core, t_process *process);
+int						command_aff(t_core *core, t_process *process);
 
 #endif

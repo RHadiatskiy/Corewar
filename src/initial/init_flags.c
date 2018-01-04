@@ -21,6 +21,7 @@ t_flags					*init_flags(void)
 	flags->dump = 0;
 	flags->dump_cycle = 0;
 	flags->number = 0;
+	flags->clr = 0;
 	flags->n = 0;
 	return (flags);
 }

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_process.c                                     :+:      :+:    :+:   */
+/*   command_ldi.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/28 20:47:45 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/12/28 20:47:47 by rhadiats         ###   ########.fr       */
+/*   Created: 2018/01/04 18:34:20 by rhadiats          #+#    #+#             */
+/*   Updated: 2018/01/04 18:34:21 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/vm.h"
 
-t_process				*init_process(void)
+int						command_ldi(t_core *core, t_process *process)
 {
-	t_process			*process;
-
-	if (!(process = (t_process *)malloc(sizeof(t_process))))
-		return (NULL);
-	process->pc = -1;
-	process->reg = (int *)malloc(sizeof(int) * REG_NUMBER);
-	ft_bzero(process->reg, REG_NUMBER);
-	process->carry = 0;
-	process->cycles_to_exec = 0;
-	process->next = NULL;
-	return (process);
+	printf("command: %s\t\t", g_op_tab[9].command);
+	printf("pc: %x\t", core->map[process->pc]);
+	printf("index: %d\t", process->pc);
+	printf("cycle: %d\t", core->cycle);
+	printf("process: %d\t\n", process->reg[0]);
+	return (0);
 }
