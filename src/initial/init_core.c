@@ -20,7 +20,9 @@ t_core					*init_core(void)
 		return (NULL);
 	core->map = init_map();
 	core->cycle = 0;
+	core->current_cycle = 0;
 	core->cycle_to_die = CYCLE_TO_DIE;
+	core->total_lives = 0;
 	core->players = init_players();
 	core->process = init_process();
 	core->flags = init_flags();

@@ -48,7 +48,9 @@ typedef struct			s_core
 {
 	unsigned char		*map;
 	int					cycle;
+	int					current_cycle;
 	int					cycle_to_die;
+	unsigned int		total_lives;
 	struct s_player		*players;
 	struct s_process	*process;
 	struct s_flags		*flags;
