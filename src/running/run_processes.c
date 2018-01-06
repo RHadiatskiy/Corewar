@@ -18,7 +18,7 @@ void					run_processes(t_core *core)
 
 	while (core->current_cycle < core->cycle_to_die + 1)
 	{
-		if (core->flags->v && core->flags->verbosity == 2)
+		if (core->flags->v && core->flags->verbosity_two)
 			printf("It is now cycle %d\n", core->cycle);
 		process = core->process ? core->process : NULL;
 		while (process)
@@ -30,7 +30,7 @@ void					run_processes(t_core *core)
 		{
 			core->cycle_to_die -= CYCLE_DELTA;
 			core->current_cycle = 1;
-			if (core->flags->v && core->flags->verbosity == 2)
+			if (core->flags->v && core->flags->verbosity_two)
 				printf("Cycle to die is now %d\n", core->cycle_to_die);
 		}
 		core->cycle++;
