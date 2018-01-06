@@ -14,10 +14,13 @@
 
 int						command_st(t_core *core, t_process *process)
 {
-	printf("command: %s\t\t", g_op_tab[2].command);
-	printf("pc: %x\t", core->map[process->pc]);
-	printf("index: %d\t", process->pc);
-	printf("cycle: %d\t", core->cycle);
-	printf("process: %d\t\n", process->reg[0]);
+	if (core->flags->v && core->flags->verbosity_four)
+	{
+		printf("command: %s\t\t", g_op_tab[2].command);
+		printf("pc: %x\t", core->map[process->pc]);
+		printf("index: %d\t", process->pc);
+		printf("cycle: %d\t", core->cycle);
+		printf("process: %d\t\n", process->reg[0]);
+	}
 	return (0);
 }

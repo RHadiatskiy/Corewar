@@ -28,10 +28,19 @@ int						print_prog_size_error(char *dir, int len)
 
 int						print_usage(void)
 {
-	printf("Usage: ./corewar [-d n_cycles] ");
-	printf("[[-n number] <champion1.cor>] <...>\n");
-	printf("\t-d n_cycles\t: dumping the memory on the standard ");
-	printf("output at the end of nbr_cycles\n");
-	printf("\t-n number\t: sets the number of the next player\n");
+	printf("Usage: ./corewar [ -d N -v N ] ");
+	printf("[-n number] <champion1.cor> <...>\n");
+	printf("    -n number\t: sets the number of the next player\n");
+	printf("#### TEXT OUTPUT MODE ");
+	printf("##########################################################\n");
+	printf("    -d N\t: Dumps memory after N cycles then exits\n");
+	printf("    -v N\t: Verbosity levels, can be added together ");
+	printf("to enable several\n");
+	printf("\t\t  - 0 : Show only essentials\n");
+	printf("\t\t  - 1 : Show lives\n");
+	printf("\t\t  - 2 : Show cycles\n");
+	printf("\t\t  - 4 : Show operations (Params are NOT litteral ...)\n");
+	printf("\t\t  - 8 : Show deaths\n");
+	printf("\t\t  - 16 : Show PC movements (Except for jumps)\n");
 	return (0);
 }

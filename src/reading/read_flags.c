@@ -24,6 +24,18 @@ static int				check_flag_d(t_core *core, char **av, int *i)
 	return (0);
 }
 
+static int				check_flag_v(t_core *core, char **av, int *i)
+{
+	if (ft_strcmp(av[(*i)], "-v") == 0 && av[(*i) + 1])
+	{
+		core->flags->v = 1;
+		core->flags->verbosity = ft_atoi(av[++(*i)]);
+		++(*i);
+		return (1);
+	}
+	return (0);
+}
+
 static int				check_flag_n(t_core *core, char **av, int *i)
 {
 	if (ft_strcmp(av[(*i)], "-n") == 0 && av[(*i) + 1])
@@ -57,11 +69,16 @@ int						read_flags(t_core *core, char **av, int *i)
 	while (av[(*i)])
 	{
 		if (!check_flag_d(core, av, i) && !check_flag_n(core, av, i) && \
-			!check_flags_clr(core, av, i))
+			!check_flags_clr(core, av, i) && !check_flag_v(core, av, i))
 		{
 			ret = 1;
 			break ;
 		}
+	}
+	if (core->flags->verbosity)
+	{
+		while (core->flags->verbosity)
+			read_verbosity(core);
 	}
 	return (ret);
 }

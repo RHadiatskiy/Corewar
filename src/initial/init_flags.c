@@ -21,6 +21,13 @@ t_flags					*init_flags(void)
 	flags->dump = 0;
 	flags->dump_cycle = 0;
 	flags->number = 0;
+	flags->v = 0;
+	flags->verbosity = 0;
+	flags->verbosity_one = 0;
+	flags->verbosity_two = 0;
+	flags->verbosity_four = 0;
+	flags->verbosity_eight = 0;
+	flags->verbosity_sixteen = 0;
 	flags->clr = 0;
 	flags->n = 0;
 	return (flags);

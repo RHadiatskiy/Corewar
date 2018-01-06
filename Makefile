@@ -13,6 +13,7 @@ SRC = src/main \
 		src/parsing/parse_header \
 		src/validation/validation \
 		src/reading/read_file src/reading/read_args src/reading/read_flags \
+				src/reading/read_verbosity \
 		src/addition/add_player src/addition/add_process \
 		src/getting/get_next_index src/getting/get_players_size \
 				src/getting/get_value_from_map src/getting/get_command_from_array \

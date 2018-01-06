@@ -80,6 +80,7 @@ typedef struct			s_process
 	int					*reg;
 	unsigned int		carry : 1;
 	int					cycles_to_exec;
+	unsigned int		lives;
 	struct s_process	*next;
 }						t_process;
 
@@ -89,6 +90,13 @@ typedef struct			s_flags
 	int					dump_cycle;
 	unsigned int		number : 1;
 	int					n;
+	unsigned int		v : 1;
+	int					verbosity;
+	unsigned int		verbosity_one : 1;
+	unsigned int		verbosity_two : 1;
+	unsigned int		verbosity_four : 1;
+	unsigned int		verbosity_eight : 1;
+	unsigned int		verbosity_sixteen : 1;
 	unsigned int		clr : 1;
 }						t_flags;
 
@@ -173,6 +181,7 @@ t_core					*init_core(void);
 int						read_file(t_core *core, char *av);
 int						read_args(t_core *core, int ac, char **av);
 int						read_flags(t_core *core, char **av, int *i);
+void					read_verbosity(t_core *core);
 
 /*
 **	VALIDATION
