@@ -12,25 +12,23 @@
 
 #include "../../include/vm.h"
 
-void					add_process(t_process *processes, int start_pc)
+void					add_process(t_process **processes, int start, int exec)
 {
 	t_process		*proc;
-	t_process		*to_end;
 
-	to_end = processes;
-	if (processes->pc == -1)
+	if ((*processes)->pc == -1)
 	{
-		processes->pc = 0;
-		processes->reg[0] = -1;
+		(*processes)->pc = 0;
+		(*processes)->reg[0] = -1;
+		(*processes)->cycles_to_exec = 0;
 	}
 	else
 	{
 		proc = init_process();
-		while (to_end->next)
-			to_end = to_end->next;
-		proc->pc = start_pc;
-		proc->reg[0] = -((to_end->reg[0] * -1) + 1);
-		to_end->next = proc;
-		proc->next = NULL;
+		proc->pc = start;
+		proc->cycles_to_exec = exec;
+		proc->reg[0] = -(((*processes)->reg[0] * -1) + 1);
+		proc->next = (*processes);
+		(*processes) = proc;
 	}
 }

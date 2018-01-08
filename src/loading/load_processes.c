@@ -22,7 +22,7 @@ void					load_processes(t_core *core)
 	iter = core->players ? core->players : NULL;
 	while (iter)
 	{
-		add_process(core->process, ((MEM_SIZE) / size) * (iter->id - 1));
+		add_process(&core->process, ((MEM_SIZE) / size) * (iter->id - 1), 0);
 		iter = iter->next;
 	}
 }

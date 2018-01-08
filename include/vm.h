@@ -30,6 +30,7 @@
 # define DATA_SIZE		PROG_NAME_LENGTH + COMMENT_LENGTH + 4 + (MEM_SIZE / 4)
 # define FORMAT			16
 # define FLAGS			core->flags
+# define CYCLE			core->cycle
 
 /*
 ** ----------------------------
@@ -221,7 +222,7 @@ void					print_champ(t_core *core);
 
 void					add_player(t_player *players, t_header *header,
 									unsigned int size, t_flags *flags);
-void					add_process(t_process *processes, int start_pc);
+void					add_process(t_process **processes, int start, int exec);
 
 /*
 **	GETTING

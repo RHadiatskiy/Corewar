@@ -19,11 +19,10 @@ void					run_processes(t_core *core)
 	while (core->current_cycle < core->cycle_to_die)
 	{
 		if (FLAGS->v && FLAGS->verbosity_two)
-			printf("It is now cycle %d\n", core->cycle);
-		if (core->flags->dump && core->cycle == core->flags->dump_cycle)
+			printf("It is now cycle %d\n", CYCLE);
+		if (FLAGS->dump && CYCLE == FLAGS->dump_cycle)
 		{
 			print_map(core);
-			printf("cycle: %d\n", core->cycle);
 			break ;
 		}
 		process = core->process ? core->process : NULL;
@@ -32,7 +31,7 @@ void					run_processes(t_core *core)
 			run_player(core, process);
 			process = process->next;
 		}
-		core->cycle++;
+		CYCLE++;
 		core->current_cycle++;
 	}
 }

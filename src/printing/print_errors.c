@@ -31,6 +31,7 @@ int						print_usage(void)
 	printf("Usage: ./corewar [ -d N -v N ] ");
 	printf("[-n number] <champion1.cor> <...>\n");
 	printf("    -n number\t: sets the number of the next player\n");
+	printf("    -clr\t: set the color to output\n");
 	printf("#### TEXT OUTPUT MODE ");
 	printf("##########################################################\n");
 	printf("    -d N\t: Dumps memory after N cycles then exits\n");
