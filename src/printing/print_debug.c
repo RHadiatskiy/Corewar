@@ -12,99 +12,6 @@
 
 #include "../../include/vm.h"
 
-void					print_map(t_core *core)
-{
-	unsigned char		*t_map;
-	int					x;
-	int					y;
-	int					count;
-
-	x = -1;
-	count = 0;
-	t_map = core->map;
-	print_players(core->players);
-	while (++x < sqrt(MEM_SIZE) && (x * y < MEM_SIZE))
-	{
-		y = -1;
-		printf("Ox%.4x : ", count);
-		while (++y < sqrt(MEM_SIZE) && (x * y < MEM_SIZE))
-		{
-			if (*t_map && core->flags->clr)
-				printf("%s%.2x%s ", CYAN, *t_map++, RESET);
-			else
-				printf("%.2x ", *t_map++);
-			count++;
-		}
-		printf("\n");
-	}
-}
-
-void					print_prog_attr(char *data, unsigned int len)
-{
-	int					x;
-	int					y;
-
-	if (data)
-	{
-		x = (int)len % (FORMAT) == 0 ? -1 : -2;
-		while (++x < (int)(len / FORMAT))
-		{
-			y = -1;
-			while (++y < (int)FORMAT)
-			{
-				if (*data)
-					printf("%s%.2x%s ", GREEN, *data++, RESET);
-				else
-					printf("%.2x ", *data++);
-			}
-			printf("\n");
-		}
-	}
-}
-
-void					print_header(t_header *header, unsigned int size)
-{
-	if (header)
-	{
-		header->magic ? printf("MAGIC : %x\n\n", header->magic) : 0;
-		header->prog_name ? print_prog_attr(header->prog_name, (PROG_NAME_LENGTH)) : 0;
-		header->comment ? print_prog_attr(header->comment, (COMMENT_LENGTH)) : 0;
-		header->prog ? print_prog_attr(header->prog, size - ((PROG_NAME_LENGTH) + (COMMENT_LENGTH) + 16)) : 0;
-	}
-}
-
-void					print_headers(t_player *players)
-{
-	t_player			*t_player;
-
-	t_player = players ? players : NULL;
-	while (t_player)
-	{
-		printf("------------------PLAYER ID %d------------------\n", t_player->id);
-		print_header(t_player->header, t_player->size);
-		t_player = t_player->next;
-		printf("-----------------------------------------------\n\n");
-	}
-}
-
-void					print_players(t_player *players)
-{
-	t_player	*tmp_player;
-
-	tmp_player = players ? players : NULL;
-	if (tmp_player)
-	{
-		printf("Introducing contestants...\n");
-		while (tmp_player)
-		{
-			printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", \
-				tmp_player->number, tmp_player->header->prog_size, \
-				tmp_player->header->prog_name, tmp_player->header->comment);
-			tmp_player = tmp_player->next;
-		}
-	}
-}
-
 void					print_debug(t_core *core)
 {
 	int				i;
@@ -132,21 +39,5 @@ void					print_debug(t_core *core)
 			printf("command hasn't found\tpc : %x\tindex : %d\n", core->map[i], i);
 			i++;
 		}
-	}
-}
-
-void					print_processes(t_process *processes)
-{
-	t_process		*proc;
-	int				i;
-
-	i = 0;
-	proc = processes ? processes : NULL;
-	while (proc)
-	{
-		printf("------------------PROCESS %d------------------\n", ++i);
-		printf("PC:\t\t%d\n", proc->pc);
-		printf("REG:\t\t%d\n", proc->reg[0]);
-		proc = proc->next;
 	}
 }
