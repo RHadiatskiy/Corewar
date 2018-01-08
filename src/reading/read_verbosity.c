@@ -14,29 +14,9 @@
 
 void					read_verbosity(t_core *core)
 {
-	if (core->flags->verbosity / 16 && !core->flags->verbosity_sixteen)
-	{
-		core->flags->verbosity_sixteen = 1;
-		core->flags->verbosity %= 16;
-			}
-	if (core->flags->verbosity / 8 && !core->flags->verbosity_eight)
-	{
-		core->flags->verbosity_eight = 1;
-		core->flags->verbosity %= 8;
-	}
-	if (core->flags->verbosity / 4 && !core->flags->verbosity_four)
-	{
-		core->flags->verbosity_four = 1;
-		core->flags->verbosity %= 4;
-	}
-	if (core->flags->verbosity / 2 && !core->flags->verbosity_two)
-	{
-		core->flags->verbosity_two = 1;
-		core->flags->verbosity %= 2;
-	}
-	if (core->flags->verbosity / 1 && !core->flags->verbosity_one)
-	{
-		core->flags->verbosity_one = 1;
-		core->flags->verbosity %= 1;
-	}
+	FLAGS->verbosity_sixteen = ft_to_bin(FLAGS->verbosity & 16) / 10000;
+	FLAGS->verbosity_eight = ft_to_bin(FLAGS->verbosity & 8) / 1000;
+	FLAGS->verbosity_four = ft_to_bin(FLAGS->verbosity & 4) / 100;
+	FLAGS->verbosity_two = ft_to_bin(FLAGS->verbosity & 2) / 10;
+	FLAGS->verbosity_one = ft_to_bin(FLAGS->verbosity & 1);
 }

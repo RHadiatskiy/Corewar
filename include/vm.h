@@ -29,6 +29,7 @@
 
 # define DATA_SIZE		PROG_NAME_LENGTH + COMMENT_LENGTH + 4 + (MEM_SIZE / 4)
 # define FORMAT			16
+# define FLAGS			core->flags
 
 /*
 ** ----------------------------
@@ -50,7 +51,9 @@ typedef struct			s_core
 	int					cycle;
 	int					current_cycle;
 	int					cycle_to_die;
-	unsigned int		total_lives;
+	int					max_checks;
+	unsigned int		players_lives;
+	struct s_player		*champ;
 	struct s_player		*players;
 	struct s_process	*process;
 	struct s_flags		*flags;
@@ -61,6 +64,7 @@ typedef struct			s_player
 	unsigned int		id;
 	int					number;
 	unsigned int		size;
+	unsigned int		lives;
 	struct s_header		*header;
 	struct s_player		*next;
 }						t_player;
@@ -80,7 +84,6 @@ typedef struct			s_process
 	int					*reg;
 	unsigned int		carry : 1;
 	int					cycles_to_exec;
-	unsigned int		lives;
 	struct s_process	*next;
 }						t_process;
 
@@ -210,6 +213,7 @@ void					print_debug(t_core *core);
 void					print_processes(t_process *processes);
 int						print_prog_size_error(char *dir, int len);
 int						print_magic_error(char *dir);
+void					print_champ(t_core *core);
 
 /*
 **	ADDITION
@@ -233,6 +237,7 @@ int						get_command_from_array(t_core *core, t_process *process, int key);
 **	RUNNING
 */
 
+void					run(t_core *core);
 void					run_processes(t_core *core);
 void					run_player(t_core *core, t_process *process);
 
@@ -252,6 +257,7 @@ void					ft_sort_list(t_player *players);
 int						ft_findchr(char *str, char c);
 void					put_value_on_the_map(unsigned char *map, int start,
 												int value);
+void					reset_players_lives(t_player *players);
 
 
 /*

@@ -21,6 +21,7 @@ t_player				*init_players(void)
 	player->id = 0;
 	player->number = 0;
 	player->size = 0;
+	player->lives = 0;
 	player->header = NULL;
 	player->next = NULL;
 	return (player);

@@ -12,7 +12,7 @@
 
 #include "../../include/vm.h"
 
-int						command_live(t_core *core, t_process *process)
+static void				print_command_live(t_core *core, t_process *process)
 {
 	if (core->flags->v && core->flags->verbosity_four)
 	{
@@ -22,5 +22,32 @@ int						command_live(t_core *core, t_process *process)
 		printf("cycle: %d\t", core->cycle);
 		printf("process: %d\t\n", process->reg[0]);
 	}
-	return (0);
+}
+
+static void				print_flag_v(t_core *core, t_player *player)
+{
+	if (core->flags->v && core->flags->verbosity_one)
+		printf("Player %d (%s) is said to be alive\n",
+				player->number, player->header->prog_name);
+}
+
+int						command_live(t_core *core, t_process *process)
+{
+	t_player		*tmp;
+
+	tmp = core->players ? core->players : NULL;
+	print_command_live(core, process);
+	core->players_lives++;
+	while (tmp)
+	{
+		if (process->reg[0] * -1 == tmp->number)
+		{
+			tmp->lives++;
+			print_flag_v(core, tmp);
+			core->champ = tmp;
+			break ;
+		}
+		tmp = tmp->next;
+	}
+	return (1);
 }

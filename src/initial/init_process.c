@@ -23,7 +23,6 @@ t_process				*init_process(void)
 	ft_bzero(process->reg, REG_NUMBER);
 	process->carry = 0;
 	process->cycles_to_exec = 0;
-	process->lives = 0;
 	process->next = NULL;
 	return (process);
 }

@@ -21,12 +21,7 @@ int				main(int argc, char **argv)
 	{
 		load_processes(core);
 		load_players_on_the_map(core);
-		run_processes(core);
-
-		core->flags->dump ? print_map(core) : 0;
-
-		// print_debug(core);
-		// print_processes(core->process);
+		run(core);
 	}
 	return (0);
 }

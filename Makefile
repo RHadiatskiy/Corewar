@@ -10,6 +10,9 @@ SRC = src/main \
 				src/initial/init_header src/initial/init_map \
 				src/initial/init_players src/initial/init_process \
 		src/printing/print_debug src/printing/print_errors \
+				src/printing/print_flags src/printing/print_headers \
+				src/printing/print_map src/printing/print_players \
+				src/printing/print_processes src/printing/print_prog_attr \
 		src/parsing/parse_header \
 		src/validation/validation \
 		src/reading/read_file src/reading/read_args src/reading/read_flags \
@@ -19,7 +22,8 @@ SRC = src/main \
 				src/getting/get_value_from_map src/getting/get_command_from_array \
 		src/other/sort_players src/other/ft_findchr \
 				src/other/put_value_on_the_map \
-		src/running/run_processes src/running/run_player \
+				src/other/reset_players_lives \
+		src/running/run_processes src/running/run_player src/running/run \
 		src/loading/load_players_on_the_map src/loading/load_processes \
 				src/loading/load_commands \
 		src/commands/command_add src/commands/command_aff src/commands/command_and \

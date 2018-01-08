@@ -18,6 +18,7 @@ void					load_processes(t_core *core)
 	unsigned int	size;
 
 	size = get_players_size(core->players);
+	core->players_lives = size;
 	iter = core->players ? core->players : NULL;
 	while (iter)
 	{
