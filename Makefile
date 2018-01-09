@@ -23,6 +23,7 @@ SRC = src/main \
 		src/other/sort_players src/other/ft_findchr \
 				src/other/put_value_on_the_map \
 				src/other/reset_players_lives \
+				src/other/kill_processes \
 		src/running/run_processes src/running/run_player src/running/run \
 		src/loading/load_players_on_the_map src/loading/load_processes \
 				src/loading/load_commands \

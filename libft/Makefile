@@ -17,7 +17,7 @@ OBJS = ft_atoi.o ft_strcat.o ft_strcpy.o ft_strdup.o \
 	   ft_strndup.o ft_strsplit.o ft_lstnew.o ft_lstdelone.o \
 	   ft_lstdel.o ft_lstadd.o ft_lstiter.o ft_lstmap.o \
 	   get_next_line.o ft_split.o ft_strisdigit.o ft_szero.o \
-	   ft_to_bin.o ft_itoa_base.o
+	   ft_to_bin.o
 
 NAME = libft.a
 
@@ -232,9 +232,6 @@ ft_szero.o: ft_szero.c
 
 ft_to_bin.o: ft_to_bin.c
 	gcc -c -Wall -Wextra -Werror ft_to_bin.c
-
-ft_itoa_base.o: ft_itoa_base.c
-	gcc -c -Wall -Wextra -Werror ft_itoa_base.c
 
 clean:
 	rm -f $(OBJS)

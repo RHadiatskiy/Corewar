@@ -83,7 +83,10 @@ typedef struct			s_process
 {
 	int					pc;
 	int					*reg;
+	unsigned int		id;
+	unsigned int		cycle;
 	unsigned int		carry : 1;
+	unsigned int		is_live : 1;
 	int					cycles_to_exec;
 	struct s_process	*next;
 }						t_process;
@@ -101,7 +104,7 @@ typedef struct			s_flags
 	unsigned int		verbosity_four : 1;
 	unsigned int		verbosity_eight : 1;
 	unsigned int		verbosity_sixteen : 1;
-	unsigned int		clr : 1;
+	unsigned int		color : 1;
 }						t_flags;
 
 typedef struct			s_op
@@ -259,7 +262,7 @@ int						ft_findchr(char *str, char c);
 void					put_value_on_the_map(unsigned char *map, int start,
 												int value);
 void					reset_players_lives(t_player *players);
-
+void					kill_processes(t_core *core);
 
 /*
 **	COMMANDS

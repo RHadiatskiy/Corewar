@@ -37,6 +37,7 @@ int						command_live(t_core *core, t_process *process)
 
 	tmp = core->players ? core->players : NULL;
 	print_command_live(core, process);
+	process->is_live = 1;
 	core->players_lives++;
 	while (tmp)
 	{

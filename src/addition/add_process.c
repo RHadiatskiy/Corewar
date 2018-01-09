@@ -20,6 +20,7 @@ void					add_process(t_process **processes, int start, int exec)
 	{
 		(*processes)->pc = 0;
 		(*processes)->reg[0] = -1;
+		(*processes)->id = 1;
 		(*processes)->cycles_to_exec = 0;
 	}
 	else
@@ -28,6 +29,7 @@ void					add_process(t_process **processes, int start, int exec)
 		proc->pc = start;
 		proc->cycles_to_exec = exec;
 		proc->reg[0] = -(((*processes)->reg[0] * -1) + 1);
+		proc->id = (*processes)->id + 1;
 		proc->next = (*processes);
 		(*processes) = proc;
 	}

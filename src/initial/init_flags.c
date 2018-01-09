@@ -28,7 +28,7 @@ t_flags					*init_flags(void)
 	flags->verbosity_four = 0;
 	flags->verbosity_eight = 0;
 	flags->verbosity_sixteen = 0;
-	flags->clr = 0;
+	flags->color = 0;
 	flags->n = 0;
 	return (flags);
 }

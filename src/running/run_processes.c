@@ -28,6 +28,7 @@ void					run_processes(t_core *core)
 		process = core->process ? core->process : NULL;
 		while (process)
 		{
+			process->cycle++;
 			run_player(core, process);
 			process = process->next;
 		}

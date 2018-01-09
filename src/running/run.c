@@ -19,7 +19,7 @@ void					run(t_core *core)
 		core->players_lives = 0;
 		FLAGS->dump && FLAGS->dump_cycle == CYCLE ? 0 : run_processes(core);
 		reset_players_lives(core->players);
-		// kill_processes(map);
+		kill_processes(core);
 		if (core->players_lives >= NBR_LIVE || !core->max_checks)
 		{
 			core->max_checks = MAX_CHECKS;

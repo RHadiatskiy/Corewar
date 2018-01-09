@@ -21,7 +21,10 @@ t_process				*init_process(void)
 	process->pc = -1;
 	process->reg = (int *)malloc(sizeof(int) * REG_NUMBER);
 	ft_bzero(process->reg, REG_NUMBER);
+	process->id = 0;
+	process->cycle = 0;
 	process->carry = 0;
+	process->is_live = 0;
 	process->cycles_to_exec = 0;
 	process->next = NULL;
 	return (process);

@@ -50,9 +50,9 @@ static int				check_flag_n(t_core *core, char **av, int *i)
 
 static int				check_flags_clr(t_core *core, char **av, int *i)
 {
-	if (ft_strcmp(av[(*i)], "-clr") == 0)
+	if (ft_strcmp(av[(*i)], "--color") == 0)
 	{
-		FLAGS->clr = 1;
+		FLAGS->color = 1;
 		++(*i);
 		return (1);
 	}

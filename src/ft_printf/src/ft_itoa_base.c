@@ -12,7 +12,7 @@
 
 #include "../include/ft_printf.h"
 
-void		f(uintmax_t value, int base, char *str, int *i)
+static void		f(uintmax_t value, int base, char *str, int *i)
 {
 	char			*tmp;
 
@@ -22,7 +22,7 @@ void		f(uintmax_t value, int base, char *str, int *i)
 	str[(*i)++] = tmp[(value % base)];
 }
 
-char		*ft_itoa_base(intmax_t value, int base)
+char			*ft_itoa_base(intmax_t value, int base)
 {
 	int				i;
 	char			*str;
@@ -40,7 +40,7 @@ char		*ft_itoa_base(intmax_t value, int base)
 	return (str);
 }
 
-char		*ft_itoa_base_x(uintmax_t value, int base)
+char			*ft_itoa_base_x(uintmax_t value, int base)
 {
 	int				i;
 	char			*str;
