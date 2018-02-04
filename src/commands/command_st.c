@@ -26,7 +26,7 @@ int						command_st(t_core *core, t_process *process)
 	if (ARGS[1].type == IND_CODE)
 	{
 		if (ARGS[0].arg < REG_NUMBER)
-			put_value_on_the_map(MAP, ARGS[1].arg, REG[ARGS[0].arg - 1]);
+			put_value_on_the_map(MAP, (process->pc + ARGS[1].arg) % MEM_SIZE, REG[ARGS[0].arg - 1]);
 	}
 	else if (ARGS[1].type == REG_CODE)
 	{

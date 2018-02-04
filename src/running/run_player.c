@@ -17,7 +17,9 @@ void					run_player(t_core *core, t_process *process)
 	int			cmd;
 	int			codage;
 	int			octal;
+	int			pc;
 
+	pc = process->pc;
 	cmd = get_value_from_map(core->map, process->pc, 1);
 	codage = get_value_from_map(core->map, process->pc + 1, 1);
 	octal = g_op_tab[cmd - 1].codage_octal;
@@ -26,15 +28,14 @@ void					run_player(t_core *core, t_process *process)
 		if (process->cycles_to_exec == g_op_tab[cmd - 1].cycles)
 		{
 			process->cycles_to_exec = 1;
-			process->pc += g_op_tab[cmd - 1].codage_octal ?
+			pc += g_op_tab[cmd - 1].codage_octal ?
 			(octal + get_next_index(process, core->map, cmd, codage)) :
 			(octal + g_sizes[cmd - 1][2]);
-			process->pc++;
+			pc++;
 			get_command_from_array(core, process, cmd);
+			process->pc = pc;
 		}
 		else
 			process->cycles_to_exec++;
 	}
-	else
-		process->pc++;
 }
