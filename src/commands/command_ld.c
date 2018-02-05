@@ -12,17 +12,20 @@
 
 #include "../../include/vm.h"
 
-static void				print_flag_v(t_core *core, t_process *process)
+static void				print_flag_v(t_core *core, t_process *process, int val)
 {
 	if (core->flags->v && core->flags->verbosity_four)
 	{
 		printf("P%5d | %s ", process->id, "ld");
-		printf("%d r%d\n", process->args[0].arg, process->args[1].arg);
+		printf("%d r%d\n", val, process->args[1].arg);
 	}
 }
 
 int						command_ld(t_core *core, t_process *process)
 {
+	int		position;
+
+	position = (process->pc + ARGS[0].arg) % MEM_SIZE;
 	if (ARGS[0].type == DIR_CODE)
 	{
 		if (ARGS[1].arg <= REG_NUMBER)
@@ -31,8 +34,9 @@ int						command_ld(t_core *core, t_process *process)
 	else if (ARGS[0].type == IND_CODE)
 	{
 		if (ARGS[1].arg <= REG_NUMBER)
-			REG[ARGS[1].arg - 1] = get_value_from_map(MAP, ARGS[0].arg % MEM_SIZE, 4);
+			REG[ARGS[1].arg - 1] = get_value_from_map(MAP, position, 4);
 	}
-	print_flag_v(core, process);
+	process->carry = (ARGS[0].arg == 0) ? 1 : 0;
+	print_flag_v(core, process, REG[ARGS[1].arg - 1]);
 	return (1);
 }

@@ -12,27 +12,33 @@
 
 #include "../../include/vm.h"
 
-static void				print_flag_v(t_core *core, t_process *process)
+static void				print_flag_v(t_core *core, t_process *process, int pos)
 {
+	int		offset;
+
+	offset = pos - process->pc;
 	if (core->flags->v && core->flags->verbosity_four)
 	{
 		printf("P%5d | %s ", process->id, "st");
-		printf("r%d %d\n", process->args[0].arg, process->args[1].arg);
+		printf("r%d %d\n", process->args[0].arg, offset);
 	}
 }
 
 int						command_st(t_core *core, t_process *process)
 {
+	int			position;
+
+	position = (process->pc + ARGS[1].arg) % MEM_SIZE;
 	if (ARGS[1].type == IND_CODE)
 	{
 		if (ARGS[0].arg < REG_NUMBER)
-			put_value_on_the_map(MAP, (process->pc + ARGS[1].arg) % MEM_SIZE, REG[ARGS[0].arg - 1]);
+			put_value_on_the_map(MAP, position, REG[ARGS[0].arg - 1]);
 	}
 	else if (ARGS[1].type == REG_CODE)
 	{
 		if (ARGS[0].arg < REG_NUMBER)
 			REG[ARGS[1].arg - 1] = REG[ARGS[0].arg - 1];
 	}
-	print_flag_v(core, process);
+	print_flag_v(core, process, position);
 	return (1);
 }
