@@ -37,12 +37,8 @@ static void				print_flag_v(t_core *core, t_process *process)
 
 int						command_add(t_core *core, t_process *process)
 {
-	int		first_arg;
-	int		second_arg;
-
-	first_arg = get_value_from_map(MAP, REG[ARGS[0].arg], 4);
-	second_arg = get_value_from_map(MAP, REG[ARGS[1].arg], 4);
-	process->carry = (REG[ARGS[2].arg] = first_arg + second_arg) ? 0 : 1;
+	process->carry = (REG[ARGS[2].arg] =
+								REG[ARGS[0].arg] + REG[ARGS[1].arg]) ? 0 : 1;
 	print_flag_v(core, process);
 	return (1);
 }

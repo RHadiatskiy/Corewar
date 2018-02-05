@@ -12,15 +12,33 @@
 
 #include "../../include/vm.h"
 
-int						command_sub(t_core *core, t_process *process)
+// int						command_sub(t_core *core, t_process *process)
+// {
+// 	if (core->flags->v && core->flags->verbosity_four)
+// 	{
+// 		printf("command: %s\t\t", g_op_tab[4].command);
+// 		printf("pc: %x\t", core->map[process->pc]);
+// 		printf("index: %d\t", process->pc);
+// 		printf("cycle: %d\t", core->cycle);
+// 		printf("reg[0]: %d\t\n", process->reg[0]);
+// 	}
+// 	return (0);
+// }
+
+static void				print_flag_v(t_core *core, t_process *process)
 {
 	if (core->flags->v && core->flags->verbosity_four)
 	{
-		printf("command: %s\t\t", g_op_tab[4].command);
-		printf("pc: %x\t", core->map[process->pc]);
-		printf("index: %d\t", process->pc);
-		printf("cycle: %d\t", core->cycle);
-		printf("reg[0]: %d\t\n", process->reg[0]);
+		printf("P%5d | %s ", process->id, "sub");
+		printf("r%d r%d ", process->args[0].arg, process->args[1].arg);
+		printf("r%d\n", process->args[2].arg);
 	}
-	return (0);
+}
+
+int						command_sub(t_core *core, t_process *process)
+{
+	process->carry = (REG[ARGS[2].arg] =
+								REG[ARGS[0].arg] - REG[ARGS[1].arg]) ? 0 : 1;
+	print_flag_v(core, process);
+	return (1);
 }
