@@ -14,6 +14,7 @@
 
 void					run(t_core *core)
 {
+	FLAGS->v ? print_players(core->players) : 0;
 	while (core->players_lives != 0)
 	{
 		core->players_lives = 0;

@@ -28,14 +28,13 @@ void					run_player(t_core *core, t_process *process)
 		if (process->cycles_to_exec == g_op_tab[cmd - 1].cycles)
 		{
 			process->cycles_to_exec = 1;
-			pc += g_op_tab[cmd - 1].codage_octal ?
-			(octal + get_next_index(process, core->map, cmd, codage)) :
-			(octal + g_sizes[cmd - 1][2]);
-			pc++;
+			pc += (1 + octal + get_next_index(process, MAP, cmd, codage));
 			get_command_from_array(core, process, cmd);
-			process->pc = pc;
+			process->pc = (cmd == 9 && process->carry == 1) ? process->pc : pc;
 		}
 		else
 			process->cycles_to_exec++;
 	}
+	else
+		process->pc++;
 }
