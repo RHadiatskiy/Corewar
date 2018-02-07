@@ -14,10 +14,10 @@
 
 static void				print_flag_v(t_core *core, t_process *process, int val)
 {
-	if (core->flags->v && core->flags->verbosity_four)
+	if (FLAGS->v && FLAGS->verbosity_four)
 	{
 		printf("P%5d | %s ", process->id, "ld");
-		printf("%d r%d\n", val, process->args[1].arg);
+		printf("%d r%d\n", val, ARGS[1].arg);
 	}
 }
 

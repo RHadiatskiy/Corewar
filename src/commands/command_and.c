@@ -12,15 +12,32 @@
 
 #include "../../include/vm.h"
 
+static void				print_flag_v(t_core *core, t_process *process,
+									int farg, int sarg)
+{
+	if (FLAGS->v && FLAGS->verbosity_four)
+	{
+		printf("P%5d | %s ", process->id, "and");
+		printf("%d %d r%d\n", farg, sarg, ARGS[2].arg);
+	}
+}
+
 int						command_and(t_core *core, t_process *process)
 {
-	if (core->flags->v && core->flags->verbosity_four)
-	{
-		printf("command: %s\t\t", g_op_tab[5].command);
-		printf("pc: %x\t", core->map[process->pc]);
-		printf("index: %d\t", process->pc);
-		printf("cycle: %d\t", core->cycle);
-		printf("reg[0]: %d\t\n", process->reg[0]);
-	}
-	return (0);
+	int		first_arg;
+	int		second_arg;
+
+	first_arg = ARGS[0].type == IND_CODE ?
+	get_value_from_map(MAP, ARGS[0].arg % IDX_MOD, 4) : 0;
+	first_arg = ARGS[0].type == REG_CODE ? REG[ARGS[0].arg - 1] : first_arg;
+	first_arg = ARGS[0].type == DIR_CODE ? ARGS[0].arg : first_arg;
+	second_arg = ARGS[1].type == IND_CODE ?
+	get_value_from_map(MAP, ARGS[1].arg % IDX_MOD, 4) : 0;
+	second_arg = ARGS[1].type == REG_CODE ? REG[ARGS[1].arg - 1] : second_arg;
+	second_arg = ARGS[1].type == DIR_CODE ? ARGS[1].arg : second_arg;
+	REG[ARGS[2].arg - 1] = ARGS[2].type == REG_CODE ?
+	first_arg & second_arg : REG[ARGS[2].arg - 1];
+	process->carry = REG[ARGS[2].arg - 1] ? 0 : 1;
+	print_flag_v(core, process, first_arg, second_arg);
+	return (1);
 }

@@ -12,25 +12,22 @@
 
 #include "../../include/vm.h"
 
-static void				print_flag_v(t_core *core, t_process *process,
-									char *result, int position)
+static void				print_flag_v(t_core *core, t_process *proc, short pos)
 {
-	if (core->flags->v && core->flags->verbosity_four)
+	if (FLAGS->v && FLAGS->verbosity_four)
 	{
-		printf("P%5d | %s ", process->id, "zjmp");
-		printf("%d %s\n", position, result);
+		printf("P%5d | %s ", proc->id, "zjmp");
+		printf("%d %s\n", pos, proc->carry ? "OK" : "FAILED");
 	}
-	free(result);
 }
 
 int						command_zjmp(t_core *core, t_process *process)
 {
-	char	*result;
-	int		position;
+	short		position;
 
-	result = process->carry ? ft_strdup("OK") : ft_strdup("FAILED");
-	position = ARGS[0].arg % MEM_SIZE;
+	position = ARGS[0].arg;
+	position %= MEM_SIZE;
 	process->pc = (process->pc + position) % MEM_SIZE;
-	print_flag_v(core, process, result, position);
+	print_flag_v(core, process, position);
 	return (1);
 }

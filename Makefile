@@ -1,7 +1,7 @@
 NAME = corewar
 
 CC= gcc -o
-FLAGS = -Wall -Wextra -Werror -g
+# FLAGS = -Wall -Wextra -Werror -g
 LIBFT = libft/libft.a
 LIBFTPRINTF= src/ft_printf/libftprintf.a
 

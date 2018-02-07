@@ -17,10 +17,10 @@ static void				print_flag_v(t_core *core, t_process *process, int pos)
 	int		offset;
 
 	offset = pos - process->pc;
-	if (core->flags->v && core->flags->verbosity_four)
+	if (FLAGS->v && FLAGS->verbosity_four)
 	{
 		printf("P%5d | %s ", process->id, "st");
-		printf("r%d %d\n", process->args[0].arg, offset);
+		printf("r%d %d\n", ARGS[0].arg, offset);
 	}
 }
 
