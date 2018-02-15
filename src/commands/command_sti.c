@@ -12,15 +12,36 @@
 
 #include "../../include/vm.h"
 
+static void				print_flag_v(t_core *core, t_process *process,
+									int sag, int tag)
+{
+	int offset;
+
+	offset = ((sag + tag) % IDX_MOD);
+	if (FLAGS->v && FLAGS->verbosity_four)
+	{
+		printf("P%5d | %s ", process->id, "sti");
+		printf("r%d %d %d\n", ARGS[0].arg, sag, tag);
+		printf("%8c -> store to %d + %d = ", '|', sag, tag);
+		printf("%d (with pc and mod ", offset);
+		printf("%d)\n", (process->pc + offset) % MEM_SIZE);
+	}
+}
+
 int						command_sti(t_core *core, t_process *process)
 {
-	if (core->flags->v && core->flags->verbosity_four)
-	{
-		printf("command: %s\t\t", g_op_tab[10].command);
-		printf("pc: %x\t", core->map[process->pc]);
-		printf("index: %d\t", process->pc);
-		printf("cycle: %d\t", core->cycle);
-		printf("reg[0]: %d\t\n", process->reg[0]);
-	}
-	return (0);
+	int		second_arg;
+	int		third_arg;
+	int		offset;
+
+	second_arg = ARGS[1].type == IND_CODE ?
+	(short)(get_value_from_map(MAP, ARGS[1].arg, 4)) : 0;
+	second_arg = ARGS[1].type == REG_CODE ? REG[ARGS[1].arg - 1] : 0;
+	second_arg = ARGS[1].type == DIR_CODE ? ARGS[1].arg : second_arg;
+	third_arg = ARGS[2].type == REG_CODE ? REG[ARGS[2].arg - 1] : 0;
+	third_arg = ARGS[2].type == DIR_CODE ? ARGS[2].arg : third_arg;
+	offset = (process->pc + ((second_arg + third_arg) % IDX_MOD) % MEM_SIZE);
+	put_value_on_the_map(MAP, offset, REG[ARGS[0].arg - 1]);
+	print_flag_v(core, process, second_arg, third_arg);
+	return (1);
 }

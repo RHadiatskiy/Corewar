@@ -1,7 +1,7 @@
 NAME = corewar
 
 CC= gcc -o
-FLAGS = -Wall -Wextra -Werror -g
+# FLAGS = -Wall -Wextra -Werror -g
 LIBFT = libft/libft.a
 LIBFTPRINTF= src/ft_printf/libftprintf.a
 
@@ -24,6 +24,7 @@ SRC = src/main \
 				src/other/put_value_on_the_map \
 				src/other/reset_players_lives \
 				src/other/kill_processes \
+				src/other/fork_process \
 		src/running/run_processes src/running/run_player src/running/run \
 		src/loading/load_players_on_the_map src/loading/load_processes \
 				src/loading/load_commands \

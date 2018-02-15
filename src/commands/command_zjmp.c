@@ -28,6 +28,7 @@ int						command_zjmp(t_core *core, t_process *process)
 	position = ARGS[0].arg;
 	position %= MEM_SIZE;
 	process->pc = (process->pc + position) % MEM_SIZE;
+	process->pc += process->pc < 0 ? MEM_SIZE : 0;
 	print_flag_v(core, process, position);
 	return (1);
 }

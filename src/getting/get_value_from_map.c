@@ -24,5 +24,7 @@ unsigned int			get_value_from_map(void *map, unsigned int start, unsigned int le
 		while (i++ < len)
 			res = (res << 8) | (((unsigned char *)map)[start++] & 0x000000ff);
 	}
+	if (len <= 2)
+		return ((short)(res));
 	return (res);
 }

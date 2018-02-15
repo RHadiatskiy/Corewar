@@ -275,6 +275,8 @@ void					put_value_on_the_map(unsigned char *map, int start,
 												int value);
 void					reset_players_lives(t_player *players);
 void					kill_processes(t_core *core);
+void					fork_process(t_process **processes,
+										t_process *process, int value);
 
 /*
 **	COMMANDS

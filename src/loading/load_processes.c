@@ -20,6 +20,7 @@ void					load_processes(t_core *core)
 	size = get_players_size(core->players);
 	core->players_lives = size;
 	iter = core->players ? core->players : NULL;
+	core->champ = core->players;
 	while (iter)
 	{
 		add_process(&core->process, ((MEM_SIZE) / size) * (iter->id - 1), 0);
