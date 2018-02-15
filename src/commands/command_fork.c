@@ -29,6 +29,7 @@ int						command_fork(t_core *core, t_process *process)
 {
 	int			value;
 
+	// printf("command fork\n");
 	value = 0;
 	if (ARGS[0].type == DIR_CODE)
 	{

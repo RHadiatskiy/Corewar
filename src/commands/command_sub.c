@@ -24,6 +24,7 @@ static void				print_flag_v(t_core *core, t_process *process)
 
 int						command_sub(t_core *core, t_process *process)
 {
+	// printf("command sub\n");
 	process->carry = (REG[ARGS[2].arg] =
 								REG[ARGS[0].arg] - REG[ARGS[1].arg]) ? 0 : 1;
 	print_flag_v(core, process);

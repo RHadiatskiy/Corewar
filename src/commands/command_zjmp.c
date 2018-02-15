@@ -25,6 +25,7 @@ int						command_zjmp(t_core *core, t_process *process)
 {
 	short		position;
 
+	// printf("command zjmp\n");
 	position = ARGS[0].arg;
 	position %= MEM_SIZE;
 	process->pc = (process->pc + position) % MEM_SIZE;

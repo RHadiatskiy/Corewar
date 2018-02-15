@@ -27,6 +27,7 @@ int						command_xor(t_core *core, t_process *process)
 	int		first_arg;
 	int		second_arg;
 
+	// printf("command xor\n");
 	first_arg = ARGS[0].type == IND_CODE ?
 	get_value_from_map(MAP, ARGS[0].arg % IDX_MOD, 4) : 0;
 	first_arg = ARGS[0].type == REG_CODE ? REG[ARGS[0].arg - 1] : first_arg;

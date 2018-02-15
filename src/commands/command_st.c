@@ -28,6 +28,7 @@ int						command_st(t_core *core, t_process *process)
 {
 	int			position;
 
+	// printf("command st\n");
 	position = (process->pc + ARGS[1].arg) % MEM_SIZE;
 	if (ARGS[1].type == IND_CODE)
 	{

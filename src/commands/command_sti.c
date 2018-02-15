@@ -34,6 +34,7 @@ int						command_sti(t_core *core, t_process *process)
 	int		third_arg;
 	int		offset;
 
+	// printf("command sti\n");
 	second_arg = ARGS[1].type == IND_CODE ?
 	(short)(get_value_from_map(MAP, ARGS[1].arg, 4)) : 0;
 	second_arg = ARGS[1].type == REG_CODE ? REG[ARGS[1].arg - 1] : 0;

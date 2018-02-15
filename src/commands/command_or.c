@@ -27,6 +27,7 @@ int						command_or(t_core *core, t_process *process)
 	int		first_arg;
 	int		second_arg;
 	
+	// printf("command or\n");
 	first_arg = ARGS[0].type == IND_CODE ?
 	get_value_from_map(MAP, ARGS[0].arg % IDX_MOD, 4) : 0;
 	first_arg = ARGS[0].type == REG_CODE ? REG[ARGS[0].arg - 1] : first_arg;
@@ -35,9 +36,11 @@ int						command_or(t_core *core, t_process *process)
 	get_value_from_map(MAP, ARGS[1].arg % IDX_MOD, 4) : 0;
 	second_arg = ARGS[1].type == REG_CODE ? REG[ARGS[1].arg - 1] : second_arg;
 	second_arg = ARGS[1].type == DIR_CODE ? ARGS[1].arg : second_arg;
-	REG[ARGS[2].arg - 1] = ARGS[2].type == REG_CODE ?
-	first_arg | second_arg : REG[ARGS[2].arg - 1];
-	process->carry = REG[ARGS[2].arg - 1] ? 0 : 1;
-	print_flag_v(core, process, first_arg, second_arg);
+	if (ARGS[2].arg > 0 && ARGS[2].arg <= REG_NUMBER && ARGS[2].type == REG_CODE)
+	{
+		REG[ARGS[2].arg - 1] = first_arg | second_arg;
+		process->carry = REG[ARGS[2].arg - 1] ? 0 : 1;
+		print_flag_v(core, process, first_arg, second_arg);
+	}
 	return (1);
 }

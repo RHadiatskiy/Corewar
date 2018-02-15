@@ -19,9 +19,9 @@ static void				free_process(t_core *core, t_process *process)
 		ft_printf("Process %d has lived for", process->id);
 		ft_printf(" %d cycles (CTD %d)\n", process->cycle, core->cycle_to_die);
 	}
-	free(process->reg);
-	free(process->args);
-	free(process);
+	process->reg ? free(process->reg) : 0;
+	process->args ? free(process->args) : 0;
+	process ? free(process) : 0;
 }
 
 void					kill_processes(t_core *core)
