@@ -14,13 +14,13 @@
 
 static void				print_flag_v(t_core *core, t_process *process, int pos)
 {
-	int		offset;
+	// int		offset;
 
-	offset = pos - process->pc;
+	// offset = pos - process->pc;
 	if (FLAGS->v && FLAGS->verbosity_four)
 	{
 		printf("P%5d | %s ", process->id, "st");
-		printf("r%d %d\n", ARGS[0].arg, offset);
+		printf("r%d %d\n", ARGS[0].arg, ARGS[1].arg);
 	}
 }
 
@@ -29,15 +29,16 @@ int						command_st(t_core *core, t_process *process)
 	int			position;
 
 	// printf("command st\n");
-	position = (process->pc + ARGS[1].arg) % MEM_SIZE;
+	position = (process->pc + (ARGS[1].arg % IDX_MOD)) % MEM_SIZE;
 	if (ARGS[1].type == IND_CODE)
 	{
-		if (ARGS[0].arg < REG_NUMBER)
+		if (ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0)
 			put_value_on_the_map(MAP, position, REG[ARGS[0].arg - 1]);
 	}
 	else if (ARGS[1].type == REG_CODE)
 	{
-		if (ARGS[0].arg < REG_NUMBER)
+		if (ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0 &&
+			ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0)
 			REG[ARGS[1].arg - 1] = REG[ARGS[0].arg - 1];
 	}
 	print_flag_v(core, process, position);

@@ -110,6 +110,7 @@ typedef struct			s_flags
 	unsigned int		verbosity_eight : 1;
 	unsigned int		verbosity_sixteen : 1;
 	unsigned int		color : 1;
+	unsigned int		aff : 1;
 }						t_flags;
 
 typedef struct			s_args

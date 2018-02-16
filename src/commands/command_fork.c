@@ -36,7 +36,6 @@ int						command_fork(t_core *core, t_process *process)
 		value = ARGS[0].arg % IDX_MOD;
 		fork_process(&core->process, process, value);
 		print_flag_v(core, process, value);
-		// print_processes(core->process);
 	}
 	return (1);
 }

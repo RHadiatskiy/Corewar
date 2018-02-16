@@ -30,5 +30,6 @@ t_flags					*init_flags(void)
 	flags->verbosity_sixteen = 0;
 	flags->color = 0;
 	flags->n = 0;
+	flags->aff = 0;
 	return (flags);
 }

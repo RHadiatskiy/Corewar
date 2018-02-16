@@ -12,15 +12,25 @@
 
 #include "../../include/vm.h"
 
+static void				print_flag_v(t_core *core, t_process *process, int val)
+{
+	int		position;
+
+	position = (process->pc + val) % MEM_SIZE;
+	position += position < 0 ? MEM_SIZE : 0;
+	if (FLAGS->v && FLAGS->verbosity_four)
+	{
+		printf("P%5d | %s ", process->id, "lfork");
+		printf("%d (%d)\n", val, position);
+	}
+}
+
 int						command_lfork(t_core *core, t_process *process)
 {
-	if (core->flags->v && core->flags->verbosity_four)
+	if (ARGS[0].type == DIR_CODE)
 	{
-		printf("command: %s\t\t", g_op_tab[14].command);
-		printf("pc: %x\t", core->map[process->pc]);
-		printf("index: %d\t", process->pc);
-		printf("cycle: %d\t", core->cycle);
-		printf("reg[0]: %d\t\n", process->reg[0]);
+		fork_process(&core->process, process, ARGS[0].arg);
+		print_flag_v(core, process, ARGS[0].arg);
 	}
-	return (0);
+	return (1);
 }

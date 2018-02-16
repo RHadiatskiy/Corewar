@@ -14,13 +14,10 @@
 
 int						command_aff(t_core *core, t_process *process)
 {
-	if (core->flags->v && core->flags->verbosity_four)
+	if (core->flags->aff && ARGS[0].type == REG_CODE)
 	{
-		printf("command: %s\t\t", g_op_tab[15].command);
-		printf("pc: %x\t", core->map[process->pc]);
-		printf("index: %d\t", process->pc);
-		printf("cycle: %d\t", core->cycle);
-		printf("reg[0]: %d\t\n", process->reg[0]);
+		if (ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0)
+			ft_printf("Aff: %c\n", REG[ARGS[0].arg - 1]);
 	}
-	return (0);
+	return (1);
 }

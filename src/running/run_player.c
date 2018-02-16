@@ -31,8 +31,6 @@ void					run_player(t_core *core, t_process *process)
 			pc += (1 + octal + get_next_index(process, MAP, cmd, codage));
 			get_command_from_array(core, process, cmd);
 			process->pc = (cmd == 9 && process->carry == 1) ? process->pc : pc;
-			// printf("PC: %d\n", process->pc);
-			// printf("cycle: %d\n", core->cycle);
 		}
 		else
 			process->cycles_to_exec++;

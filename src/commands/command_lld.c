@@ -12,15 +12,32 @@
 
 #include "../../include/vm.h"
 
+static void				print_flag_v(t_core *core, t_process *process, int val)
+{
+	if (FLAGS->v && FLAGS->verbosity_four)
+	{
+		printf("P%5d | %s ", process->id, "lld");
+		printf("%d r%d\n", val, ARGS[1].arg);
+	}
+}
+
 int						command_lld(t_core *core, t_process *process)
 {
-	if (core->flags->v && core->flags->verbosity_four)
+	int		position;
+
+	// printf("command ld\n");
+	position = (process->pc + ARGS[0].arg) % MEM_SIZE;
+	if (ARGS[0].type == DIR_CODE && ARGS[1].type == REG_CODE)
 	{
-		printf("command: %s\t\t", g_op_tab[12].command);
-		printf("pc: %x\t", core->map[process->pc]);
-		printf("index: %d\t", process->pc);
-		printf("cycle: %d\t", core->cycle);
-		printf("reg[0]: %d\t\n", process->reg[0]);
+		if (ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0)
+			REG[ARGS[1].arg - 1] = ARGS[0].arg;
 	}
-	return (0);
+	else if (ARGS[0].type == IND_CODE && ARGS[1].type == REG_CODE)
+	{
+		if (ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0)
+			REG[ARGS[1].arg - 1] = get_value_from_map(MAP, position, 4);
+	}
+	process->carry = (ARGS[0].arg == 0) ? 1 : 0;
+	print_flag_v(core, process, REG[ARGS[1].arg - 1]);
+	return (1);
 }

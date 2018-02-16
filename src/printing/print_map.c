@@ -22,7 +22,6 @@ void					print_map(t_core *core)
 	x = -1;
 	count = 0;
 	t_map = core->map;
-	print_players(core->players);
 	while (++x < sqrt(MEM_SIZE) && (x * y < MEM_SIZE))
 	{
 		y = -1;
