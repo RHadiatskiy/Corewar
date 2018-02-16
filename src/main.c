@@ -23,7 +23,5 @@ int				main(int argc, char **argv)
 		load_players_on_the_map(core);
 		run(core);
 	}
-	if (core->flags->aff && core->flags->color)
-		printf("yo\n");
 	return (0);
 }
