@@ -110,6 +110,7 @@ typedef struct			s_flags
 	unsigned int		verbosity_eight : 1;
 	unsigned int		verbosity_sixteen : 1;
 	unsigned int		color : 1;
+	unsigned int		visual : 1;
 	unsigned int		aff : 1;
 }						t_flags;
 
@@ -201,6 +202,7 @@ int						read_file(t_core *core, char *av);
 int						read_args(t_core *core, int ac, char **av);
 int						read_flags(t_core *core, char **av, int *i);
 void					read_verbosity(t_core *core);
+int						read_visual(t_core *core, char **av, int *i);
 
 /*
 **	VALIDATION

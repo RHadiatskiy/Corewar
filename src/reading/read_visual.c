@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   read_visual.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 20:10:17 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/11/20 20:10:18 by rhadiats         ###   ########.fr       */
+/*   Created: 2018/02/16 20:57:33 by rhadiats          #+#    #+#             */
+/*   Updated: 2018/02/16 20:57:34 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/vm.h"
+#include "../../include/vm.h"
 
-int				main(int argc, char **argv)
+int						read_visual(t_core *core, char **av, int *i)
 {
-	t_core			*core;
-
-	core = init_core();
-	if (read_args(core, argc, argv))
+	if (ft_strcmp(av[(*i)], "--visual") == 0)
 	{
-		load_processes(core);
-		load_players_on_the_map(core);
-		run(core);
+		FLAGS->visual = 1;
+		++(*i);
+		return (1);
 	}
-	if (core->flags->visual)
-		printf("Here should be a visuality ;)\n");
 	return (0);
 }
+

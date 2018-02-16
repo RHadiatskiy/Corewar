@@ -75,7 +75,8 @@ int						read_flags(t_core *core, char **av, int *i)
 	while (av[(*i)])
 	{
 		if (!check_flag_d(core, av, i) && !check_flag_n(core, av, i) && \
-			!check_flags_clr_and_aff(core, av, i) && !check_flag_v(core, av, i))
+			!check_flags_clr_and_aff(core, av, i) &&
+			!check_flag_v(core, av, i) && !read_visual(core, av, i))
 		{
 			ret = 1;
 			break ;

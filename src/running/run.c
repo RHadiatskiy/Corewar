@@ -14,7 +14,7 @@
 
 void					run(t_core *core)
 {
-	print_players(core->players);
+	FLAGS->visual ? 0 : print_players(core->players);
 	while (core->players_lives != 0)
 	{
 		core->players_lives = 0;
@@ -32,5 +32,5 @@ void					run(t_core *core)
 		core->current_cycle = 1;
 		core->max_checks--;
 	}
-	FLAGS->dump ? 0 : print_champ(core);
+	FLAGS->dump || FLAGS->visual ? 0 : print_champ(core);
 }
