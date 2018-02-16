@@ -62,7 +62,7 @@ static int				check_flags_clr_and_aff(t_core *core, char **av, int *i)
 		++(*i);
 		return (1);		
 	}
-	return (0);	
+	return (0);
 }
 
 int						read_flags(t_core *core, char **av, int *i)
