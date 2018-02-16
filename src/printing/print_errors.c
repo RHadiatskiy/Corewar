@@ -44,5 +44,8 @@ int						print_usage(void)
 	printf("\t\t  - 4 : Show operations (Params are NOT litteral ...)\n");
 	printf("\t\t  - 8 : Show deaths\n");
 	printf("\t\t  - 16 : Show PC movements (Except for jumps)\n");
+	printf("#### NCURSES OUTPUT MODE ");
+	printf("#######################################################\n");
+	printf("    --visual\t: Ncurses output mode\n");
 	return (0);
 }
