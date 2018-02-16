@@ -29,11 +29,15 @@
 
 # define DATA_SIZE		PROG_NAME_LENGTH + COMMENT_LENGTH + 4 + (MEM_SIZE / 4)
 # define FORMAT			16
+# define PC				process->pc
 # define MAP			core->map
 # define FLAGS			core->flags
 # define CYCLE			core->cycle
 # define ARGS			process->args
 # define REG			process->reg
+# define CMD			process->command
+# define CODAGE			process->codage
+# define STEP			process->step
 
 /*
 ** ----------------------------
@@ -92,6 +96,9 @@ typedef struct			s_process
 	unsigned int		carry : 1;
 	unsigned int		is_live : 1;
 	int					cycles_to_exec;
+	int					command;
+	int					codage;
+	int					step;
 	struct s_args		*args;
 	struct s_process	*next;
 }						t_process;

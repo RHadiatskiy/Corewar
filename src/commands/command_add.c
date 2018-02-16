@@ -14,17 +14,27 @@
 
 static void				print_flag_v(t_core *core, t_process *process)
 {
+	int			i;
+
+	i = -1;
 	if (core->flags->v && core->flags->verbosity_four)
 	{
 		printf("P%5d | %s ", process->id, "add");
 		printf("r%d r%d ", process->args[0].arg, process->args[1].arg);
 		printf("r%d\n", process->args[2].arg);
 	}
+	if (FLAGS->v && FLAGS->verbosity_sixteen)
+	{
+		printf("ADV %d ", STEP);
+		printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
+		while (++i < STEP - 1)
+			printf("%.2x ", MAP[PC + i]);
+		printf("%.2x\n", MAP[PC + STEP - 1]);
+	}
 }
 
 int						command_add(t_core *core, t_process *process)
 {
-	// printf("command add\n");
 	process->carry = (REG[ARGS[2].arg] =
 								REG[ARGS[0].arg] + REG[ARGS[1].arg]) ? 0 : 1;
 	print_flag_v(core, process);

@@ -14,27 +14,27 @@
 
 void					run_player(t_core *core, t_process *process)
 {
-	int			cmd;
-	int			codage;
 	int			octal;
 	int			pc;
 
-	pc = process->pc;
-	cmd = get_value_from_map(core->map, process->pc, 1);
-	codage = get_value_from_map(core->map, process->pc + 1, 1);
-	octal = g_op_tab[cmd - 1].codage_octal;
-	if (cmd != 0 && cmd < 17)
+	STEP = 0;
+	pc = PC;
+	CMD = get_value_from_map(MAP, PC, 1);
+	CODAGE = get_value_from_map(MAP, PC + 1, 1);
+	octal = g_op_tab[CMD - 1].codage_octal;
+	if (CMD != 0 && CMD < 17)
 	{
-		if (process->cycles_to_exec == g_op_tab[cmd - 1].cycles)
+		if (process->cycles_to_exec == g_op_tab[CMD - 1].cycles)
 		{
 			process->cycles_to_exec = 1;
-			pc += (1 + octal + get_next_index(process, MAP, cmd, codage));
-			get_command_from_array(core, process, cmd);
-			process->pc = (cmd == 9 && process->carry == 1) ? process->pc : pc;
+			pc += (1 + octal + get_next_index(process, MAP, CMD, CODAGE));
+			STEP += (1 + octal + get_next_index(process, MAP, CMD, CODAGE));
+			get_command_from_array(core, process, CMD);
+			PC = (CMD == 9 && process->carry == 1) ? PC : pc;
 		}
 		else
 			process->cycles_to_exec++;
 	}
 	else
-		process->pc++;
+		PC++;
 }

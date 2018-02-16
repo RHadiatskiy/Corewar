@@ -12,15 +12,23 @@
 
 #include "../../include/vm.h"
 
-static void				print_flag_v(t_core *core, t_process *process, int pos)
+static void				print_flag_v(t_core *core, t_process *process)
 {
-	// int		offset;
+	int			i;
 
-	// offset = pos - process->pc;
+	i = -1;
 	if (FLAGS->v && FLAGS->verbosity_four)
 	{
 		printf("P%5d | %s ", process->id, "st");
 		printf("r%d %d\n", ARGS[0].arg, ARGS[1].arg);
+	}
+	if (FLAGS->v && FLAGS->verbosity_sixteen)
+	{
+		printf("ADV %d ", STEP);
+		printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
+		while (++i < STEP - 1)
+			printf("%.2x ", MAP[PC + i]);
+		printf("%.2x\n", MAP[PC + STEP - 1]);
 	}
 }
 
@@ -28,7 +36,6 @@ int						command_st(t_core *core, t_process *process)
 {
 	int			position;
 
-	// printf("command st\n");
 	position = (process->pc + (ARGS[1].arg % IDX_MOD)) % MEM_SIZE;
 	if (ARGS[1].type == IND_CODE)
 	{
@@ -41,6 +48,6 @@ int						command_st(t_core *core, t_process *process)
 			ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0)
 			REG[ARGS[1].arg - 1] = REG[ARGS[0].arg - 1];
 	}
-	print_flag_v(core, process, position);
+	print_flag_v(core, process);
 	return (1);
 }

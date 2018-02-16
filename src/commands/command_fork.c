@@ -14,8 +14,10 @@
 
 static void				print_flag_v(t_core *core, t_process *process, int val)
 {
-	int		position;
+	int			position;
+	int			i;
 
+	i = -1;
 	position = (process->pc + val) % MEM_SIZE;
 	position += position < 0 ? MEM_SIZE : 0;
 	if (FLAGS->v && FLAGS->verbosity_four)
@@ -23,13 +25,20 @@ static void				print_flag_v(t_core *core, t_process *process, int val)
 		printf("P%5d | %s ", process->id, "fork");
 		printf("%d (%d)\n", val, position);
 	}
+	if (FLAGS->v && FLAGS->verbosity_sixteen)
+	{
+		printf("ADV %d ", STEP);
+		printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
+		while (++i < STEP - 1)
+			printf("%.2x ", MAP[PC + i]);
+		printf("%.2x\n", MAP[PC + STEP - 1]);
+	}
 }
 
 int						command_fork(t_core *core, t_process *process)
 {
 	int			value;
 
-	// printf("command fork\n");
 	value = 0;
 	if (ARGS[0].type == DIR_CODE)
 	{
