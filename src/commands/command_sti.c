@@ -32,9 +32,9 @@ static void				print_flag_v(t_core *core, t_process *process,
 	{
 		printf("ADV %d ", STEP);
 		printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
-		while (++i < STEP - 1)
+		while (++i < STEP)
 			printf("%.2x ", MAP[PC + i]);
-		printf("%.2x\n", MAP[PC + STEP - 1]);
+		printf("\n");
 	}
 }
 

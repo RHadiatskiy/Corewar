@@ -12,7 +12,8 @@
 
 #include "../../include/vm.h"
 
-static void				print_flag_v(t_core *core, t_process *process, short p)
+static void				print_flag_v(t_core *core, t_process *process,
+									short position, int pc_before)
 {
 	int			i;
 
@@ -20,26 +21,28 @@ static void				print_flag_v(t_core *core, t_process *process, short p)
 	if (FLAGS->v && FLAGS->verbosity_four)
 	{
 		printf("P%5d | %s ", process->id, "zjmp");
-		printf("%d %s\n", p, process->carry ? "OK" : "FAILED");
+		printf("%d %s\n", position, process->carry ? "OK" : "FAILED");
 	}
-	if (FLAGS->v && FLAGS->verbosity_sixteen)
+	if (FLAGS->v && FLAGS->verbosity_sixteen && !process->carry)
 	{
 		printf("ADV %d ", STEP);
-		printf("(0x%.4x -> 0x%.4x) ", PC, p);
-		while (++i < STEP - 1)
-			printf("%.2x ", MAP[PC + i]);
-		printf("%.2x\n", MAP[PC + STEP - 1]);
+		printf("(0x%.4x -> 0x%.4x) ", pc_before, pc_before + STEP);
+		while (++i < STEP)
+			printf("%.2x ", MAP[pc_before + i]);
+		printf("\n");
 	}
 }
 
 int						command_zjmp(t_core *core, t_process *process)
 {
 	short		position;
+	int			pc_before;
 
+	pc_before = PC;
 	position = ARGS[0].arg;
 	position %= MEM_SIZE;
-	process->pc = (process->pc + position) % MEM_SIZE;
-	process->pc += process->pc < 0 ? MEM_SIZE : 0;
-	print_flag_v(core, process, position);
+	PC = (PC + position) % MEM_SIZE;
+	PC += PC < 0 ? MEM_SIZE : 0;
+	print_flag_v(core, process, position, pc_before);
 	return (1);
 }
