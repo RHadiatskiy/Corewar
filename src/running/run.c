@@ -22,6 +22,8 @@ void					run(t_core *core)
 		FLAGS->dump && FLAGS->dump_cycle == CYCLE ? 0 : run_processes(core);
 		reset_players_lives(core->players);
 		kill_processes(core);
+		core->current_cycle = 0;
+		core->max_checks--;
 		if (core->players_lives >= NBR_LIVE || !core->max_checks)
 		{
 			core->max_checks = MAX_CHECKS;
@@ -29,8 +31,6 @@ void					run(t_core *core)
 			if (FLAGS->v && FLAGS->verbosity_two)
 				printf("Cycle to die is now %d\n", core->cycle_to_die);
 		}
-		core->current_cycle = 1;
-		core->max_checks--;
 	}
 	FLAGS->dump || FLAGS->visual ? 0 : print_champ(core);
 }

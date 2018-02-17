@@ -46,9 +46,11 @@ int						command_sti(t_core *core, t_process *process)
 
 	second_arg = ARGS[1].type == IND_CODE ?
 	(short)(get_value_from_map(MAP, ARGS[1].arg, 4)) : 0;
-	second_arg = ARGS[1].type == REG_CODE ? REG[ARGS[1].arg - 1] : 0;
+	if (ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0)
+		second_arg = ARGS[1].type == REG_CODE ? REG[ARGS[1].arg - 1] : 0;
 	second_arg = ARGS[1].type == DIR_CODE ? ARGS[1].arg : second_arg;
-	third_arg = ARGS[2].type == REG_CODE ? REG[ARGS[2].arg - 1] : 0;
+	if (ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0)
+		third_arg = ARGS[2].type == REG_CODE ? REG[ARGS[2].arg - 1] : 0;
 	third_arg = ARGS[2].type == DIR_CODE ? ARGS[2].arg : third_arg;
 	offset = (process->pc + ((second_arg + third_arg) % IDX_MOD) % MEM_SIZE);
 	put_value_on_the_map(MAP, offset, REG[ARGS[0].arg - 1]);

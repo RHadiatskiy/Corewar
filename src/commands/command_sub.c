@@ -35,8 +35,15 @@ static void				print_flag_v(t_core *core, t_process *process)
 
 int						command_sub(t_core *core, t_process *process)
 {
-	process->carry = (REG[ARGS[2].arg] =
-								REG[ARGS[0].arg] - REG[ARGS[1].arg]) ? 0 : 1;
+	if (ARGS[0].type == REG_CODE && ARGS[1].type == REG_CODE &&
+		ARGS[2].type == REG_CODE &&
+		ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0 &&
+		ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0 &&
+		ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0)
+	{
+		REG[ARGS[2].arg - 1] = REG[ARGS[0].arg - 1] - REG[ARGS[1].arg - 1];
+		process->carry = REG[ARGS[2].arg] ? 0 : 1;
+	}
 	print_flag_v(core, process);
 	return (1);
 }
