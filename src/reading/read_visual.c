@@ -22,4 +22,3 @@ int						read_visual(t_core *core, char **av, int *i)
 	}
 	return (0);
 }
-

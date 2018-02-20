@@ -12,8 +12,9 @@
 
 #include "../../include/vm.h"
 
-int						get_command_from_array(t_core *core, t_process *process, int key)
+int						get_command_from_array(t_core *core,
+												t_process *process, int k)
 {
 	load_commands();
-	return ((key >= 0 && key <= 15) ? (*g_commands[key - 1])(core, process) : 0);
+	return ((k >= 0 && k <= 15) ? (*g_commands[k - 1])(core, process) : 0);
 }

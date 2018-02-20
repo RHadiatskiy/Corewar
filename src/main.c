@@ -6,7 +6,7 @@
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 20:10:17 by rhadiats          #+#    #+#             */
-/*   Updated: 2018/02/16 23:00:57 by rhadiats         ###   ########.fr       */
+/*   Updated: 2017/11/20 20:10:18 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,5 @@ int				main(int argc, char **argv)
 		load_players_on_the_map(core);
 		run(core);
 	}
-	if (FLAGS->visual)
-		printf("Here should be a visuality ;)\n");
 	return (0);
 }

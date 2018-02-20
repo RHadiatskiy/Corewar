@@ -26,6 +26,8 @@ t_process				*init_process(void)
 	process->cycle = 0;
 	process->carry = 0;
 	process->is_live = 0;
+	process->iter = -1;
+	process->last_live = 0;
 	process->cycles_to_exec = 0;
 	process->command = 0;
 	process->codage = 0;

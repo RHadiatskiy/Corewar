@@ -15,7 +15,7 @@
 unsigned int			get_players_size(t_player *players)
 {
 	t_player		*iter;
-	unsigned int	size;			
+	unsigned int	size;
 
 	size = 0;
 	iter = players;

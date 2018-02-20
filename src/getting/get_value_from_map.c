@@ -12,7 +12,8 @@
 
 #include "../../include/vm.h"
 
-unsigned int			get_value_from_map(void *map, unsigned int start, unsigned int len)
+unsigned int			get_value_from_map(void *map, unsigned int start,
+											unsigned int len)
 {
 	unsigned int	res;
 	unsigned int	i;

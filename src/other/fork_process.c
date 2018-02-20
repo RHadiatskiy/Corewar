@@ -22,7 +22,6 @@ static void				copy_process(t_process *new, t_process *old, int value)
 	new->player = old->player;
 	while (++i < REG_NUMBER)
 		new->reg[i] = old->reg[i];
-	new->cycle = old->cycle;
 	new->carry = old->carry;
 	new->is_live = old->is_live;
 	new->cycles_to_exec = old->cycles_to_exec;

@@ -38,25 +38,34 @@ static void				print_flag_v(t_core *core, t_process *process,
 	}
 }
 
+static int				get_value_from_ind(unsigned char *map, int arg)
+{
+	int		index;
+
+	index = arg % MEM_SIZE;
+	index += index < 0 ? MEM_SIZE : 0;
+	return (get_value_from_map(map, index, 4));
+}
+
 int						command_lldi(t_core *core, t_process *process)
 {
-	int		first_arg;
-	int		second_arg;
+	int		farg;
+	int		sarg;
 	int		offset;
 
-	first_arg = ARGS[0].type == IND_CODE ?
-	get_value_from_map(MAP, ARGS[0].arg, 4) : 0;
+	farg = ARGS[0].type == IND_CODE ? get_value_from_ind(MAP, ARGS[0].arg) : 0;
 	if (ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0)
-		first_arg = ARGS[0].type == REG_CODE ? REG[ARGS[0].arg - 1] : first_arg;
-	first_arg = ARGS[0].type == DIR_CODE ? ARGS[0].arg : first_arg;
-	second_arg = ARGS[1].type == REG_CODE ? REG[ARGS[1].arg - 1] : 0;
-	second_arg = ARGS[1].type == DIR_CODE ? ARGS[1].arg : second_arg;
-	offset = (first_arg + second_arg) % MEM_SIZE;
+		farg = ARGS[0].type == REG_CODE ? REG[ARGS[0].arg - 1] : farg;
+	farg = ARGS[0].type == DIR_CODE ? ARGS[0].arg : farg;
+	sarg = ARGS[1].type == REG_CODE ? REG[ARGS[1].arg - 1] : 0;
+	sarg = ARGS[1].type == DIR_CODE ? ARGS[1].arg : sarg;
+	offset = (farg + sarg) % MEM_SIZE;
+	offset += offset < 0 ? MEM_SIZE : 0;
 	if (ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0)
 	{
 		REG[ARGS[2].arg - 1] = ARGS[2].type == REG_CODE ?
-		offset : REG[ARGS[2].arg - 1];		
+		get_value_from_map(MAP, offset, 4) : REG[ARGS[2].arg - 1];
 	}
-	print_flag_v(core, process, first_arg, second_arg);
+	print_flag_v(core, process, farg, sarg);
 	return (1);
 }

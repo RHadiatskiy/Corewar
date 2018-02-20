@@ -14,20 +14,20 @@
 
 void					load_players_on_the_map(t_core *core)
 {
-	t_player		*t_player;
+	t_player		*player;
 	int				i;
 	int				j;
 
-	t_player = core->players ? core->players : NULL;
-	while (t_player)
+	player = core->players ? core->players : NULL;
+	while (player)
 	{
 		i = -1;
-		j = ((MEM_SIZE) / get_players_size(core->players)) * (t_player->id - 1);
-		if (core->map && t_player->header)
+		j = ((MEM_SIZE) / get_players_size(core->players)) * (player->id - 1);
+		if (core->map && player->header)
 		{
-			while (++i < (int)t_player->header->prog_size)
-				core->map[j++] = t_player->header->prog[i];
+			while (++i < (int)player->header->prog_size)
+				core->map[j++] = player->header->prog[i];
 		}
-		t_player = t_player->next;
+		player = player->next;
 	}
 }

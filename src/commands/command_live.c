@@ -12,17 +12,24 @@
 
 #include "../../include/vm.h"
 
-static void				print_flag_v(t_core *core, t_player *player,
-										t_process *process)
+static void				print_flag_v_one(t_core *core, t_player *player)
+{
+	if (FLAGS->v && FLAGS->verbosity_one)
+		printf("Player %d (%s) is said to be alive\n",
+				player->number, player->header->prog_name);
+}
+
+static void				print_flag_v_four(t_core *core, t_process *process)
+{
+	if (FLAGS->v && FLAGS->verbosity_four)
+		printf("P%5d | %s %d\n", process->id, "live", ARGS[0].arg);
+}
+
+static void				print_flag_v_sixteen(t_core *core, t_process *process)
 {
 	int			i;
 
 	i = -1;
-	if (core->flags->v && core->flags->verbosity_four)
-		printf("P%5d | %s %d\n", process->id, "live", player->id * -1);
-	if (core->flags->v && core->flags->verbosity_one)
-		printf("Player %d (%s) is said to be alive\n",
-				player->number, player->header->prog_name);
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
 	{
 		printf("ADV %d ", STEP);
@@ -39,17 +46,20 @@ int						command_live(t_core *core, t_process *process)
 
 	tmp = core->players ? core->players : NULL;
 	process->is_live = 1;
+	process->last_live = process->cycle;
 	core->players_lives++;
+	print_flag_v_four(core, process);
 	while (tmp)
 	{
-		if (process->player * -1 == tmp->number)
+		if (ARGS[0].arg * -1 == tmp->number)
 		{
 			tmp->lives++;
-			print_flag_v(core, tmp, process);
+			print_flag_v_one(core, tmp);
 			core->champ = tmp;
 			break ;
 		}
 		tmp = tmp->next;
 	}
+	print_flag_v_sixteen(core, process);
 	return (1);
 }

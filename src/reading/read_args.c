@@ -26,11 +26,11 @@ int						read_args(t_core *core, int ac, char **av)
 		players += read_flags(core, av, &iter);
 		if (iter < ac)
 			if (!validation(core, av[iter]))
-				exit (0);
+				exit(0);
 	}
 	if (players > MAX_PLAYERS)
 	{
-		write (1, "Too many champions\n", 19);
+		write(1, "Too many champions\n", 19);
 		return (0);
 	}
 	ft_sort_list(core->players);

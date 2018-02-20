@@ -15,7 +15,7 @@
 static void				print_flag_v(t_core *core, t_process *process,
 									int sag, int tag)
 {
-	int 	offset;
+	int		offset;
 	int		i;
 
 	i = -1;
@@ -38,22 +38,32 @@ static void				print_flag_v(t_core *core, t_process *process,
 	}
 }
 
+static int				get_value_ind(unsigned char *map, int pc, int arg)
+{
+	int		index;
+
+	index = (pc + arg) % MEM_SIZE;
+	index += index < 0 ? MEM_SIZE : 0;
+	return (get_value_from_map(map, index, 4));
+}
+
 int						command_sti(t_core *core, t_process *process)
 {
-	int		second_arg;
-	int		third_arg;
+	int		sarg;
+	int		targ;
 	int		offset;
 
-	second_arg = ARGS[1].type == IND_CODE ?
-	(short)(get_value_from_map(MAP, ARGS[1].arg, 4)) : 0;
+	sarg = ARGS[1].type == IND_CODE ?
+	(short)(get_value_ind(MAP, PC, ARGS[1].arg)) : 0;
 	if (ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0)
-		second_arg = ARGS[1].type == REG_CODE ? REG[ARGS[1].arg - 1] : 0;
-	second_arg = ARGS[1].type == DIR_CODE ? ARGS[1].arg : second_arg;
+		sarg = ARGS[1].type == REG_CODE ? REG[ARGS[1].arg - 1] : 0;
+	sarg = ARGS[1].type == DIR_CODE ? ARGS[1].arg : sarg;
 	if (ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0)
-		third_arg = ARGS[2].type == REG_CODE ? REG[ARGS[2].arg - 1] : 0;
-	third_arg = ARGS[2].type == DIR_CODE ? ARGS[2].arg : third_arg;
-	offset = (process->pc + ((second_arg + third_arg) % IDX_MOD) % MEM_SIZE);
+		targ = ARGS[2].type == REG_CODE ? REG[ARGS[2].arg - 1] : 0;
+	targ = ARGS[2].type == DIR_CODE ? ARGS[2].arg : targ;
+	offset = ((PC + ((sarg + targ) % IDX_MOD)) % MEM_SIZE);
+	offset += offset < 0 ? MEM_SIZE : 0;
 	put_value_on_the_map(MAP, offset, REG[ARGS[0].arg - 1]);
-	print_flag_v(core, process, second_arg, third_arg);
+	print_flag_v(core, process, sarg, targ);
 	return (1);
 }

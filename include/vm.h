@@ -28,7 +28,9 @@
 # define BLACK   		"\x1b[37m"
 
 # define DATA_SIZE		PROG_NAME_LENGTH + COMMENT_LENGTH + 4 + (MEM_SIZE / 4)
+# define PROG_SIZE		len - ((PROG_NAME_LENGTH) + (COMMENT_LENGTH) + 16)
 # define FORMAT			16
+# define ITER			process->iter
 # define PC				process->pc
 # define MAP			core->map
 # define FLAGS			core->flags
@@ -95,6 +97,8 @@ typedef struct			s_process
 	unsigned int		cycle;
 	unsigned int		carry : 1;
 	unsigned int		is_live : 1;
+	int					iter;
+	int					last_live;
 	int					cycles_to_exec;
 	int					command;
 	int					codage;
@@ -231,10 +235,7 @@ void					print_map(t_core *core);
 void					print_data(t_player *players);
 void					print_players(t_player *players);
 void					print_prog_attr(char *name, unsigned int len);
-void					print_header(t_header *header, unsigned int size);
-void					print_headers(t_player *players);
 int						print_usage(void);
-// void					print_debug(t_core *core);
 void					print_processes(t_process *processes);
 int						print_prog_size_error(char *dir, int len);
 int						print_magic_error(char *dir);
@@ -257,7 +258,8 @@ unsigned int			get_value_from_map(void *buf, unsigned int start,
 											unsigned int len);
 int						get_next_index(t_process *process, unsigned char *map,
 										int command, int value);
-int						get_command_from_array(t_core *core, t_process *process, int key);
+int						get_command_from_array(t_core *core, t_process *process,
+												int k);
 
 /*
 **	RUNNING

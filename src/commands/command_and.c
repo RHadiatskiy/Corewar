@@ -33,18 +33,25 @@ static void				print_flag_v(t_core *core, t_process *process,
 	}
 }
 
+static int				get_value_ind(unsigned char *map, int pc, int arg)
+{
+	int		index;
+
+	index = (pc + (arg % IDX_MOD)) % MEM_SIZE;
+	index += index < 0 ? MEM_SIZE : 0;
+	return (get_value_from_map(map, index, 4));
+}
+
 int						command_and(t_core *core, t_process *process)
 {
 	int		farg;
 	int		sarg;
 
-	farg = ARGS[0].type == IND_CODE ?
-	get_value_from_map(MAP, ARGS[0].arg % IDX_MOD, 4) : 0;
+	farg = ARGS[0].type == IND_CODE ? get_value_ind(MAP, PC, ARGS[0].arg) : 0;
 	if (ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0)
 		farg = ARGS[0].type == REG_CODE ? REG[ARGS[0].arg - 1] : farg;
 	farg = ARGS[0].type == DIR_CODE ? ARGS[0].arg : farg;
-	sarg = ARGS[1].type == IND_CODE ?
-	get_value_from_map(MAP, ARGS[1].arg % IDX_MOD, 4) : 0;
+	sarg = ARGS[1].type == IND_CODE ? get_value_ind(MAP, PC, ARGS[1].arg) : 0;
 	if (ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0)
 		sarg = ARGS[1].type == REG_CODE ? REG[ARGS[1].arg - 1] : sarg;
 	sarg = ARGS[1].type == DIR_CODE ? ARGS[1].arg : sarg;

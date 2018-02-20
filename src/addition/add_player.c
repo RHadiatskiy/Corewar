@@ -12,7 +12,8 @@
 
 #include "../../include/vm.h"
 
-void					add_player(t_player *players, t_header *header, unsigned int size, t_flags *flags)
+void					add_player(t_player *players, t_header *header,
+									unsigned int size, t_flags *flags)
 {
 	t_player		*player;
 	t_player		*to_end;

@@ -16,8 +16,10 @@ void					run_processes(t_core *core)
 {
 	t_process		*process;
 
-	while (core->current_cycle < core->cycle_to_die)
+	while (core->current_cycle <= core->cycle_to_die)
 	{
+		if (FLAGS->v && FLAGS->verbosity_two && CYCLE != 0)
+			printf("It is now cycle %d\n", CYCLE);
 		process = core->process ? core->process : NULL;
 		while (process)
 		{
@@ -32,7 +34,5 @@ void					run_processes(t_core *core)
 		}
 		CYCLE++;
 		core->current_cycle++;
-		if (FLAGS->v && FLAGS->verbosity_two)
-			printf("It is now cycle %d\n", CYCLE);
 	}
 }

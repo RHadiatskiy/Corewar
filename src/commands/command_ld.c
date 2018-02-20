@@ -17,7 +17,8 @@ static void				print_flag_v(t_core *core, t_process *process, int val)
 	int			i;
 
 	i = -1;
-	if (FLAGS->v && FLAGS->verbosity_four)
+	if (FLAGS->v && FLAGS->verbosity_four &&
+		ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0)
 	{
 		printf("P%5d | %s ", process->id, "ld");
 		printf("%d r%d\n", val, ARGS[1].arg);
@@ -37,6 +38,7 @@ int						command_ld(t_core *core, t_process *process)
 	int		position;
 
 	position = (process->pc + ARGS[0].arg) % MEM_SIZE;
+	position += position < 0 ? MEM_SIZE : 0;
 	if (ARGS[0].type == DIR_CODE && ARGS[1].type == REG_CODE)
 	{
 		if (ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0)

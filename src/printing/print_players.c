@@ -16,7 +16,6 @@ void					print_champ(t_core *core)
 {
 	printf("Contestant %d, \"%s\", has won !\n", core->champ->number,
 												core->champ->header->prog_name);
-
 }
 
 void					print_players(t_player *players)

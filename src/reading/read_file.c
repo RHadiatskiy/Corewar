@@ -28,8 +28,7 @@ int						read_file(t_core *core, char *av)
 	if (!(read(fd, data, len)))
 		return (-3);
 	if (len - ((PROG_NAME_LENGTH) + (COMMENT_LENGTH) + 16) > CHAMP_MAX_SIZE)
-		return (print_prog_size_error(av, len - ((PROG_NAME_LENGTH) + \
-			(COMMENT_LENGTH) + 16)));
+		return (print_prog_size_error(av, PROG_SIZE));
 	if (!(header = parse_header(data, len)))
 		return (print_magic_error(av));
 	add_player(core->players, header, len, core->flags);

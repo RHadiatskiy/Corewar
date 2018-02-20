@@ -12,7 +12,8 @@
 
 #include "../../include/vm.h"
 
-t_header				*init_header(unsigned int magic, char *name, char *comment, char *prog)
+t_header				*init_header(unsigned int magic, char *name,
+									char *comment, char *prog)
 {
 	t_header			*header;
 

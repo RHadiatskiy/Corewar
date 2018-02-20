@@ -12,7 +12,8 @@
 
 #include "../../include/vm.h"
 
-static unsigned int		parse_magic(void *data, unsigned int len, unsigned int size)
+static unsigned int		parse_magic(void *data, unsigned int len,
+									unsigned int size)
 {
 	unsigned int		magic;
 
@@ -24,7 +25,8 @@ static unsigned int		parse_magic(void *data, unsigned int len, unsigned int size
 	return (magic);
 }
 
-static char				*parse_name(unsigned char *data, unsigned int len, unsigned int size)
+static char				*parse_name(unsigned char *data, unsigned int len,
+									unsigned int size)
 {
 	unsigned int		start;
 	unsigned int		i;
@@ -45,7 +47,8 @@ static char				*parse_name(unsigned char *data, unsigned int len, unsigned int s
 	return (name);
 }
 
-static char				*parse_comment(unsigned char *data, unsigned int len, unsigned int size)
+static char				*parse_comment(unsigned char *data, unsigned int len,
+										unsigned int size)
 {
 	char				*comment;
 	unsigned int		i;
@@ -66,7 +69,8 @@ static char				*parse_comment(unsigned char *data, unsigned int len, unsigned in
 	return (comment);
 }
 
-static char				*parse_prog(unsigned char *data, unsigned int len, unsigned int size)
+static char				*parse_prog(unsigned char *data, unsigned int len,
+									unsigned int size)
 {
 	char				*prog;
 	unsigned int		i;
@@ -100,7 +104,8 @@ t_header				*parse_header(unsigned char *data, unsigned int size)
 	{
 		prog_name = parse_name(data, (PROG_NAME_LENGTH) + 1, size);
 		comment = parse_comment(data, (COMMENT_LENGTH) + 1, size);
-		prog = parse_prog(data, size - ((PROG_NAME_LENGTH) + (COMMENT_LENGTH) + 16), size);
+		prog = parse_prog(data, size - ((PROG_NAME_LENGTH) +
+			(COMMENT_LENGTH) + 16), size);
 		header = init_header(magic, prog_name, comment, prog);
 		header->prog_size = size - ((PROG_NAME_LENGTH) + (COMMENT_LENGTH) + 16);
 	}
