@@ -31,6 +31,8 @@ void					run_player(t_core *core, t_process *process)
 			STEP += (1 + octal + get_next_index(process, MAP, CMD, CODAGE));
 			get_command_from_array(core, process, CMD);
 			PC = (CMD == 9 && process->carry == 1) ? PC : pc;
+			PC %= MEM_SIZE;
+			PC += PC < 0 ? MEM_SIZE : 0;
 		}
 		else
 			process->cycles_to_exec++;
