@@ -12,7 +12,13 @@
 
 #include "../../include/vm.h"
 
-void					run_player(t_core *core, t_process *process)
+// void			put_on_map()
+// {
+
+
+// }
+
+void			run_player(t_core *core, t_process *process)
 {
 	int			octal;
 	int			pc;
@@ -30,6 +36,7 @@ void					run_player(t_core *core, t_process *process)
 			pc += (1 + octal + get_next_index(process, MAP, CMD, CODAGE));
 			STEP += (1 + octal + get_next_index(process, MAP, CMD, CODAGE));
 			get_command_from_array(core, process, CMD);
+			// FLAGS->visual ? put_on_map(PC, CMD, process);
 			PC = (CMD == 9 && process->carry == 1) ? PC : pc;
 			PC %= MEM_SIZE;
 			PC += PC < 0 ? MEM_SIZE : 0;

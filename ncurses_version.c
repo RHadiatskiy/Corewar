@@ -15,6 +15,16 @@ void	cycles_to_die_refresh(int cycle_to_die)
 	refresh();
 }
 
+void 	pause_vm()
+{
+	while (1)
+	{
+		if (getch() == 32)
+			break ;
+	}
+
+}
+
 void	cycle_refresh(int cycle)
 {
 	int y;
@@ -23,6 +33,10 @@ void	cycle_refresh(int cycle)
 	attrset(A_NORMAL | A_BOLD);
 	mvprintw(y, 208, "%d", cycle);
 	refresh();
+	usleep(100000);
+	if (getch() == 32)
+		pause_vm();
+
 }
 
 char *initiate_color(void)
@@ -34,14 +48,14 @@ char *initiate_color(void)
 	init_color(COLOR_MAGENTA, 230, 230, 230);
 	init_pair(10, COLOR_WHITE, COLOR_MAGENTA);
 	init_pair(1, COLOR_GREEN, COLOR_BLACK);
-	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
-	init_pair(3, COLOR_BLUE, COLOR_BLACK);
-	init_pair(4, COLOR_RED, COLOR_BLACK);
+	init_pair(2, COLOR_BLUE, COLOR_BLACK);
+	init_pair(3, COLOR_RED, COLOR_BLACK);
+	init_pair(4, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(5, COLOR_WHITE, COLOR_BLACK);
 	init_pair(6, COLOR_GREEN, COLOR_MAGENTA);
-	init_pair(7, COLOR_YELLOW, COLOR_MAGENTA);
-	init_pair(8, COLOR_BLUE, COLOR_MAGENTA);
-	init_pair(9, COLOR_RED, COLOR_MAGENTA);
+	init_pair(7, COLOR_BLUE, COLOR_MAGENTA);
+	init_pair(8, COLOR_RED, COLOR_MAGENTA);
+	init_pair(9, COLOR_YELLOW, COLOR_MAGENTA);
 	init_pair(11, COLOR_MAGENTA, COLOR_BLACK);
 	clr = malloc(4096);
 	i = 0;
