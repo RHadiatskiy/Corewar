@@ -2,6 +2,7 @@ NAME = corewar
 
 CC= gcc -o
 FLAGS = -Wall -Wextra -Werror -g
+NCFLAGS = -lncurses
 LIBFT = libft/libft.a
 LIBFTPRINTF= src/ft_printf/libftprintf.a
 
@@ -34,7 +35,8 @@ SRC = src/main \
 				src/commands/command_lldi src/commands/command_or \
 				src/commands/command_st src/commands/command_sti \
 				src/commands/command_sub src/commands/command_xor \
-				src/commands/command_zjmp
+				src/commands/command_zjmp \
+		ncurses_version
 
 OBJ = $(addsuffix .o,$(SRC))
 
@@ -47,7 +49,7 @@ ft_printf:
 	@make -C ./src/ft_printf
 
 vm: $(OBJ)
-	gcc -o $(NAME) $(FLAGS) $(OBJ) $(LIBFT) $(LIBFTPRINTF)
+	gcc -o $(NAME) $(FLAGS) $(OBJ) $(NCFLAGS) $(LIBFT) $(LIBFTPRINTF)
 
 %.o: %.c
 	gcc $(FLAGS) -c -o $@ $< 

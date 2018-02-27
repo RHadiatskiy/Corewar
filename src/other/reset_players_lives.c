@@ -15,11 +15,23 @@
 void					reset_players_lives(t_player *players)
 {
 	t_player		*tmp;
+	int 			y;
+	int 			i;
 
+	y = 16;
+	i = 1;
 	tmp = players ? players : NULL;
 	while (tmp)
 	{
 		tmp->lives = 0;
+		while (tmp->number > i)
+		{
+			y += 5;
+			i++;
+		}
+		mvprintw(y + 1, 230, "              ");
+		mvprintw(y + 1, 230, "%d", tmp->lives);
 		tmp = tmp->next;
 	}
+
 }

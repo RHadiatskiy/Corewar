@@ -27,6 +27,7 @@ t_process				*init_process(void)
 	process->carry = 0;
 	process->is_live = 0;
 	process->iter = -1;
+	process->players_last_live = 0;
 	process->last_live = 0;
 	process->cycles_to_exec = 0;
 	process->command = 0;

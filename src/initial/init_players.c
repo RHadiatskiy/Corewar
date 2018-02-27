@@ -22,6 +22,7 @@ t_player				*init_players(void)
 	player->number = 0;
 	player->size = 0;
 	player->lives = 0;
+	player->lives_in_period = 0;
 	player->header = NULL;
 	player->next = NULL;
 	return (player);

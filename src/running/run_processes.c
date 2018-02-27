@@ -20,6 +20,7 @@ void					run_processes(t_core *core)
 	{
 		if (FLAGS->v && FLAGS->verbosity_two && CYCLE != 0)
 			printf("It is now cycle %d\n", CYCLE);
+		FLAGS->visual ? cycle_refresh(CYCLE) : 0;
 		process = core->process ? core->process : NULL;
 		while (process)
 		{

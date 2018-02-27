@@ -40,6 +40,8 @@
 # define CMD			process->command
 # define CODAGE			process->codage
 # define STEP			process->step
+# define ROW			68
+# define COL			241
 
 /*
 ** ----------------------------
@@ -51,6 +53,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <math.h>
+# include <ncurses.h>
 
 # include "op.h"
 # include "../libft/libft.h"
@@ -75,6 +78,7 @@ typedef struct			s_player
 	int					number;
 	unsigned int		size;
 	unsigned int		lives;
+	int 				lives_in_period;
 	struct s_header		*header;
 	struct s_player		*next;
 }						t_player;
@@ -98,7 +102,8 @@ typedef struct			s_process
 	unsigned int		carry : 1;
 	unsigned int		is_live : 1;
 	int					iter;
-	int					last_live;
+	int 				players_last_live;
+	int					last_live;       //last cycle in which player is alive  command_live
 	int					cycles_to_exec;
 	int					command;
 	int					codage;
@@ -311,5 +316,14 @@ int						command_lld(t_core *core, t_process *process);
 int						command_lldi(t_core *core, t_process *process);
 int						command_lfork(t_core *core, t_process *process);
 int						command_aff(t_core *core, t_process *process);
+
+/*
+ * Ncurses mode
+ */
+
+int						ncurses_version(t_core *core);
+void					print_champ_visual(t_core *core);
+void					cycle_refresh(int cycle);
+void					cycles_to_die_refresh(int cycle_to_die);
 
 #endif
