@@ -29,4 +29,28 @@ void					put_value_on_the_map(unsigned char *map, int start,
 		map[start] = (res & 0x000000ff);
 		start++;
 	}
+
 }
+
+
+// static void				color_map_live(t_core *core, t_process *process)
+// {
+// 	int		i;
+// 	int 	x;
+// 	int 	y;
+
+// 	i = -1;
+// 	position(PC, &x, &y);
+// 	if (FLAGS->visual)
+// 	{
+// 		core->clr[PC] = process->player * -1;
+// 		attron(COLOR_PAIR(process->player * -1) | A_BOLD);
+// 		while (++i < STEP)
+// 		{
+// 			mvprintw(y, x, "%02x", MAP[PC + i]);
+// 			x += 3;
+// 		}
+// 		attrset(A_NORMAL);
+// 	}
+// 	refresh();
+// }

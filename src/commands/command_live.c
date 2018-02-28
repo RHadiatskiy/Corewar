@@ -80,6 +80,7 @@ int						command_live(t_core *core, t_process *process)
 			tmp->lives_in_period++;
 			print_flag_v_one(core, tmp);
 			print_visual_life(core, tmp, process);
+			// color_map_live(core, process);
 			core->champ = tmp;
 			break ;
 		}

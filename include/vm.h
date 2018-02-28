@@ -61,10 +61,12 @@
 typedef struct			s_core
 {
 	unsigned char		*map;
+	char				*clr;
 	int					cycle;
 	int					current_cycle;
 	int					cycle_to_die;
 	int					max_checks;
+	int 				speed;
 	unsigned int		players_lives;
 	struct s_player		*champ;
 	struct s_player		*players;
@@ -103,7 +105,7 @@ typedef struct			s_process
 	unsigned int		is_live : 1;
 	int					iter;
 	int 				players_last_live;
-	int					last_live;       //last cycle in which player is alive  command_live
+	int					last_live;
 	int					cycles_to_exec;
 	int					command;
 	int					codage;
@@ -325,5 +327,9 @@ int						ncurses_version(t_core *core);
 void					print_champ_visual(t_core *core);
 void					cycle_refresh(int cycle);
 void					cycles_to_die_refresh(int cycle_to_die);
+int 					refresh_map(t_core *core);
+void					draw_counter(t_core *core, t_process *process);
+int						position(int pc, int *x, int *y);
+
 
 #endif

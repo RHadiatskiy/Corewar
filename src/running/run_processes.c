@@ -24,9 +24,12 @@ void					run_processes(t_core *core)
 		process = core->process ? core->process : NULL;
 		while (process)
 		{
+			FLAGS->visual ? refresh_map(core) : 0;
 			process->cycle++;
 			run_player(core, process);
+			(FLAGS->visual && (process != NULL)) ? draw_counter(core, process) : 0;
 			process = process->next;
+
 		}
 		if (FLAGS->dump && CYCLE == FLAGS->dump_cycle)
 		{

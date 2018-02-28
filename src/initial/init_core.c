@@ -19,10 +19,12 @@ t_core					*init_core(void)
 	if (!(core = (t_core *)malloc(sizeof(t_core))))
 		return (NULL);
 	core->map = init_map();
+	core->clr = NULL;
 	core->cycle = 0;
 	core->current_cycle = 0;
 	core->cycle_to_die = CYCLE_TO_DIE;
 	core->max_checks = MAX_CHECKS;
+	core->speed = 100000;
 	core->players_lives = 0;
 	core->players = init_players();
 	core->process = init_process();

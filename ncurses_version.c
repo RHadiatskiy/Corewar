@@ -12,6 +12,7 @@ void	cycles_to_die_refresh(int cycle_to_die)
 	attrset(A_NORMAL | A_BOLD);
 	mvprintw(y, 215, "          ");
 	mvprintw(y, 215, "%d", cycle_to_die);
+
 	refresh();
 }
 
@@ -19,10 +20,17 @@ void 	pause_vm()
 {
 	while (1)
 	{
+		attron(COLOR_PAIR(4));
+		mvprintw(3, 217, "                           ");
+		mvprintw(3, 217, "** PAUSED **");
 		if (getch() == 32)
+		{
+			mvprintw(3, 217, "             ");
+			mvprintw(3, 217, "** RUNNING **");
+			attroff(COLOR_PAIR(4));
 			break ;
+		}
 	}
-
 }
 
 void	cycle_refresh(int cycle)
@@ -33,7 +41,7 @@ void	cycle_refresh(int cycle)
 	attrset(A_NORMAL | A_BOLD);
 	mvprintw(y, 208, "%d", cycle);
 	refresh();
-	usleep(100000);
+	usleep(10000);
 	if (getch() == 32)
 		pause_vm();
 
@@ -52,10 +60,10 @@ char *initiate_color(void)
 	init_pair(3, COLOR_RED, COLOR_BLACK);
 	init_pair(4, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(5, COLOR_WHITE, COLOR_BLACK);
-	init_pair(6, COLOR_GREEN, COLOR_MAGENTA);
-	init_pair(7, COLOR_BLUE, COLOR_MAGENTA);
-	init_pair(8, COLOR_RED, COLOR_MAGENTA);
-	init_pair(9, COLOR_YELLOW, COLOR_MAGENTA);
+	init_pair(6, COLOR_BLACK, COLOR_GREEN);
+	init_pair(7, COLOR_BLACK, COLOR_BLUE);
+	init_pair(8, COLOR_BLACK, COLOR_RED);
+	init_pair(9, COLOR_BLACK, COLOR_YELLOW);
 	init_pair(11, COLOR_MAGENTA, COLOR_BLACK);
 	clr = malloc(4096);
 	i = 0;
@@ -82,6 +90,9 @@ int		create_borders()
 		mvaddch(y, COL - 45, ' ' | COLOR_PAIR(10));
 		mvaddch(y++, COL + 8, ' ' | COLOR_PAIR(10));
 	}
+	attron(COLOR_PAIR(4) | A_BOLD);
+	mvprintw(3, 217, "** RUNNING **");
+	attroff(COLOR_PAIR(4) | A_BOLD);
 	refresh();
 	return (0);
 }
@@ -108,7 +119,7 @@ int 	choose_players_color(t_player *players, char *clr, int players_num)
 	return (0);
 }
 
-int		fullfill_map(t_core *core, char *clr, int players)
+int		fullfill_map(t_core *core, int players)
 {
 	int x;
 	int y;
@@ -118,13 +129,15 @@ int		fullfill_map(t_core *core, char *clr, int players)
 	y = 2;
 	i = 0;
 	attron(COLOR_PAIR(10));
-	mvprintw(0, 3, "COREWAR is inda hause");
-	choose_players_color(core->players, clr, players);
+	attron(A_BOLD);
+	mvprintw(0, 88, "COREWAR is inda hause");
+	attroff(A_BOLD);
+	choose_players_color(core->players, core->clr, players);
 	attrset(A_NORMAL);
 	while (i < 4096)
 	{
 		x += 3;
-		attron(COLOR_PAIR(clr[i]));
+		attron(COLOR_PAIR(core->clr[i]));
 		mvprintw(y, x, "%02x", core->map[i]);
 		attrset(A_NORMAL);
 		if (x > COL - 50 && !(x = 0))
@@ -137,14 +150,11 @@ int		fullfill_map(t_core *core, char *clr, int players)
 
 void	print_const_part(t_core *core)
 {
-	int y;
-
-	y = 45;
 	attrset(A_NORMAL | A_BOLD);
-	mvprintw(y, 200, "CYCLE_TO_DIE : %d", core->cycle_to_die);
-	mvprintw(y + 2, 200, "CYCLE_DELTA : 50");
-	mvprintw(y + 4, 200, "NBR_LIVES : 21");
-	mvprintw(y + 6, 200, "MAX_CHECKS : %d", core->max_checks);
+	mvprintw(45, 200, "CYCLE_TO_DIE : %d", core->cycle_to_die);
+	mvprintw(45 + 2, 200, "CYCLE_DELTA : 50");
+	mvprintw(45 + 4, 200, "NBR_LIVES : 21");
+	mvprintw(45 + 6, 200, "MAX_CHECKS : %d", core->max_checks);
 	refresh();
 }
 
@@ -177,25 +187,24 @@ int     fullfill_players_on_map(int players_num, t_player *players, t_core *core
 	return (0);
 }
 
-void	draw_map(char *clr, int	players, t_core *core)
+void	draw_map(int players, t_core *core)
 {
 	curs_set(0);
 	nodelay(stdscr, TRUE);
 	noecho();
 	keypad(stdscr, true);
 	create_borders();
-	fullfill_map(core, clr, players);
+	fullfill_map(core, players);
 	fullfill_players_on_map(players, core->players, core);
 }
 
 int		ncurses_version(t_core *core)
 {
-	char *color;
 	int num;
 
 	initscr();
-	color = initiate_color();
+	core->clr = initiate_color();
     num = get_players_size(core->players);
-	draw_map(color, num, core);
+	draw_map(num, core);
 	return (0);
 }
