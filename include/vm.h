@@ -290,8 +290,8 @@ void					load_commands(void);
 
 void					ft_sort_list(t_player *players);
 int						ft_findchr(char *str, char c);
-void					put_value_on_the_map(unsigned char *map, int start,
-												int value);
+void					put_value_on_the_map(t_core *core, int start,
+											 int value);
 void					reset_players_lives(t_player *players);
 void					kill_processes(t_core *core);
 void					fork_process(t_process **processes,

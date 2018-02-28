@@ -12,8 +12,8 @@
 
 #include "../../include/vm.h"
 
-void					put_value_on_the_map(unsigned char *map, int start,
-											int value)
+void					put_value_on_the_map(t_core *core, int start,
+											 int value)
 {
 	int				j;
 	int				i;
@@ -26,7 +26,7 @@ void					put_value_on_the_map(unsigned char *map, int start,
 		res = value;
 		while (i++ < j)
 			res = res >> 8;
-		map[start] = (res & 0x000000ff);
+		MAP[start] = (res & 0x000000ff);
 		start++;
 	}
 
