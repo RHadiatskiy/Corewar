@@ -77,11 +77,11 @@ void			check_processes(t_core *core)
 	int			i;
 	t_process	*tmp;
 
-	i = core->process ? 1 : 0;
+	i = 0;
 	tmp = core->process ? core->process : NULL;
 	while (tmp)
 	{
-		i++;
+		++i;
 		tmp = tmp->next;
 	}
 	attron(A_BOLD);

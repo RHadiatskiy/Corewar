@@ -20,8 +20,8 @@ int						print_magic_error(char *dir)
 
 int						print_prog_size_error(char *dir, int len)
 {
-	len < 0 ? ft_printf("Error: File champs is too small to be a champion\n") : \
-	ft_printf("Error: File %s has too large a code (%d bytes > 682 bytes)\n", \
+	len < 0 ? ft_printf("Error: File champs is too small to be a champion\n") :
+	ft_printf("Error: File %s has too large a code (%d bytes > 682 bytes)\n",
 		dir, len);
 	return (0);
 }

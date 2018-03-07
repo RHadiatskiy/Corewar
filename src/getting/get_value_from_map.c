@@ -23,7 +23,11 @@ unsigned int			get_value_from_map(void *map, unsigned int start,
 	if (i < len)
 	{
 		while (i++ < len)
-			res = (res << 8) | (((unsigned char *)map)[start++] & 0x000000ff);
+		{
+			res = (res << 8) | (((unsigned char *)map)[start % MEM_SIZE]
+				& 0x000000ff);
+			start++;
+		}
 	}
 	if (len <= 2)
 		return ((short)(res));

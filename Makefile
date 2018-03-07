@@ -25,7 +25,7 @@ SRC = src/main \
 				src/other/reset_players_lives \
 				src/other/kill_processes \
 				src/other/fork_process \
-		src/running/run_processes src/running/run_player src/running/run \
+		src/running/run_processes src/running/run_players src/running/run \
 		src/loading/load_players_on_the_map src/loading/load_processes \
 				src/loading/load_commands \
 		src/commands/command_add src/commands/command_aff src/commands/command_and \

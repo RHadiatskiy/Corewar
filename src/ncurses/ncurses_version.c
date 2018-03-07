@@ -32,8 +32,8 @@ int		fullfill_players_on_map(int players_num, t_player *players,
 	pl = 1;
 	y = 8;
 	attrset(A_NORMAL | A_BOLD);
-	mvprintw(y, 200, "Cycle : %d", 0);
-	mvprintw(y + 3, 200, "Processes : %d", 0);
+	mvprintw(y, 200, "Cycle : %d", CYCLE);
+	mvprintw(y + 3, 200, "Processes : %d", core->process->id);
 	while (pl < players_num + 1 && pl < 5)
 	{
 		mvprintw(y + 7, 200, "Player %d :", players->number);

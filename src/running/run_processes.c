@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_process.c                                      :+:      :+:    :+:   */
+/*   run_processes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/28 17:33:43 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/12/28 17:33:44 by rhadiats         ###   ########.fr       */
+/*   Created: 2017/12/28 19:41:17 by rhadiats          #+#    #+#             */
+/*   Updated: 2017/12/28 19:41:18 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/vm.h"
 
-void				run_processes(t_core *core)
+void					run_processes(t_core *core, t_process *process)
 {
-	t_process		*process;
+	int			octal;
+	int			pc;
 
-	while (core->current_cycle <= core->cycle_to_die)
+	STEP = 0;
+	pc = PC;
+	CMD = get_value_from_map(MAP, PC, 1);
+	CODAGE = get_value_from_map(MAP, PC + 1, 1);
+	octal = g_op_tab[CMD - 1].codage_octal;
+	if (CMD != 0 && CMD < 17)
 	{
-		if (FLAGS->v && FLAGS->verbosity_two && CYCLE != 0)
-			ft_printf("It is now cycle %d\n", CYCLE);
-		FLAGS->visual ? cycle_refresh(core) : 0;
-		process = core->process ? core->process : NULL;
-		(FLAGS->visual && core->current_cycle % 75 == 0) ? refre_map(core) : 0;
-		while (process)
+		if (process->cycles_to_exec == g_op_tab[CMD - 1].cycles)
 		{
-			FLAGS->visual ? clear_counter(core, process) : 0;
-			process->cycle++;
-			run_player(core, process);
-			FLAGS->visual ? draw_counter(core, process) : 0;
-			process = process->next;
+			process->cycles_to_exec = 1;
+			pc += (1 + octal + get_next_index(process, MAP, CMD, CODAGE));
+			STEP += (1 + octal + get_next_index(process, MAP, CMD, CODAGE));
+			get_command_from_array(core, process, CMD);
+			PC = (CMD == 9 && process->carry == 1) ? PC : pc;
+			PC %= MEM_SIZE;
+			PC += PC < 0 ? MEM_SIZE : 0;
 		}
-		if (FLAGS->dump && CYCLE == FLAGS->dump_cycle)
-		{
-			print_map(core);
-			break ;
-		}
-		CYCLE++;
-		core->current_cycle++;
+		else
+			process->cycles_to_exec++;
 	}
+	else
+		PC++;
 }

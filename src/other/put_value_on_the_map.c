@@ -49,7 +49,7 @@ void		put_value_on_the_map(t_core *core, int start, int value,
 		res = value;
 		while (i++ < j)
 			res = res >> 8;
-		MAP[start] = (res & 0x000000ff);
+		MAP[start % MEM_SIZE] = (res & 0x000000ff);
 		start++;
 	}
 	FLAGS->visual ? color_map_changes(core, start - 4, process) : 0;

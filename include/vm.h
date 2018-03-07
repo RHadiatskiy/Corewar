@@ -274,8 +274,8 @@ int						get_command_from_array(t_core *core, t_process *process,
 */
 
 void					run(t_core *core);
-void					run_processes(t_core *core);
-void					run_player(t_core *core, t_process *process);
+void					run_players(t_core *core);
+void					run_processes(t_core *core, t_process *process);
 
 /*
 **	LOADING
