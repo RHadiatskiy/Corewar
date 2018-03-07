@@ -63,7 +63,7 @@ int						command_sti(t_core *core, t_process *process)
 	targ = ARGS[2].type == DIR_CODE ? ARGS[2].arg : targ;
 	offset = ((PC + ((sarg + targ) % IDX_MOD)) % MEM_SIZE);
 	offset += offset < 0 ? MEM_SIZE : 0;
-	put_value_on_the_map(MAP, offset, REG[ARGS[0].arg - 1]);
+	put_value_on_the_map(core, offset, REG[ARGS[0].arg - 1], process);
 	print_flag_v(core, process, sarg, targ);
 	return (1);
 }

@@ -12,11 +12,11 @@
 
 #include "../../include/vm.h"
 
-void					reset_players_lives(t_player *players)
+void				reset_players_lives(t_player *players)
 {
 	t_player		*tmp;
-	int 			y;
-	int 			i;
+	int				y;
+	int				i;
 
 	y = 16;
 	i = 1;
@@ -29,9 +29,11 @@ void					reset_players_lives(t_player *players)
 			y += 5;
 			i++;
 		}
+		attron(A_BOLD);
 		mvprintw(y + 1, 230, "              ");
 		mvprintw(y + 1, 230, "%d", tmp->lives);
+		attroff(A_BOLD);
 		tmp = tmp->next;
 	}
-
+	refresh();
 }

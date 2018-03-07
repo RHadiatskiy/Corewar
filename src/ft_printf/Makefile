@@ -3,45 +3,36 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: daleksan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/04/22 18:51:19 by rhadiats          #+#    #+#              #
-#    Updated: 2017/04/22 18:51:22 by rhadiats         ###   ########.fr        #
+#    Created: 2017/04/10 19:40:36 by daleksan          #+#    #+#              #
+#    Updated: 2017/10/29 14:48:16 by daleksan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = src/ft_atoi.c src/ft_x_high.c \
-		src/ft_d_low.c src/ft_flags_reset.c \
-		src/ft_i.c src/ft_isdigit.c \
-		src/ft_itoa_base.c src/len_u_prec.c \
-		src/ft_o_low.c src/ft_output_func.c \
-		src/ft_percent.c src/ft_printing.c \
-		src/ft_s_low.c src/ft_strdup.c \
-		src/ft_strjoin.c src/ft_strlen.c \
-		src/ft_strlenchr.c src/ft_u_low.c \
-		src/ft_c_low.c src/ft_x_low.c \
-		src/parsing.c src/ft_strcmp.c \
-		src/ft_p.c src/ft_o_high.c \
-		src/ft_u_high.c src/ft_c_high.c \
-		src/ft_none.c src/ft_d_high.c \
-		src/u_mask.c src/ft_s_high.c \
-		src/ft_fl_low.c src/ft_fl_high.c \
-		src/ft_strlen_u.c ft_printf.c
+CC = @gcc
 
 NAME = libftprintf.a
-FLAGS = -Wall -Wextra -Werror
+
+SRC = src/type_def.c src/spec_init.c\
+		src/parse_specif.c src/length.c src/ft_pchar.c src/for_x.c\
+		src/for_u.c src/for_o.c src/for_d.c src/for_c.c\
+		src/for_p.c src/for_s.c src/ft_printf.c src/libft.c\
+		src/ft_lib.c src/parse_specif_2.c
+
+CFLAGS = -Wall -Wextra -Werror
 OBJ = $(SRC:.c=.o)
-HEAD = include/ft_printf.h
 
 all: $(NAME)
-$(NAME): $(OBJ)
 
-	@ar -cru $(NAME) $(OBJ)
+$(NAME): $(OBJ)
+	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-%.o: %.c
-	@gcc $(FLAGS) -c -o $@ $< 
+	@echo "\033[32;1m<<lib ft_printf done>>\033[0m"
 clean:
 	@rm -f $(OBJ)
+	
 fclean: clean
-	@rm -f $(NAME)
+	@rm -rf $(NAME)
+
 re: fclean all

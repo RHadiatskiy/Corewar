@@ -12,55 +12,12 @@
 
 #include "../../include/vm.h"
 
-int				refresh_map(t_core *core)
-{
-	int	x;
-	int y;
-	int i;
-
-	x = 0;
-	y = 2;
-	i = 0;
-	while (i < 4096)
-	{
-		x += 3;
-		attron(COLOR_PAIR(core->clr[i]));
-		mvprintw(y, x, "%02x", core->map[i]);
-		attrset(A_NORMAL);
-		if (x > COL - 50 && !(x = 0))
-			y++;
-		i++;
-	}
-	refresh();
-	return (0);
-}
-
-void				check_processes(t_core *core)
-{
-	int i;
-	int y;
-	t_process *tmp;
-
-	i = core->process ? 1 : 0;
-	tmp = core->process ? core->process : NULL;
-	while (tmp)
-	{
-		i++;
-		tmp = tmp->next;
-	}
-	y = 11;
-	mvprintw(y, 212, "          ");
-	mvprintw(y, 212, "%d", i);
-	refresh();
-}
-
 void					run(t_core *core)
 {
 	FLAGS->visual ? ncurses_version(core) : 0;
 	while (core->players_lives != 0)
 	{
 		core->players_lives = 0;
-		// FLAGS->visual ? refresh_map(core) : 0;
 		FLAGS->dump && FLAGS->dump_cycle == 0 ? print_map(core) : 0;
 		FLAGS->dump && FLAGS->dump_cycle == CYCLE ? 0 : run_processes(core);
 		reset_players_lives(core->players);

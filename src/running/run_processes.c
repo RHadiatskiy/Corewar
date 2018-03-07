@@ -12,7 +12,7 @@
 
 #include "../../include/vm.h"
 
-void					run_processes(t_core *core)
+void				run_processes(t_core *core)
 {
 	t_process		*process;
 
@@ -20,16 +20,16 @@ void					run_processes(t_core *core)
 	{
 		if (FLAGS->v && FLAGS->verbosity_two && CYCLE != 0)
 			printf("It is now cycle %d\n", CYCLE);
-		FLAGS->visual ? cycle_refresh(CYCLE) : 0;
+		FLAGS->visual ? cycle_refresh(core) : 0;
 		process = core->process ? core->process : NULL;
+		(FLAGS->visual && core->current_cycle % 75 == 0) ? refre_map(core) : 0;
 		while (process)
 		{
-			FLAGS->visual ? refresh_map(core) : 0;
+			FLAGS->visual ? clear_counter(core, process) : 0;
 			process->cycle++;
 			run_player(core, process);
-			(FLAGS->visual && (process != NULL)) ? draw_counter(core, process) : 0;
+			FLAGS->visual ? draw_counter(core, process) : 0;
 			process = process->next;
-
 		}
 		if (FLAGS->dump && CYCLE == FLAGS->dump_cycle)
 		{

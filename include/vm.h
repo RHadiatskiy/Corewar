@@ -58,33 +58,6 @@
 # include "op.h"
 # include "../libft/libft.h"
 
-typedef struct			s_core
-{
-	unsigned char		*map;
-	char				*clr;
-	int					cycle;
-	int					current_cycle;
-	int					cycle_to_die;
-	int					max_checks;
-	int 				speed;
-	unsigned int		players_lives;
-	struct s_player		*champ;
-	struct s_player		*players;
-	struct s_process	*process;
-	struct s_flags		*flags;
-}						t_core;
-
-typedef struct			s_player
-{
-	unsigned int		id;
-	int					number;
-	unsigned int		size;
-	unsigned int		lives;
-	int 				lives_in_period;
-	struct s_header		*header;
-	struct s_player		*next;
-}						t_player;
-
 typedef struct			s_header
 {
 	unsigned int		magic;
@@ -93,6 +66,17 @@ typedef struct			s_header
 	char				*prog;
 	unsigned int		prog_size;
 }						t_header;
+
+typedef struct			s_player
+{
+	unsigned int		id;
+	int					number;
+	unsigned int		size;
+	unsigned int		lives;
+	int					lives_in_period;
+	struct s_header		*header;
+	struct s_player		*next;
+}						t_player;
 
 typedef struct			s_process
 {
@@ -104,7 +88,7 @@ typedef struct			s_process
 	unsigned int		carry : 1;
 	unsigned int		is_live : 1;
 	int					iter;
-	int 				players_last_live;
+	int					players_last_live;
 	int					last_live;
 	int					cycles_to_exec;
 	int					command;
@@ -137,6 +121,23 @@ typedef struct			s_args
 	int					arg;
 	int					type;
 }						t_args;
+
+typedef struct			s_core
+{
+	unsigned char		*map;
+	char				*clr;
+	int					cycle;
+	int					current_cycle;
+	int					cycle_to_die;
+	int					max_checks;
+	int					speed;
+	int					speed_num;
+	unsigned int		players_lives;
+	struct s_player		*champ;
+	struct s_player		*players;
+	struct s_process	*process;
+	struct s_flags		*flags;
+}						t_core;
 
 typedef struct			s_op
 {
@@ -262,11 +263,11 @@ void					add_process(t_process **processes, int start, int exec);
 
 unsigned int			get_players_size(t_player *players);
 unsigned int			get_value_from_map(void *buf, unsigned int start,
-											unsigned int len);
+						unsigned int len);
 int						get_next_index(t_process *process, unsigned char *map,
-										int command, int value);
+						int command, int value);
 int						get_command_from_array(t_core *core, t_process *process,
-												int k);
+						int k);
 
 /*
 **	RUNNING
@@ -291,11 +292,11 @@ void					load_commands(void);
 void					ft_sort_list(t_player *players);
 int						ft_findchr(char *str, char c);
 void					put_value_on_the_map(t_core *core, int start,
-											 int value);
+						int value, t_process *process);
 void					reset_players_lives(t_player *players);
 void					kill_processes(t_core *core);
 void					fork_process(t_process **processes,
-										t_process *process, int value);
+						t_process *process, int value);
 
 /*
 **	COMMANDS
@@ -320,16 +321,29 @@ int						command_lfork(t_core *core, t_process *process);
 int						command_aff(t_core *core, t_process *process);
 
 /*
- * Ncurses mode
- */
+** NCURSES MODE
+*/
 
 int						ncurses_version(t_core *core);
+char					*initiate_color(void);
+int						choose_players_color(t_player *players, char *clr,
+						int players_num);
+int						create_borders();
+void					draw_map(int players, t_core *core);
+int						fullfill_players_on_map(int players_num,
+						t_player *players, t_core *core);
+void					print_const_part(t_core *core);
+int						fullfill_map(t_core *core, int players);
 void					print_champ_visual(t_core *core);
-void					cycle_refresh(int cycle);
+void					cycle_refresh(t_core *core);
 void					cycles_to_die_refresh(int cycle_to_die);
-int 					refresh_map(t_core *core);
+void					check_processes(t_core *core);
+int						refre_map(t_core *core);
+void					pause_vm(t_core *core);
 void					draw_counter(t_core *core, t_process *process);
 int						position(int pc, int *x, int *y);
-
+void					clear_counter(t_core *core, t_process *process);
+void					draw_counter(t_core *core, t_process *process);
+void					key_code(t_core *core, int ch);
 
 #endif

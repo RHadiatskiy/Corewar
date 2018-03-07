@@ -36,7 +36,11 @@ SRC = src/main \
 				src/commands/command_st src/commands/command_sti \
 				src/commands/command_sub src/commands/command_xor \
 				src/commands/command_zjmp \
-		ncurses_version
+		src/ncurses/ncurses_version \
+				src/ncurses/counter_changes \
+				src/ncurses/refresh_data \
+				src/ncurses/ncurses_2
+
 
 OBJ = $(addsuffix .o,$(SRC))
 

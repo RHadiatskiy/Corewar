@@ -40,7 +40,8 @@ static void				print_flag_v_sixteen(t_core *core, t_process *process)
 	}
 }
 
-static void				print_visual_life(t_core *core, t_player *player, t_process *process)
+static void				print_visual_life(t_core *core, t_player *player,
+						t_process *process)
 {
 	int y;
 	int i;
@@ -54,6 +55,7 @@ static void				print_visual_life(t_core *core, t_player *player, t_process *proc
 			y += 5;
 			i++;
 		}
+		attrset(A_NORMAL | A_BOLD);
 		mvprintw(y, 230, "              ");
 		mvprintw(y, 230, "%d", process->players_last_live);
 		mvprintw(y + 1, 230, "              ");
@@ -80,7 +82,6 @@ int						command_live(t_core *core, t_process *process)
 			tmp->lives_in_period++;
 			print_flag_v_one(core, tmp);
 			print_visual_life(core, tmp, process);
-			// color_map_live(core, process);
 			core->champ = tmp;
 			break ;
 		}

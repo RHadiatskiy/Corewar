@@ -25,6 +25,7 @@ t_core					*init_core(void)
 	core->cycle_to_die = CYCLE_TO_DIE;
 	core->max_checks = MAX_CHECKS;
 	core->speed = 100000;
+	core->speed_num = 3;
 	core->players_lives = 0;
 	core->players = init_players();
 	core->process = init_process();

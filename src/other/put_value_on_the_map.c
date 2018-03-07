@@ -12,12 +12,35 @@
 
 #include "../../include/vm.h"
 
-void					put_value_on_the_map(t_core *core, int start,
-											 int value)
+static void	color_map_changes(t_core *core, int start, t_process *process)
 {
-	int				j;
-	int				i;
-	int				res;
+	int		x;
+	int		y;
+	int		i;
+
+	i = 0;
+	position(start, &x, &y);
+	while (i < 4)
+	{
+		core->clr[start + i] = process->player * -1;
+		attron(COLOR_PAIR(process->player * -1));
+		attron(A_BOLD);
+		mvprintw(y, x, "%02x", MAP[start + i]);
+		if (x > COL - 50 && !(x = 0))
+			y++;
+		x += 3;
+		i++;
+	}
+	attrset(A_NORMAL);
+	refresh();
+}
+
+void		put_value_on_the_map(t_core *core, int start, int value,
+			t_process *process)
+{
+	int		j;
+	int		i;
+	int		res;
 
 	j = 4;
 	while (j--)
@@ -29,28 +52,5 @@ void					put_value_on_the_map(t_core *core, int start,
 		MAP[start] = (res & 0x000000ff);
 		start++;
 	}
-
+	FLAGS->visual ? color_map_changes(core, start - 4, process) : 0;
 }
-
-
-// static void				color_map_live(t_core *core, t_process *process)
-// {
-// 	int		i;
-// 	int 	x;
-// 	int 	y;
-
-// 	i = -1;
-// 	position(PC, &x, &y);
-// 	if (FLAGS->visual)
-// 	{
-// 		core->clr[PC] = process->player * -1;
-// 		attron(COLOR_PAIR(process->player * -1) | A_BOLD);
-// 		while (++i < STEP)
-// 		{
-// 			mvprintw(y, x, "%02x", MAP[PC + i]);
-// 			x += 3;
-// 		}
-// 		attrset(A_NORMAL);
-// 	}
-// 	refresh();
-// }

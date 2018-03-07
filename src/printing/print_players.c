@@ -12,15 +12,15 @@
 
 #include "../../include/vm.h"
 
-void					print_champ(t_core *core)
+void			print_champ(t_core *core)
 {
 	printf("Contestant %d, \"%s\", has won !\n", core->champ->number,
 												core->champ->header->prog_name);
 }
 
-void					print_champ_visual(t_core *core)
+void			print_champ_visual(t_core *core)
 {
-	int 	y;
+	int			y;
 
 	y = 53;
 	attrset(A_NORMAL);
@@ -36,7 +36,7 @@ void					print_champ_visual(t_core *core)
 	endwin();
 }
 
-void					print_players(t_player *players)
+void			print_players(t_player *players)
 {
 	t_player	*tmp_player;
 

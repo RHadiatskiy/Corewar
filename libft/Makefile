@@ -12,7 +12,7 @@ OBJS = ft_atoi.o ft_strcat.o ft_strcpy.o ft_strdup.o \
 	   ft_strnstr.o ft_memdel.o ft_strdel.o ft_strclr.o \
 	   ft_putendl_fd.o ft_striter.o ft_striteri.o ft_strmap.o \
 	   ft_strmapi.o ft_strequ.o ft_strnequ.o ft_putnbr_fd.o \
-	   ft_strsub.o ft_strjoin.o ft_strtrim.o ft_itoa.o \
+	   ft_strsub.o ft_strjoin.o ft_strtrim.o \
 	   ft_islower.o ft_isupper.o ft_isnumber.o ft_isblank.o \
 	   ft_strndup.o ft_strsplit.o ft_lstnew.o ft_lstdelone.o \
 	   ft_lstdel.o ft_lstadd.o ft_lstiter.o ft_lstmap.o \
@@ -178,9 +178,6 @@ ft_strjoin.o: ft_strjoin.c
 
 ft_strtrim.o: ft_strtrim.c
 	gcc -c -Wall -Wextra -Werror ft_strtrim.c
-	
-ft_itoa.o: ft_itoa.c
-	gcc -c -Wall -Wextra -Werror ft_itoa.c
 	
 ft_islower.o: ft_islower.c
 	gcc -c -Wall -Wextra -Werror ft_islower.c

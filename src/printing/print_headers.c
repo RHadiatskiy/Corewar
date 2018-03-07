@@ -12,7 +12,7 @@
 
 #include "../../include/vm.h"
 
-void					print_header(t_header *header, unsigned int size)
+void			print_header(t_header *header, unsigned int size)
 {
 	if (header)
 	{
@@ -23,9 +23,9 @@ void					print_header(t_header *header, unsigned int size)
 	}
 }
 
-void					print_headers(t_player *players)
+void			print_headers(t_player *players)
 {
-	t_player			*t_player;
+	t_player	*t_player;
 
 	t_player = players ? players : NULL;
 	while (t_player)
