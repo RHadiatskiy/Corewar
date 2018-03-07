@@ -65,6 +65,7 @@ int						command_lldi(t_core *core, t_process *process)
 	{
 		REG[ARGS[2].arg - 1] = ARGS[2].type == REG_CODE ?
 		get_value_from_map(MAP, offset, 4) : REG[ARGS[2].arg - 1];
+		process->carry = REG[ARGS[2].arg - 1] ? 0 : 1;
 	}
 	print_flag_v(core, process, farg, sarg);
 	return (1);

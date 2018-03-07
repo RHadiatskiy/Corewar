@@ -42,14 +42,19 @@ int						command_ld(t_core *core, t_process *process)
 	if (ARGS[0].type == DIR_CODE && ARGS[1].type == REG_CODE)
 	{
 		if (ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0)
+		{
 			REG[ARGS[1].arg - 1] = ARGS[0].arg;
+			process->carry = REG[ARGS[1].arg - 1] ? 0 : 1;
+		}
 	}
 	else if (ARGS[0].type == IND_CODE && ARGS[1].type == REG_CODE)
 	{
 		if (ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0)
+		{
 			REG[ARGS[1].arg - 1] = get_value_from_map(MAP, position, 4);
+			process->carry = REG[ARGS[1].arg - 1] ? 0 : 1;
+		}
 	}
-	process->carry = (ARGS[0].arg == 0) ? 1 : 0;
 	print_flag_v(core, process, REG[ARGS[1].arg - 1]);
 	return (1);
 }
