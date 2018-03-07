@@ -19,17 +19,17 @@ static void				print_flag_v(t_core *core, t_process *process)
 	i = -1;
 	if (core->flags->v && core->flags->verbosity_four)
 	{
-		printf("P%5d | %s ", process->id, "add");
-		printf("r%d r%d ", process->args[0].arg, process->args[1].arg);
-		printf("r%d\n", process->args[2].arg);
+		ft_printf("P%5d | %s ", process->id, "add");
+		ft_printf("r%d r%d ", process->args[0].arg, process->args[1].arg);
+		ft_printf("r%d\n", process->args[2].arg);
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
 	{
-		printf("ADV %d ", STEP);
-		printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
+		ft_printf("ADV %d ", STEP);
+		ft_printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
 		while (++i < STEP)
-			printf("%.2x ", MAP[PC + i]);
-		printf("\n");
+			ft_printf("%.2x ", MAP[PC + i]);
+		ft_printf("\n");
 	}
 }
 

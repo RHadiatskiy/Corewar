@@ -20,16 +20,16 @@ static void				print_flag_v(t_core *core, t_process *process,
 	i = -1;
 	if (FLAGS->v && FLAGS->verbosity_four)
 	{
-		printf("P%5d | %s ", process->id, "zjmp");
-		printf("%d %s\n", position, process->carry ? "OK" : "FAILED");
+		ft_printf("P%5d | %s ", process->id, "zjmp");
+		ft_printf("%d %s\n", position, process->carry ? "OK" : "FAILED");
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen && !process->carry)
 	{
-		printf("ADV %d ", STEP);
-		printf("(0x%.4x -> 0x%.4x) ", pc_before, pc_before + STEP);
+		ft_printf("ADV %d ", STEP);
+		ft_printf("(0x%.4x -> 0x%.4x) ", pc_before, pc_before + STEP);
 		while (++i < STEP)
-			printf("%.2x ", MAP[pc_before + i]);
-		printf("\n");
+			ft_printf("%.2x ", MAP[pc_before + i]);
+		ft_printf("\n");
 	}
 }
 

@@ -21,11 +21,11 @@ void					print_processes(t_process *processes)
 	proc = processes ? processes : NULL;
 	while (proc)
 	{
-		printf("------------------PROCESS %d------------------\n", ++i);
-		printf("PC:\t\t%d\n", proc->pc);
-		printf("REG:\t\t%d\n", proc->reg[0]);
-		printf("PLAYER:\t\t%d\n", proc->player);
-		printf("ID:\t\t%d\n", proc->id);
+		ft_printf("------------------PROCESS %d------------------\n", ++i);
+		ft_printf("PC:\t\t%d\n", proc->pc);
+		ft_printf("REG:\t\t%d\n", proc->reg[0]);
+		ft_printf("PLAYER:\t\t%d\n", proc->player);
+		ft_printf("ID:\t\t%d\n", proc->id);
 		proc = proc->next;
 	}
 }

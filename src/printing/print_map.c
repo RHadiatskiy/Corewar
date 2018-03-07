@@ -25,15 +25,15 @@ void					print_map(t_core *core)
 	while (++x < sqrt(MEM_SIZE) && (x * y < MEM_SIZE))
 	{
 		y = -1;
-		printf("0x%.4x : ", count);
+		ft_printf("0x%.4x : ", count);
 		while (++y < sqrt(MEM_SIZE) && (x * y < MEM_SIZE))
 		{
 			if (*t_map && core->flags->color)
-				printf("%s%.2x%s ", CYAN, *t_map++, RESET);
+				ft_printf("%s%.2x%s ", CYAN, *t_map++, RESET);
 			else
-				printf("%.2x ", *t_map++);
+				ft_printf("%.2x ", *t_map++);
 			count++;
 		}
-		printf("\n");
+		ft_printf("\n");
 	}
 }

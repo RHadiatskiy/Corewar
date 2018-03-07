@@ -16,9 +16,9 @@ static void				free_process(t_core *core, t_process *process)
 {
 	if (core->flags->v && core->flags->verbosity_eight)
 	{
-		printf("Process %d hasn't lived for", process->id);
-		printf(" %d cycles ", (process->cycle) - process->last_live);
-		printf("(CTD %d)\n", core->cycle_to_die);
+		ft_printf("Process %d hasn't lived for", process->id);
+		ft_printf(" %d cycles ", (process->cycle) - process->last_live);
+		ft_printf("(CTD %d)\n", core->cycle_to_die);
 	}
 	process->reg ? free(process->reg) : 0;
 	process->args ? free(process->args) : 0;

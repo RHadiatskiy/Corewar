@@ -14,7 +14,7 @@
 # define VM_H
 
 /*
-**	Colorize an output of printf
+**	Colorize an output of ft_printf
 */
 
 # define RESET			"\033[0m"

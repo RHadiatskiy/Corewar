@@ -22,19 +22,19 @@ static void				print_flag_v(t_core *core, t_process *process,
 	offset = ((sag + tag) % IDX_MOD);
 	if (FLAGS->v && FLAGS->verbosity_four)
 	{
-		printf("P%5d | %s ", process->id, "sti");
-		printf("r%d %d %d\n", ARGS[0].arg, sag, tag);
-		printf("%8c -> store to %d + %d = ", '|', sag, tag);
-		printf("%d (with pc and mod ", offset);
-		printf("%d)\n", (process->pc + offset) % MEM_SIZE);
+		ft_printf("P%5d | %s ", process->id, "sti");
+		ft_printf("r%d %d %d\n", ARGS[0].arg, sag, tag);
+		ft_printf("%8c -> store to %d + %d = ", '|', sag, tag);
+		ft_printf("%d (with pc and mod ", offset);
+		ft_printf("%d)\n", (process->pc + offset) % MEM_SIZE);
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
 	{
-		printf("ADV %d ", STEP);
-		printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
+		ft_printf("ADV %d ", STEP);
+		ft_printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
 		while (++i < STEP)
-			printf("%.2x ", MAP[PC + i]);
-		printf("\n");
+			ft_printf("%.2x ", MAP[PC + i]);
+		ft_printf("\n");
 	}
 }
 

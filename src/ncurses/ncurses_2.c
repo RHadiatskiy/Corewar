@@ -29,7 +29,7 @@ char		*initiate_color(void)
 	int		i;
 
 	start_color();
-	init_color(COLOR_MAGENTA, 230, 230, 230);
+	init_color(COLOR_MAGENTA, 192, 192, 192);
 	init_pair(10, COLOR_WHITE, COLOR_MAGENTA);
 	init_pair(1, COLOR_GREEN, COLOR_BLACK);
 	init_pair(2, COLOR_BLUE, COLOR_BLACK);
@@ -104,7 +104,7 @@ int			fullfill_map(t_core *core, int players)
 	i = 0;
 	attron(COLOR_PAIR(10));
 	attron(A_BOLD);
-	mvprintw(0, 88, "COREWAR is inda hause");
+	mvprintw(0, 95, "COREWAR");
 	attroff(A_BOLD);
 	choose_players_color(core->players, core->clr, players);
 	attrset(A_NORMAL);

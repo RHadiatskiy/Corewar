@@ -19,9 +19,9 @@ int						validation(t_core *core, char *av)
 	ret = 1;
 	if ((ret = read_file(core, av)) != 1)
 	{
-		ret == -1 ? printf("Can't read source file %s\n", av) : 0;
-		ret == -2 ? printf("can't allocate a memory for %s\n", av) : 0;
-		ret == -3 ? printf("can't read the file %s\n", av) : 0;
+		ret == -1 ? ft_printf("Can't read source file %s\n", av) : 0;
+		ret == -2 ? ft_printf("can't allocate a memory for %s\n", av) : 0;
+		ret == -3 ? ft_printf("can't read the file %s\n", av) : 0;
 		return (0);
 	}
 	return (ret);

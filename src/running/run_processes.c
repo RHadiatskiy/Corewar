@@ -19,7 +19,7 @@ void				run_processes(t_core *core)
 	while (core->current_cycle <= core->cycle_to_die)
 	{
 		if (FLAGS->v && FLAGS->verbosity_two && CYCLE != 0)
-			printf("It is now cycle %d\n", CYCLE);
+			ft_printf("It is now cycle %d\n", CYCLE);
 		FLAGS->visual ? cycle_refresh(core) : 0;
 		process = core->process ? core->process : NULL;
 		(FLAGS->visual && core->current_cycle % 75 == 0) ? refre_map(core) : 0;

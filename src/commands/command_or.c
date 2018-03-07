@@ -21,16 +21,16 @@ static void				print_flag_v(t_core *core, t_process *process,
 	if (FLAGS->v && FLAGS->verbosity_four &&
 		ARGS[2].arg > 0 && ARGS[2].arg <= REG_NUMBER)
 	{
-		printf("P%5d | %s ", process->id, "or");
-		printf("%d %d r%d\n", farg, sarg, ARGS[2].arg);
+		ft_printf("P%5d | %s ", process->id, "or");
+		ft_printf("%d %d r%d\n", farg, sarg, ARGS[2].arg);
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
 	{
-		printf("ADV %d ", STEP);
-		printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
+		ft_printf("ADV %d ", STEP);
+		ft_printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
 		while (++i < STEP)
-			printf("%.2x ", MAP[PC + i]);
-		printf("\n");
+			ft_printf("%.2x ", MAP[PC + i]);
+		ft_printf("\n");
 	}
 }
 

@@ -14,9 +14,9 @@
 
 void					print_flags(t_flags *flags)
 {
-	printf("flag one: %d\n", flags->verbosity_one);
-	printf("flag two: %d\n", flags->verbosity_two);
-	printf("flag four: %d\n", flags->verbosity_four);
-	printf("flag eight: %d\n", flags->verbosity_eight);
-	printf("flag sixteen: %d\n", flags->verbosity_sixteen);
+	ft_printf("flag one: %d\n", flags->verbosity_one);
+	ft_printf("flag two: %d\n", flags->verbosity_two);
+	ft_printf("flag four: %d\n", flags->verbosity_four);
+	ft_printf("flag eight: %d\n", flags->verbosity_eight);
+	ft_printf("flag sixteen: %d\n", flags->verbosity_sixteen);
 }

@@ -14,7 +14,7 @@
 
 void			print_champ(t_core *core)
 {
-	printf("Contestant %d, \"%s\", has won !\n", core->champ->number,
+	ft_printf("Contestant %d, \"%s\", has won !\n", core->champ->number,
 												core->champ->header->prog_name);
 }
 
@@ -43,10 +43,10 @@ void			print_players(t_player *players)
 	tmp_player = players ? players : NULL;
 	if (tmp_player)
 	{
-		printf("Introducing contestants...\n");
+		ft_printf("Introducing contestants...\n");
 		while (tmp_player)
 		{
-			printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", \
+			ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", \
 				tmp_player->number, tmp_player->header->prog_size, \
 				tmp_player->header->prog_name, tmp_player->header->comment);
 			tmp_player = tmp_player->next;

@@ -26,11 +26,11 @@ void					print_prog_attr(char *data, unsigned int len)
 			while (++y < (int)FORMAT)
 			{
 				if (*data)
-					printf("%s%.2x%s ", GREEN, *data++, RESET);
+					ft_printf("%s%.2x%s ", GREEN, *data++, RESET);
 				else
-					printf("%.2x ", *data++);
+					ft_printf("%.2x ", *data++);
 			}
-			printf("\n");
+			ft_printf("\n");
 		}
 	}
 }

@@ -30,7 +30,7 @@ void					run(t_core *core)
 			core->max_checks = MAX_CHECKS;
 			core->cycle_to_die -= CYCLE_DELTA;
 			if (FLAGS->v && FLAGS->verbosity_two)
-				printf("Cycle to die is now %d\n", core->cycle_to_die);
+				ft_printf("Cycle to die is now %d\n", core->cycle_to_die);
 			FLAGS->visual ? cycles_to_die_refresh(core->cycle_to_die) : 0;
 		}
 	}

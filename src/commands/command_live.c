@@ -15,14 +15,14 @@
 static void				print_flag_v_one(t_core *core, t_player *player)
 {
 	if (FLAGS->v && FLAGS->verbosity_one)
-		printf("Player %d (%s) is said to be alive\n",
+		ft_printf("Player %d (%s) is said to be alive\n",
 				player->number, player->header->prog_name);
 }
 
 static void				print_flag_v_four(t_core *core, t_process *process)
 {
 	if (FLAGS->v && FLAGS->verbosity_four)
-		printf("P%5d | %s %d\n", process->id, "live", ARGS[0].arg);
+		ft_printf("P%5d | %s %d\n", process->id, "live", ARGS[0].arg);
 }
 
 static void				print_flag_v_sixteen(t_core *core, t_process *process)
@@ -32,11 +32,11 @@ static void				print_flag_v_sixteen(t_core *core, t_process *process)
 	i = -1;
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
 	{
-		printf("ADV %d ", STEP);
-		printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
+		ft_printf("ADV %d ", STEP);
+		ft_printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
 		while (++i < STEP)
-			printf("%.2x ", MAP[PC + i]);
-		printf("\n");
+			ft_printf("%.2x ", MAP[PC + i]);
+		ft_printf("\n");
 	}
 }
 

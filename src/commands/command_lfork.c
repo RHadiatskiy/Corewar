@@ -22,16 +22,16 @@ static void				print_flag_v(t_core *core, t_process *process, int val)
 	position += position < 0 ? MEM_SIZE : 0;
 	if (FLAGS->v && FLAGS->verbosity_four)
 	{
-		printf("P%5d | %s ", process->id, "lfork");
-		printf("%d (%d)\n", val, position);
+		ft_printf("P%5d | %s ", process->id, "lfork");
+		ft_printf("%d (%d)\n", val, position);
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
 	{
-		printf("ADV %d ", STEP);
-		printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
+		ft_printf("ADV %d ", STEP);
+		ft_printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
 		while (++i < STEP)
-			printf("%.2x ", MAP[PC + i]);
-		printf("\n");
+			ft_printf("%.2x ", MAP[PC + i]);
+		ft_printf("\n");
 	}
 }
 
