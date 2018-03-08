@@ -20,7 +20,7 @@ t_core					*init_core(void)
 		return (NULL);
 	core->map = init_map();
 	core->clr = NULL;
-	core->cycle = 0;
+	core->cycle = -1;
 	core->current_cycle = 0;
 	core->cycle_to_die = CYCLE_TO_DIE;
 	core->max_checks = MAX_CHECKS;

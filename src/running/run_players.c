@@ -19,9 +19,9 @@ void					run_players(t_core *core)
 	while (core->current_cycle <= core->cycle_to_die)
 	{
 		process = core->process ? core->process : NULL;
+		CYCLE++;
 		if (FLAGS->v && FLAGS->verbosity_two && CYCLE)
 			ft_printf("It is now cycle %d\n", CYCLE);
-		CYCLE++;
 		FLAGS->visual ? cycle_refresh(core) : 0;
 		(FLAGS->visual && core->current_cycle % 75 == 0) ? refre_map(core) : 0;
 		while (process)

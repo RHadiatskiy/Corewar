@@ -37,7 +37,7 @@ int						command_ld(t_core *core, t_process *process)
 {
 	int		position;
 
-	position = (process->pc + ARGS[0].arg) % MEM_SIZE;
+	position = (process->pc + (ARGS[0].arg % IDX_MOD)) % MEM_SIZE;
 	position += position < 0 ? MEM_SIZE : 0;
 	if (ARGS[0].type == DIR_CODE && ARGS[1].type == REG_CODE)
 	{

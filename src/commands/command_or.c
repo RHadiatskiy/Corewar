@@ -56,10 +56,10 @@ int						command_or(t_core *core, t_process *process)
 	if (ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0)
 		sarg = ARGS[1].type == REG_CODE ? REG[ARGS[1].arg - 1] : sarg;
 	sarg = ARGS[1].type == DIR_CODE ? ARGS[1].arg : sarg;
-	if (ARGS[2].arg > 0 && ARGS[2].arg <= REG_NUMBER)
+	if (ARGS[2].arg > 0 && ARGS[2].arg <= REG_NUMBER &&
+		ARGS[2].type == REG_CODE)
 	{
-		REG[ARGS[2].arg - 1] = ARGS[2].type == REG_CODE ?
-		farg | sarg : REG[ARGS[2].arg - 1];
+		REG[ARGS[2].arg - 1] = farg | sarg;
 		process->carry = REG[ARGS[2].arg - 1] ? 0 : 1;
 	}
 	print_flag_v(core, process, farg, sarg);

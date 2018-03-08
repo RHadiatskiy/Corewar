@@ -43,7 +43,7 @@ static int				get_value_ind(unsigned char *map, int pc, int arg)
 {
 	int		index;
 
-	index = (pc + arg) % MEM_SIZE;
+	index = (pc + (arg % IDX_MOD)) % MEM_SIZE;
 	index += index < 0 ? MEM_SIZE : 0;
 	return (get_value_from_map(map, index, 4));
 }

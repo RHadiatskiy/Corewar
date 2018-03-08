@@ -12,31 +12,42 @@
 
 #include "../../include/vm.h"
 
+static void				move_pc(t_process *process)
+{
+	PC++;
+	CMD = 0;
+}
+
+static void				set_pc(t_process *process, int pc)
+{
+	PC = (CMD == 9 && process->carry == 1) ? PC : pc;
+	PC %= MEM_SIZE;
+	PC += PC < 0 ? MEM_SIZE : 0;
+	CMD = 0;
+}
+
 void					run_processes(t_core *core, t_process *process)
 {
-	int			octal;
 	int			pc;
 
 	STEP = 0;
 	pc = PC;
-	CMD = get_value_from_map(MAP, PC, 1);
-	CODAGE = get_value_from_map(MAP, PC + 1, 1);
-	octal = g_op_tab[CMD - 1].codage_octal;
+	CMD = CMD ? CMD : get_value_from_map(MAP, PC, 1);
 	if (CMD != 0 && CMD < 17)
 	{
+		OCTAL = g_op_tab[CMD - 1].codage_octal;
 		if (process->cycles_to_exec == g_op_tab[CMD - 1].cycles)
 		{
+			CODAGE = get_value_from_map(MAP, PC + 1, 1);
 			process->cycles_to_exec = 1;
-			pc += (1 + octal + get_next_index(process, MAP, CMD, CODAGE));
-			STEP += (1 + octal + get_next_index(process, MAP, CMD, CODAGE));
+			pc += (1 + OCTAL + get_next_index(process, MAP, CMD, CODAGE));
+			STEP += (1 + OCTAL + get_next_index(process, MAP, CMD, CODAGE));
 			get_command_from_array(core, process, CMD);
-			PC = (CMD == 9 && process->carry == 1) ? PC : pc;
-			PC %= MEM_SIZE;
-			PC += PC < 0 ? MEM_SIZE : 0;
+			set_pc(process, pc);
 		}
 		else
 			process->cycles_to_exec++;
 	}
 	else
-		PC++;
+		move_pc(process);
 }

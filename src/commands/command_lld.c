@@ -17,7 +17,8 @@ static void				print_flag_v(t_core *core, t_process *process, int val)
 	int			i;
 
 	i = -1;
-	if (FLAGS->v && FLAGS->verbosity_four)
+	if (FLAGS->v && FLAGS->verbosity_four &&
+		ARGS[1].arg > 0 && ARGS[1].arg <= REG_NUMBER)
 	{
 		ft_printf("P%5d | %s ", process->id, "lld");
 		ft_printf("%d r%d\n", val, ARGS[1].arg);

@@ -20,7 +20,8 @@ static void				print_flag_v(t_core *core, t_process *process,
 
 	i = -1;
 	offset = farg + sarg;
-	if (FLAGS->v && FLAGS->verbosity_four)
+	if (FLAGS->v && FLAGS->verbosity_four &&
+		ARGS[2].arg > 0 && ARGS[2].arg <= REG_NUMBER)
 	{
 		ft_printf("P%5d | %s ", process->id, "lldi");
 		ft_printf("%d %d r%d\n", farg, sarg, ARGS[2].arg);
@@ -61,10 +62,10 @@ int						command_lldi(t_core *core, t_process *process)
 	sarg = ARGS[1].type == DIR_CODE ? ARGS[1].arg : sarg;
 	offset = (farg + sarg) % MEM_SIZE;
 	offset += offset < 0 ? MEM_SIZE : 0;
-	if (ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0)
+	if (ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0 &&
+		ARGS[2].type == REG_CODE)
 	{
-		REG[ARGS[2].arg - 1] = ARGS[2].type == REG_CODE ?
-		get_value_from_map(MAP, offset, 4) : REG[ARGS[2].arg - 1];
+		REG[ARGS[2].arg - 1] = get_value_from_map(MAP, offset, 4);
 		process->carry = REG[ARGS[2].arg - 1] ? 0 : 1;
 	}
 	print_flag_v(core, process, farg, sarg);

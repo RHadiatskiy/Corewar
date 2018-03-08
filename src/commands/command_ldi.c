@@ -51,19 +51,19 @@ int						command_ldi(t_core *core, t_process *process)
 {
 	int		farg;
 	int		sarg;
-	int		value;
 
 	farg = ARGS[0].type == IND_CODE ? get_value_ind(MAP, PC, ARGS[0].arg) : 0;
 	if (ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0)
 		farg = ARGS[0].type == REG_CODE ? REG[ARGS[0].arg - 1] : farg;
 	farg = ARGS[0].type == DIR_CODE ? ARGS[0].arg : farg;
-	sarg = ARGS[1].type == REG_CODE ? REG[ARGS[1].arg - 1] : 0;
+	sarg = (ARGS[1].type == REG_CODE &&
+		ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0) ?
+	REG[ARGS[1].arg - 1] : 0;
 	sarg = ARGS[1].type == DIR_CODE ? ARGS[1].arg : sarg;
-	value = get_value_ind(MAP, PC, farg + sarg);
-	if (ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0)
+	if (ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0 &&
+		ARGS[2].type == REG_CODE)
 	{
-		REG[ARGS[2].arg - 1] = ARGS[2].type == REG_CODE ?
-		value : REG[ARGS[2].arg - 1];
+		REG[ARGS[2].arg - 1] = get_value_ind(MAP, PC, farg + sarg);
 	}
 	print_flag_v(core, process, farg, sarg);
 	return (1);

@@ -32,6 +32,7 @@ t_process				*init_process(void)
 	process->cycles_to_exec = 0;
 	process->command = 0;
 	process->codage = 0;
+	process->octal = 0;
 	process->step = 0;
 	process->args = (t_args *)malloc(sizeof(t_args) * MAX_ARGS_NUMBER);
 	ft_bzero(process->args, MAX_ARGS_NUMBER);

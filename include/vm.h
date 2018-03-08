@@ -39,6 +39,7 @@
 # define REG			process->reg
 # define CMD			process->command
 # define CODAGE			process->codage
+# define OCTAL			process->octal
 # define STEP			process->step
 # define ROW			68
 # define COL			241
@@ -93,6 +94,7 @@ typedef struct			s_process
 	int					cycles_to_exec;
 	int					command;
 	int					codage;
+	unsigned int		octal : 1;
 	int					step;
 	struct s_args		*args;
 	struct s_process	*next;
