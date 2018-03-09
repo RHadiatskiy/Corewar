@@ -14,15 +14,21 @@
 
 int						print_magic_error(char *dir)
 {
-	ft_printf("Error: %s has an invalid header\n", dir);
+	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd(dir, 2);
+	ft_putstr_fd(" has an invalid header\n", 2);
 	return (0);
 }
 
 int						print_prog_size_error(char *dir, int len)
 {
-	len < 0 ? ft_printf("Error: File champs is too small to be a champion\n") :
-	ft_printf("Error: File %s has too large a code (%d bytes > 682 bytes)\n",
-		dir, len);
+	len < 0 ?
+	ft_putstr_fd("Error: File champs is too small to be a champion\n", 2) :
+	ft_putstr_fd("Error: File ", 2);
+	ft_putstr_fd(dir, 2);
+	ft_putstr_fd(" has too large a code (", 2);
+	ft_putnbr_fd(len, 2);
+	ft_putstr_fd(" bytes > 682 bytes)\n", 2);
 	return (0);
 }
 

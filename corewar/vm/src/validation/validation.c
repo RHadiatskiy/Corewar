@@ -12,6 +12,27 @@
 
 #include "../../include/vm.h"
 
+static void				reading_source_error(char *av)
+{
+	ft_putstr_fd("Can't read source file ", 2);
+	ft_putstr_fd(av, 2);
+	ft_putstr_fd("\n", 2);
+}
+
+static void				allocation_error(char *av)
+{
+	ft_putstr_fd("can't allocate a memory for ", 2);
+	ft_putstr_fd(av, 2);
+	ft_putstr_fd("\n", 2);
+}
+
+static void				reading_file_error(char *av)
+{
+	ft_putstr_fd("can't read the file ", 2);
+	ft_putstr_fd(av, 2);
+	ft_putstr_fd("\n", 2);
+}
+
 int						validation(t_core *core, char *av)
 {
 	int			ret;
@@ -19,9 +40,9 @@ int						validation(t_core *core, char *av)
 	ret = 1;
 	if ((ret = read_file(core, av)) != 1)
 	{
-		ret == -1 ? ft_printf("Can't read source file %s\n", av) : 0;
-		ret == -2 ? ft_printf("can't allocate a memory for %s\n", av) : 0;
-		ret == -3 ? ft_printf("can't read the file %s\n", av) : 0;
+		ret == -1 ? reading_source_error(av) : 0;
+		ret == -2 ? allocation_error(av) : 0;
+		ret == -3 ? reading_file_error(av) : 0;
 		return (0);
 	}
 	return (ret);
