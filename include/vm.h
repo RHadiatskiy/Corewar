@@ -299,6 +299,7 @@ void					reset_players_lives(t_player *players);
 void					kill_processes(t_core *core);
 void					fork_process(t_process **processes,
 						t_process *process, int value);
+void					pc_movements(t_core *core, t_process *process);
 
 /*
 **	COMMANDS

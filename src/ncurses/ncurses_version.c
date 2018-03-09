@@ -36,7 +36,7 @@ int		fullfill_players_on_map(int players_num, t_player *players,
 	mvprintw(y + 3, 200, "Processes : %d", core->process->id);
 	while (pl < players_num + 1 && pl < 5)
 	{
-		mvprintw(y + 7, 200, "Player %d :", players->number);
+		mvprintw(y + 7, 200, "Player %d :", players->number * -1);
 		attron(COLOR_PAIR(players->number));
 		mvprintw(y + 7, 211, "%-.37s", players->header->prog_name);
 		attroff(COLOR_PAIR(players->number));

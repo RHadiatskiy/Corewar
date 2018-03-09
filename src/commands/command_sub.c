@@ -14,9 +14,6 @@
 
 static void				print_flag_v(t_core *core, t_process *process)
 {
-	int			i;
-
-	i = -1;
 	if (core->flags->v && core->flags->verbosity_four)
 	{
 		ft_printf("P%5d | %s ", process->id, "sub");
@@ -24,13 +21,7 @@ static void				print_flag_v(t_core *core, t_process *process)
 		ft_printf("r%d\n", process->args[2].arg);
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
-	{
-		ft_printf("ADV %d ", STEP);
-		ft_printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
-		while (++i < STEP)
-			ft_printf("%.2x ", MAP[PC + i]);
-		ft_printf("\n");
-	}
+		pc_movements(core, process);
 }
 
 int						command_sub(t_core *core, t_process *process)

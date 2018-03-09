@@ -28,7 +28,7 @@ static void				print_flag_v(t_core *core, t_process *process,
 		ft_printf("ADV %d ", STEP);
 		ft_printf("(0x%.4x -> 0x%.4x) ", pc_before, pc_before + STEP);
 		while (++i < STEP)
-			ft_printf("%.2x ", MAP[pc_before + i]);
+			ft_printf("%.2x ", MAP[(pc_before + i) % MEM_SIZE]);
 		ft_printf("\n");
 	}
 }

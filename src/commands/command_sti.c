@@ -16,9 +16,7 @@ static void				print_flag_v(t_core *core, t_process *process,
 									int sag, int tag)
 {
 	int		offset;
-	int		i;
 
-	i = -1;
 	offset = ((sag + tag) % IDX_MOD);
 	if (FLAGS->v && FLAGS->verbosity_four &&
 		ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0)
@@ -30,13 +28,7 @@ static void				print_flag_v(t_core *core, t_process *process,
 		ft_printf("%d)\n", (process->pc + offset) % MEM_SIZE);
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
-	{
-		ft_printf("ADV %d ", STEP);
-		ft_printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
-		while (++i < STEP)
-			ft_printf("%.2x ", MAP[PC + i]);
-		ft_printf("\n");
-	}
+		pc_movements(core, process);
 }
 
 static int				get_value_ind(unsigned char *map, int pc, int arg)

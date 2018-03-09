@@ -27,17 +27,8 @@ static void				print_flag_v_four(t_core *core, t_process *process)
 
 static void				print_flag_v_sixteen(t_core *core, t_process *process)
 {
-	int			i;
-
-	i = -1;
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
-	{
-		ft_printf("ADV %d ", STEP);
-		ft_printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
-		while (++i < STEP)
-			ft_printf("%.2x ", MAP[PC + i]);
-		ft_printf("\n");
-	}
+		pc_movements(core, process);
 }
 
 static void				print_visual_life(t_core *core, t_player *player,
