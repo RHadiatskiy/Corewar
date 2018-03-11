@@ -17,7 +17,9 @@ OBJS = ft_atoi.o ft_strcat.o ft_strcpy.o ft_strdup.o \
 	   ft_strndup.o ft_strsplit.o ft_lstnew.o ft_lstdelone.o \
 	   ft_lstdel.o ft_lstadd.o ft_lstiter.o ft_lstmap.o \
 	   get_next_line.o ft_split.o ft_strisdigit.o ft_szero.o \
-	   ft_to_bin.o
+	   ft_to_bin.o ft_delete_deintegrated.o get_raw_line_fd.o \
+	   ft_split_whitespace.o ft_calloc.o ft_strspn.o \
+	   ft_fd_valid.o ft_error.o ft_is_whitespace.o
 
 NAME = libft.a
 
@@ -229,6 +231,30 @@ ft_szero.o: ft_szero.c
 
 ft_to_bin.o: ft_to_bin.c
 	gcc -c -Wall -Wextra -Werror ft_to_bin.c
+
+ft_delete_deintegrated.o: ft_delete_deintegrated.c
+	gcc -c -Wall -Wextra -Werror ft_delete_deintegrated.c
+
+get_raw_line_fd.o: get_raw_line_fd.c
+	gcc -c -Wall -Wextra -Werror get_raw_line_fd.c
+
+ft_split_whitespace.o: ft_split_whitespace.c
+	gcc -c -Wall -Wextra -Werror ft_split_whitespace.c
+
+ft_calloc.o: ft_calloc.c
+	gcc -c -Wall -Wextra -Werror ft_calloc.c
+
+ft_strspn.o: ft_strspn.c
+	gcc -c -Wall -Wextra -Werror ft_strspn.c
+
+ft_fd_valid.o: ft_fd_valid.c
+	gcc -c -Wall -Wextra -Werror ft_fd_valid.c
+
+ft_error.o: ft_error.c
+	gcc -c -Wall -Wextra -Werror ft_error.c
+
+ft_is_whitespace.o: ft_is_whitespace.c
+	gcc -c -Wall -Wextra -Werror ft_is_whitespace.c
 
 clean:
 	rm -f $(OBJS)

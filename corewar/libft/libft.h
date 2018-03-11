@@ -6,7 +6,7 @@
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/28 21:13:10 by rhadiats          #+#    #+#             */
-/*   Updated: 2017/08/13 18:09:05 by rhadiats         ###   ########.fr       */
+/*   Updated: 2018/03/11 21:08:36 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # define BUFF_SIZE 1000
+# define MAX_LINE 1024
 
 # include <stdio.h>
 # include <string.h>
@@ -36,6 +37,10 @@ typedef struct	s_fd
 	int				fd;
 	char			*str;
 }				t_fd;
+
+/*
+**	RHADIATS
+*/
 
 int				get_next_line(const int fd, char **line);
 void			ft_bzero(void *s, size_t n);
@@ -105,5 +110,18 @@ int				ft_toupper(int c);
 int				ft_strisdigit(const char *s);
 void			ft_szero(void *s, size_t n);
 unsigned int	ft_to_bin(unsigned int k);
+
+/*
+**	BSEMCHUK
+*/
+
+void            ft_delete_deintegrated(char **deintegrated);
+char        	*get_raw_line_fd(const int fd);
+char            **ft_split_whitespace(char const *s);
+void    		*ft_calloc(size_t count, size_t size);
+int     		ft_strspn(const char *control, const char *s2);
+int     		ft_fd_valid(int fd);
+void    		ft_error(char *message);
+int     		ft_is_whitespace(char c);
 
 #endif
