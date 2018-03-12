@@ -12,6 +12,12 @@
 
 #include "../../include/vm.h"
 
+void	exit_mode(void)
+{
+	endwin();
+	exit(1);
+}
+
 int		position(int pc, int *x, int *y)
 {
 	if (pc > 4095 || pc < 0)

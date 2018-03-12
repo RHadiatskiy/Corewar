@@ -20,6 +20,8 @@ void	print_const_part(t_core *core)
 	mvprintw(45 + 2, 200, "CYCLE_DELTA : 50");
 	mvprintw(45 + 4, 200, "NBR_LIVES : 21");
 	mvprintw(45 + 6, 200, "MAX_CHECKS : %d", core->max_checks);
+	mvprintw(63, 201, "Q to fasten speed in pause mode");
+	mvprintw(64, 201, "W to slowen speed in pause mode");
 	refresh();
 }
 
@@ -38,7 +40,7 @@ int		fullfill_players_on_map(int players_num, t_player *players,
 	{
 		mvprintw(y + 7, 200, "Player %d :", players->number * -1);
 		attron(COLOR_PAIR(players->number));
-		mvprintw(y + 7, 211, "%-.37s", players->header->prog_name);
+		mvprintw(y + 7, 212, "%-.37s", players->header->prog_name);
 		attroff(COLOR_PAIR(players->number));
 		mvprintw(y + 8, 202, "Last live : ");
 		mvprintw(y + 8, 230, "%d", core->process->last_live);

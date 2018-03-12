@@ -348,5 +348,6 @@ int						position(int pc, int *x, int *y);
 void					clear_counter(t_core *core, t_process *process);
 void					draw_counter(t_core *core, t_process *process);
 void					key_code(t_core *core, int ch);
+void					exit_mode(void);
 
 #endif

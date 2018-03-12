@@ -35,6 +35,8 @@ void			key_code(t_core *core, int ch)
 			mvprintw(6, 208, "%d", core->speed_num);
 		}
 	}
+	if (ch == 27)
+		exit_mode();
 }
 
 void			pause_vm(t_core *core)
@@ -54,7 +56,7 @@ void			pause_vm(t_core *core)
 			attroff(COLOR_PAIR(4));
 			break ;
 		}
-		if (ch == 113 || ch == 119)
+		if (ch == 113 || ch == 119 || ch == 27)
 			key_code(core, ch);
 	}
 }
@@ -62,13 +64,17 @@ void			pause_vm(t_core *core)
 void			cycle_refresh(t_core *core)
 {
 	int			y;
+	int			ch;
 
 	y = 8;
 	attrset(A_NORMAL | A_BOLD);
 	mvprintw(y, 208, "%d", CYCLE);
 	refresh();
 	usleep(core->speed);
-	if (getch() == 32)
+	ch = getch();
+	if (ch == 27)
+		exit_mode();
+	else if (ch == 32)
 		pause_vm(core);
 }
 
