@@ -24,6 +24,8 @@ static void				copy_process(t_process *new, t_process *old, int value)
 		new->reg[i] = old->reg[i];
 	new->carry = old->carry;
 	new->is_live = old->is_live;
+	new->cycle = old->cycle;
+	new->last_live = old->last_live;
 	new->cycles_to_exec = old->cycles_to_exec;
 	i = -1;
 	while (++i < MAX_ARGS_NUMBER)
@@ -42,7 +44,6 @@ void					fork_process(t_process **processes,
 	{
 		cp_process = init_process();
 		copy_process(cp_process, process, value);
-		cp_process->id = (*processes)->id + 1;
 		cp_process->next = (*processes);
 		(*processes) = cp_process;
 	}

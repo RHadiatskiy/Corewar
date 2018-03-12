@@ -16,8 +16,7 @@ static void				print_flag_v(t_core *core, t_process *process, int val)
 {
 	int		position;
 
-	position = (process->pc + val) % MEM_SIZE;
-	position += position < 0 ? MEM_SIZE : 0;
+	position = PC + val;
 	if (FLAGS->v && FLAGS->verbosity_four)
 	{
 		ft_printf("P%5d | %s ", process->id, "lfork");

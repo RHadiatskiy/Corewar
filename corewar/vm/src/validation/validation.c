@@ -33,6 +33,14 @@ static void				reading_file_error(char *av)
 	ft_putstr_fd("\n", 2);
 }
 
+static void				reading_prog_size_error(char *av)
+{
+	ft_putstr_fd("Error: File ", 2);
+	ft_putstr_fd(av, 2);
+	ft_putstr_fd(" has a code size that differ ", 2);
+	ft_putstr_fd("from what its header says\n", 2);
+}
+
 int						validation(t_core *core, char *av)
 {
 	int			ret;
@@ -43,6 +51,7 @@ int						validation(t_core *core, char *av)
 		ret == -1 ? reading_source_error(av) : 0;
 		ret == -2 ? allocation_error(av) : 0;
 		ret == -3 ? reading_file_error(av) : 0;
+		ret == -4 ? reading_prog_size_error(av) : 0;
 		return (0);
 	}
 	return (ret);

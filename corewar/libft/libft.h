@@ -6,7 +6,7 @@
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/28 21:13:10 by rhadiats          #+#    #+#             */
-/*   Updated: 2018/03/11 21:08:36 by rhadiats         ###   ########.fr       */
+/*   Updated: 2018/03/12 17:47:25 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,13 +115,13 @@ unsigned int	ft_to_bin(unsigned int k);
 **	BSEMCHUK
 */
 
-void            ft_delete_deintegrated(char **deintegrated);
-char        	*get_raw_line_fd(const int fd);
-char            **ft_split_whitespace(char const *s);
-void    		*ft_calloc(size_t count, size_t size);
-int     		ft_strspn(const char *control, const char *s2);
-int     		ft_fd_valid(int fd);
-void    		ft_error(char *message);
-int     		ft_is_whitespace(char c);
+void			ft_delete_deintegrated(char **deintegrated);
+char			*get_raw_line_fd(const int fd);
+char			**ft_split_whitespace(char const *s);
+void			*ft_calloc(size_t count, size_t size);
+int				ft_strspn(const char *control, const char *s2);
+int				ft_fd_valid(int fd);
+void			ft_error(char *message);
+int				ft_is_whitespace(char c);
 
 #endif

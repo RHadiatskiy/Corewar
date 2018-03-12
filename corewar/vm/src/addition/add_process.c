@@ -31,7 +31,6 @@ void					add_process(t_process **processes, int start, int exec)
 		proc->player = -(((*processes)->reg[0] * -1) + 1);
 		proc->cycles_to_exec = exec;
 		proc->reg[0] = -(((*processes)->reg[0] * -1) + 1);
-		proc->id = (*processes)->id + 1;
 		proc->next = (*processes);
 		(*processes) = proc;
 	}

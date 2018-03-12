@@ -19,7 +19,13 @@ static void				print_flag_v(t_core *core, t_process *process,
 
 	offset = ((sag + tag) % IDX_MOD);
 	if (FLAGS->v && FLAGS->verbosity_four &&
-		ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0)
+		ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0 &&
+		((ARGS[1].type == REG_CODE &&
+			ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0) ||
+			ARGS[1].type == DIR_CODE || ARGS[1].type == IND_CODE) &&
+		((ARGS[2].type == REG_CODE &&
+			ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0) ||
+			ARGS[2].type == DIR_CODE))
 	{
 		ft_printf("P%5d | %s ", process->id, "sti");
 		ft_printf("r%d %d %d\n", ARGS[0].arg, sag, tag);
@@ -56,7 +62,13 @@ int						command_sti(t_core *core, t_process *process)
 	targ = ARGS[2].type == DIR_CODE ? ARGS[2].arg : targ;
 	offset = ((PC + ((sarg + targ) % IDX_MOD)) % MEM_SIZE);
 	offset += offset < 0 ? MEM_SIZE : 0;
-	if (ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0)
+	if (ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0 &&
+		((ARGS[1].type == REG_CODE &&
+			ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0) ||
+			ARGS[1].type == DIR_CODE || ARGS[1].type == IND_CODE) &&
+		((ARGS[2].type == REG_CODE &&
+			ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0) ||
+			ARGS[2].type == DIR_CODE))
 		put_value_on_the_map(core, offset, REG[ARGS[0].arg - 1], process);
 	print_flag_v(core, process, sarg, targ);
 	return (1);

@@ -31,6 +31,8 @@ int						read_file(t_core *core, char *av)
 		return (print_prog_size_error(av, PROG_SIZE));
 	if (!(header = parse_header(data, len)))
 		return (print_magic_error(av));
+	if (header->prog_size != len - ((PROG_NAME_LENGTH) + (COMMENT_LENGTH) + 16))
+		return (-4);
 	add_player(core->players, header, len, core->flags);
 	free(data);
 	close(fd);

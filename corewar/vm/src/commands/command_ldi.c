@@ -18,7 +18,13 @@ static void				print_flag_v(t_core *core, t_process *process,
 	int		offset;
 
 	offset = ((farg + sarg) % IDX_MOD);
-	if (FLAGS->v && FLAGS->verbosity_four)
+	if (FLAGS->v && FLAGS->verbosity_four &&
+		((ARGS[0].type == REG_CODE &&
+			ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0) ||
+			ARGS[0].type == DIR_CODE || ARGS[0].type == IND_CODE) &&
+		((ARGS[1].type == REG_CODE && ARGS[1].arg <= REG_NUMBER &&
+			ARGS[1].arg > 0) || ARGS[1].type == DIR_CODE) &&
+		ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0)
 	{
 		ft_printf("P%5d | %s ", process->id, "ldi");
 		ft_printf("%d %d r%d\n", farg, sarg, ARGS[2].arg);
@@ -53,10 +59,13 @@ int						command_ldi(t_core *core, t_process *process)
 	REG[ARGS[1].arg - 1] : 0;
 	sarg = ARGS[1].type == DIR_CODE ? ARGS[1].arg : sarg;
 	if (ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0 &&
-		ARGS[2].type == REG_CODE)
-	{
+		ARGS[2].type == REG_CODE &&
+		((ARGS[0].type == REG_CODE &&
+			ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0) ||
+			ARGS[0].type == DIR_CODE || ARGS[0].type == IND_CODE) &&
+		((ARGS[1].type == REG_CODE && ARGS[1].arg <= REG_NUMBER &&
+			ARGS[1].arg > 0) || ARGS[1].type == DIR_CODE))
 		REG[ARGS[2].arg - 1] = get_value_ind(MAP, PC, farg + sarg);
-	}
 	print_flag_v(core, process, farg, sarg);
 	return (1);
 }

@@ -14,7 +14,10 @@
 
 static void				print_flag_v(t_core *core, t_process *process)
 {
-	if (core->flags->v && core->flags->verbosity_four)
+	if (core->flags->v && core->flags->verbosity_four &&
+		ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0 &&
+		ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0 &&
+		ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0)
 	{
 		ft_printf("P%5d | %s ", process->id, "add");
 		ft_printf("r%d r%d ", process->args[0].arg, process->args[1].arg);

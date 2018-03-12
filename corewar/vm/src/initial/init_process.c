@@ -15,6 +15,7 @@
 t_process				*init_process(void)
 {
 	t_process			*process;
+	static int			id = 0;
 
 	if (!(process = (t_process *)malloc(sizeof(t_process))))
 		return (NULL);
@@ -22,7 +23,7 @@ t_process				*init_process(void)
 	process->player = 0;
 	process->reg = (int *)malloc(REG_SIZE * REG_NUMBER);
 	ft_bzero(process->reg, REG_NUMBER);
-	process->id = 0;
+	process->id = ++id;
 	process->cycle = 0;
 	process->carry = 0;
 	process->is_live = 0;

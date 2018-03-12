@@ -16,7 +16,13 @@ static void				print_flag_v(t_core *core, t_process *process,
 									int farg, int sarg)
 {
 	if (FLAGS->v && FLAGS->verbosity_four &&
-		ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0)
+		ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0 &&
+		((ARGS[0].type == REG_CODE &&
+			ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0) ||
+		ARGS[0].type == DIR_CODE || ARGS[0].type == IND_CODE) &&
+		((ARGS[1].type == REG_CODE &&
+			ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0) ||
+		ARGS[1].type == DIR_CODE || ARGS[1].type == IND_CODE))
 	{
 		ft_printf("P%5d | %s ", process->id, "xor");
 		ft_printf("%d %d r%d\n", farg, sarg, ARGS[2].arg);
@@ -48,7 +54,13 @@ int						command_xor(t_core *core, t_process *process)
 		sarg = ARGS[1].type == REG_CODE ? REG[ARGS[1].arg - 1] : sarg;
 	sarg = ARGS[1].type == DIR_CODE ? ARGS[1].arg : sarg;
 	if (ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0 &&
-		ARGS[2].type == REG_CODE)
+		ARGS[2].type == REG_CODE &&
+		((ARGS[0].type == REG_CODE &&
+			ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0) ||
+		ARGS[0].type == DIR_CODE || ARGS[0].type == IND_CODE) &&
+		((ARGS[1].type == REG_CODE &&
+			ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0) ||
+		ARGS[1].type == DIR_CODE || ARGS[1].type == IND_CODE))
 	{
 		REG[ARGS[2].arg - 1] = farg ^ sarg;
 		process->carry = REG[ARGS[2].arg - 1] ? 0 : 1;

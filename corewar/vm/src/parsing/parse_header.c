@@ -107,7 +107,7 @@ t_header				*parse_header(unsigned char *data, unsigned int size)
 		prog = parse_prog(data, size - ((PROG_NAME_LENGTH) +
 			(COMMENT_LENGTH) + 16), size);
 		header = init_header(magic, prog_name, comment, prog);
-		header->prog_size = size - ((PROG_NAME_LENGTH) + (COMMENT_LENGTH) + 16);
+		header->prog_size = get_value_from_map(data, PROG_NAME_LENGTH + 8, 4);
 	}
 	return (header);
 }
