@@ -17,13 +17,6 @@ void					run(t_core *core)
 	FLAGS->visual ? ncurses_version(core) : print_players(core->players);
 	while (core->players_lives != 0)
 	{
-		core->players_lives = 0;
-		FLAGS->dump && FLAGS->dump_cycle == 0 ? print_map(core) : 0;
-		FLAGS->dump && FLAGS->dump_cycle == CYCLE ? 0 : run_players(core);
-		reset_players_lives(core->players);
-		kill_processes(core);
-		core->current_cycle = 1;
-		core->max_checks--;
 		if (core->players_lives >= NBR_LIVE || !core->max_checks)
 		{
 			core->max_checks = MAX_CHECKS;
@@ -32,6 +25,13 @@ void					run(t_core *core)
 				ft_printf("Cycle to die is now %d\n", core->cycle_to_die);
 			FLAGS->visual ? cycles_to_die_refresh(core->cycle_to_die) : 0;
 		}
+		core->players_lives = 0;
+		FLAGS->dump && FLAGS->dump_cycle == 0 ? print_map(core) : 0;
+		FLAGS->dump && FLAGS->dump_cycle == CYCLE ? 0 : run_players(core);
+		reset_players_lives(core->players);
+		kill_processes(core);
+		core->current_cycle = 1;
+		core->max_checks--;
 	}
 	if (FLAGS->visual)
 		print_champ_visual(core);
