@@ -30,7 +30,7 @@ static void				print_flag_v(t_core *core, t_process *process,
 		ft_printf("P%5d | %s ", process->id, "sti");
 		ft_printf("r%d %d %d\n", ARGS[0].arg, sag, tag);
 		ft_printf("%8c -> store to %d + %d = ", '|', sag, tag);
-		ft_printf("%d (with pc and mod ", offset);
+		ft_printf("%d (with pc and mod ", sag + tag);
 		ft_printf("%d)\n", (process->pc + offset) % MEM_SIZE);
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen)

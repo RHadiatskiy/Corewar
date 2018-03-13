@@ -18,7 +18,7 @@ void					pc_movements(t_core *core, t_process *process)
 
 	i = -1;
 	ft_printf("ADV %d ", STEP);
-	ft_printf("(0x%.4x -> 0x%.4x) ", PC, PC + STEP);
+	ft_printf("(0x%.4x -> 0x%.4x) ", PC % MEM_SIZE, (PC % MEM_SIZE) + STEP);
 	while (++i < STEP)
 		ft_printf("%.2x ", MAP[(PC + i) % MEM_SIZE]);
 	ft_printf("\n");

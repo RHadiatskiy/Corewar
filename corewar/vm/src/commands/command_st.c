@@ -30,12 +30,12 @@ int						command_st(t_core *core, t_process *process)
 
 	position = (PC + (ARGS[1].arg % IDX_MOD)) % MEM_SIZE;
 	position += position < 0 ? MEM_SIZE : 0;
-	if (ARGS[1].type == IND_CODE)
+	if (ARGS[1].type == IND_CODE && ARGS[0].type == REG_CODE)
 	{
 		if (ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0)
 			put_value_on_the_map(core, position, REG[ARGS[0].arg - 1], process);
 	}
-	else if (ARGS[1].type == REG_CODE)
+	else if (ARGS[1].type == REG_CODE && ARGS[0].type == REG_CODE)
 	{
 		if (ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0 &&
 			ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0)

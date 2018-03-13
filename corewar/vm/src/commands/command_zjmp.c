@@ -41,9 +41,9 @@ int						command_zjmp(t_core *core, t_process *process)
 	if (ARGS[0].type == DIR_CODE)
 	{
 		pc_before = PC;
-		position = ARGS[0].arg;
+		position = (short)ARGS[0].arg;
 		position %= MEM_SIZE;
-		PC = (PC + position) % MEM_SIZE;
+		PC = (PC + (position % IDX_MOD)) % MEM_SIZE;
 		PC += PC < 0 ? MEM_SIZE : 0;
 		print_flag_v(core, process, position, pc_before);
 	}

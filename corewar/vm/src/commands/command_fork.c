@@ -16,12 +16,11 @@ static void				print_flag_v(t_core *core, t_process *process, int val)
 {
 	int			position;
 
-	position = (process->pc + val) % MEM_SIZE;
-	position += position < 0 ? MEM_SIZE : 0;
+	position = process->pc + val;
 	if (FLAGS->v && FLAGS->verbosity_four)
 	{
 		ft_printf("P%5d | %s ", process->id, "fork");
-		ft_printf("%d (%d)\n", val, position);
+		ft_printf("%d (%d)\n", ARGS[0].arg, position);
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
 		pc_movements(core, process);
