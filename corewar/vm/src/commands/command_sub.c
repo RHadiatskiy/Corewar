@@ -21,7 +21,7 @@ static void				print_flag_v(t_core *core, t_process *process)
 		ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0 &&
 		ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0)
 	{
-		ft_printf("P%5d | %s ", process->id, "sub");
+		ft_printf("P %4d | %s ", process->id, "sub");
 		ft_printf("r%d r%d ", process->args[0].arg, process->args[1].arg);
 		ft_printf("r%d\n", process->args[2].arg);
 	}
@@ -40,6 +40,6 @@ int						command_sub(t_core *core, t_process *process)
 		REG[ARGS[2].arg - 1] = REG[ARGS[0].arg - 1] - REG[ARGS[1].arg - 1];
 		process->carry = REG[ARGS[2].arg - 1] ? 0 : 1;
 	}
-	print_flag_v(core, process);
+	FLAGS->visual ? 0 : print_flag_v(core, process);
 	return (1);
 }

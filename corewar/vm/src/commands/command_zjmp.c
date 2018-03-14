@@ -13,15 +13,16 @@
 #include "../../include/vm.h"
 
 static void				print_flag_v(t_core *core, t_process *process,
-									short position, int pc_before)
+									int pc_before)
 {
 	int			i;
 
 	i = -1;
 	if (FLAGS->v && FLAGS->verbosity_four)
 	{
-		ft_printf("P%5d | %s ", process->id, "zjmp");
-		ft_printf("%d %s\n", position, process->carry ? "OK" : "FAILED");
+		ft_printf("P %4d | %s ", process->id, "zjmp");
+		ft_printf("%d ", (short)ARGS[0].arg);
+		ft_printf("%s\n", process->carry ? "OK" : "FAILED");
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen && !process->carry)
 	{
@@ -45,7 +46,7 @@ int						command_zjmp(t_core *core, t_process *process)
 		position %= MEM_SIZE;
 		PC = (PC + (position % IDX_MOD)) % MEM_SIZE;
 		PC += PC < 0 ? MEM_SIZE : 0;
-		print_flag_v(core, process, position, pc_before);
+		FLAGS->visual ? 0 : print_flag_v(core, process, pc_before);
 	}
 	return (1);
 }

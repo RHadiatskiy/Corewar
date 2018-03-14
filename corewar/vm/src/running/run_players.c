@@ -17,7 +17,7 @@ static void				runing_processes(t_core *core, t_process *process)
 	FLAGS->visual ? clear_counter(core, process) : 0;
 	process->cycle++;
 	run_processes(core, process);
-	check_processes(core);
+	FLAGS->visual ? check_processes(core) : 0;
 	FLAGS->visual ? draw_counter(core, process) : 0;
 }
 

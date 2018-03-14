@@ -15,6 +15,5 @@
 int						get_command_from_array(t_core *core,
 												t_process *process, int k)
 {
-	load_commands();
-	return ((k >= 0 && k <= 15) ? (*g_commands[k - 1])(core, process) : 0);
+	return ((k > 0 && k <= 16) ? (*g_commands[k - 1])(core, process) : 0);
 }

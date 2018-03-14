@@ -14,7 +14,7 @@
 
 int						command_aff(t_core *core, t_process *process)
 {
-	if (core->flags->aff && ARGS[0].type == REG_CODE)
+	if (core->flags->aff && ARGS[0].type == REG_CODE && !FLAGS->visual)
 	{
 		if (ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0)
 			ft_printf("Aff: %c\n", REG[ARGS[0].arg - 1] % 256);

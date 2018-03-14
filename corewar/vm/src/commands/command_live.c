@@ -22,7 +22,7 @@ static void				print_flag_v_one(t_core *core, t_player *player)
 static void				print_flag_v_four(t_core *core, t_process *process)
 {
 	if (FLAGS->v && FLAGS->verbosity_four)
-		ft_printf("P%5d | %s %d\n", process->id, "live", ARGS[0].arg);
+		ft_printf("P %4d | %s %d\n", process->id, "live", ARGS[0].arg);
 }
 
 static void				print_flag_v_sixteen(t_core *core, t_process *process)
@@ -64,20 +64,20 @@ int						command_live(t_core *core, t_process *process)
 	process->players_last_live = core->cycle;
 	process->last_live = process->cycle;
 	core->players_lives++;
-	print_flag_v_four(core, process);
+	FLAGS->visual ? 0 : print_flag_v_four(core, process);
 	while (tmp)
 	{
 		if (ARGS[0].arg * -1 == tmp->number)
 		{
 			tmp->lives++;
 			tmp->lives_in_period++;
-			print_flag_v_one(core, tmp);
+			FLAGS->visual ? 0 : print_flag_v_one(core, tmp);
 			print_visual_life(core, tmp, process);
 			core->champ = tmp;
 			break ;
 		}
 		tmp = tmp->next;
 	}
-	print_flag_v_sixteen(core, process);
+	FLAGS->visual ? 0 : print_flag_v_sixteen(core, process);
 	return (1);
 }

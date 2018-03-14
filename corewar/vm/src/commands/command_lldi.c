@@ -26,10 +26,10 @@ static void				print_flag_v(t_core *core, t_process *process,
 			ARGS[1].arg > 0) || ARGS[1].type == DIR_CODE) &&
 		ARGS[2].arg > 0 && ARGS[2].arg <= REG_NUMBER)
 	{
-		ft_printf("P%5d | %s ", process->id, "lldi");
+		ft_printf("P %4d | %s ", process->id, "lldi");
 		ft_printf("%d %d r%d\n", farg, sarg, ARGS[2].arg);
 		ft_printf("%8c -> load from %d + %d = ", '|', farg, sarg);
-		ft_printf("%d (with pc and mod ", offset);
+		ft_printf("%d (with pc and mod ", farg + sarg);
 		ft_printf("%d)\n", (process->pc + offset) % MEM_SIZE);
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
@@ -70,6 +70,6 @@ int						command_lldi(t_core *core, t_process *process)
 		REG[ARGS[2].arg - 1] = get_value_from_map(MAP, offset, 4);
 		process->carry = REG[ARGS[2].arg - 1] ? 0 : 1;
 	}
-	print_flag_v(core, process, farg, sarg);
+	FLAGS->visual ? 0 : print_flag_v(core, process, farg, sarg);
 	return (1);
 }

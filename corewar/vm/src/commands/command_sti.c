@@ -27,7 +27,7 @@ static void				print_flag_v(t_core *core, t_process *process,
 			ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0) ||
 			ARGS[2].type == DIR_CODE))
 	{
-		ft_printf("P%5d | %s ", process->id, "sti");
+		ft_printf("P %4d | %s ", process->id, "sti");
 		ft_printf("r%d %d %d\n", ARGS[0].arg, sag, tag);
 		ft_printf("%8c -> store to %d + %d = ", '|', sag, tag);
 		ft_printf("%d (with pc and mod ", sag + tag);
@@ -70,6 +70,6 @@ int						command_sti(t_core *core, t_process *process)
 			ARGS[2].arg <= REG_NUMBER && ARGS[2].arg > 0) ||
 			ARGS[2].type == DIR_CODE))
 		put_value_on_the_map(core, offset, REG[ARGS[0].arg - 1], process);
-	print_flag_v(core, process, sarg, targ);
+	FLAGS->visual ? 0 : print_flag_v(core, process, sarg, targ);
 	return (1);
 }

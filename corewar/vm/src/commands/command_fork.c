@@ -19,7 +19,7 @@ static void				print_flag_v(t_core *core, t_process *process, int val)
 	position = process->pc + val;
 	if (FLAGS->v && FLAGS->verbosity_four)
 	{
-		ft_printf("P%5d | %s ", process->id, "fork");
+		ft_printf("P %4d | %s ", process->id, "fork");
 		ft_printf("%d (%d)\n", ARGS[0].arg, position);
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
@@ -35,7 +35,7 @@ int						command_fork(t_core *core, t_process *process)
 	{
 		value = ARGS[0].arg % IDX_MOD;
 		fork_process(&core->process, process, value);
-		print_flag_v(core, process, value);
+		FLAGS->visual ? 0 : print_flag_v(core, process, value);
 	}
 	return (1);
 }

@@ -19,7 +19,7 @@ static void				print_flag_v(t_core *core, t_process *process, int val)
 	position = PC + val;
 	if (FLAGS->v && FLAGS->verbosity_four)
 	{
-		ft_printf("P%5d | %s ", process->id, "lfork");
+		ft_printf("P %4d | %s ", process->id, "lfork");
 		ft_printf("%d (%d)\n", val, position);
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
@@ -31,7 +31,7 @@ int						command_lfork(t_core *core, t_process *process)
 	if (ARGS[0].type == DIR_CODE)
 	{
 		fork_process(&core->process, process, ARGS[0].arg);
-		print_flag_v(core, process, ARGS[0].arg);
+		FLAGS->visual ? 0 : print_flag_v(core, process, ARGS[0].arg);
 	}
 	return (1);
 }

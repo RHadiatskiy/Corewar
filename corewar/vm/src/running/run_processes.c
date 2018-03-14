@@ -24,6 +24,7 @@ static void				set_pc(t_process *process, int pc)
 	PC %= MEM_SIZE;
 	PC += PC < 0 ? MEM_SIZE : 0;
 	CMD = 0;
+	STEP = 0;
 }
 
 void					run_processes(t_core *core, t_process *process)
@@ -40,8 +41,8 @@ void					run_processes(t_core *core, t_process *process)
 		{
 			CODAGE = get_value_from_map(MAP, PC + 1, 1);
 			process->cycles_to_exec = 1;
-			pc += (1 + OCTAL + get_next_index(process, MAP, CMD, CODAGE));
 			STEP += (1 + OCTAL + get_next_index(process, MAP, CMD, CODAGE));
+			pc += STEP;
 			get_command_from_array(core, process, CMD);
 			set_pc(process, pc);
 		}

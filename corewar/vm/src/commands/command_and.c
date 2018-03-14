@@ -24,7 +24,7 @@ static void				print_flag_v(t_core *core, t_process *process,
 			ARGS[1].arg <= REG_NUMBER && ARGS[1].arg > 0) ||
 		ARGS[1].type == DIR_CODE || ARGS[1].type == IND_CODE))
 	{
-		ft_printf("P%5d | %s ", process->id, "and");
+		ft_printf("P %4d | %s ", process->id, "and");
 		ft_printf("%d %d r%d\n", farg, sarg, ARGS[2].arg);
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
@@ -65,6 +65,6 @@ int						command_and(t_core *core, t_process *process)
 		REG[ARGS[2].arg - 1] = farg & sarg;
 		process->carry = REG[ARGS[2].arg - 1] ? 0 : 1;
 	}
-	print_flag_v(core, process, farg, sarg);
+	FLAGS->visual ? 0 : print_flag_v(core, process, farg, sarg);
 	return (1);
 }

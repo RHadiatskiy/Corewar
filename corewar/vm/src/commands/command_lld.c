@@ -12,13 +12,13 @@
 
 #include "../../include/vm.h"
 
-static void				print_flag_v(t_core *core, t_process *process, int val)
+static void				print_flag_v(t_core *core, t_process *process)
 {
 	if (FLAGS->v && FLAGS->verbosity_four &&
 		ARGS[1].arg > 0 && ARGS[1].arg <= REG_NUMBER)
 	{
-		ft_printf("P%5d | %s ", process->id, "lld");
-		ft_printf("%d r%d\n", val, ARGS[1].arg);
+		ft_printf("P %4d | %s ", process->id, "lld");
+		ft_printf("%d r%d\n", REG[ARGS[1].arg - 1], ARGS[1].arg);
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen)
 		pc_movements(core, process);
@@ -46,6 +46,6 @@ int						command_lld(t_core *core, t_process *process)
 			process->carry = REG[ARGS[1].arg - 1] ? 0 : 1;
 		}
 	}
-	print_flag_v(core, process, REG[ARGS[1].arg - 1]);
+	FLAGS->visual ? 0 : print_flag_v(core, process);
 	return (1);
 }

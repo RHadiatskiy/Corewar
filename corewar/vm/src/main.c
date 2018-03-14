@@ -21,6 +21,7 @@ int				main(int argc, char **argv)
 	{
 		load_processes(core);
 		load_players_on_the_map(core);
+		load_commands();
 		run(core);
 	}
 	return (0);

@@ -55,6 +55,7 @@
 # include <sys/uio.h>
 # include <math.h>
 # include <ncurses.h>
+# include <time.h>
 
 # include "op.h"
 # include "../../libft/libft.h"
