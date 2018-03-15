@@ -29,7 +29,7 @@ static void				print_flag_v(t_core *core, t_process *process,
 		ft_printf("P %4d | %s ", process->id, "lldi");
 		ft_printf("%d %d r%d\n", farg, sarg, ARGS[2].arg);
 		ft_printf("%8c -> load from %d + %d = ", '|', farg, sarg);
-		ft_printf("%d (with pc and mod ", farg + sarg);
+		ft_printf("%d (with pc ", farg + sarg);
 		ft_printf("%d)\n", (process->pc + offset) % MEM_SIZE);
 	}
 	if (FLAGS->v && FLAGS->verbosity_sixteen)

@@ -19,5 +19,7 @@ int						command_aff(t_core *core, t_process *process)
 		if (ARGS[0].arg <= REG_NUMBER && ARGS[0].arg > 0)
 			ft_printf("Aff: %c\n", REG[ARGS[0].arg - 1] % 256);
 	}
+	if (FLAGS->v && FLAGS->verbosity_sixteen && !FLAGS->visual)
+		pc_movements(core, process);
 	return (1);
 }
