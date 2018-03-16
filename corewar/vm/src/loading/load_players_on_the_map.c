@@ -18,7 +18,7 @@ void					load_players_on_the_map(t_core *core)
 	int				i;
 	int				j;
 
-	player = core->players ? core->players : NULL;
+	player = (core->players && core->players->id) ? core->players : NULL;
 	while (player)
 	{
 		i = -1;

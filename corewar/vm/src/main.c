@@ -22,7 +22,7 @@ int				main(int argc, char **argv)
 		load_processes(core);
 		load_players_on_the_map(core);
 		load_commands();
-		run(core);
+		get_players_size(core->players) ? run(core) : 0;
 	}
 	return (0);
 }

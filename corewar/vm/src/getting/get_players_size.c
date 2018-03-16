@@ -12,17 +12,20 @@
 
 #include "../../include/vm.h"
 
-unsigned int			get_players_size(t_player *players)
+int					get_players_size(t_player *players)
 {
 	t_player		*iter;
-	unsigned int	size;
+	int				size;
 
 	size = 0;
 	iter = players;
-	while (iter)
+	if (players->id)
 	{
-		size++;
-		iter = iter->next;
+		while (iter)
+		{
+			size++;
+			iter = iter->next;
+		}
 	}
 	return (size);
 }

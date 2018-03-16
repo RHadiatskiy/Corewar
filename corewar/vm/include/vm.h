@@ -264,7 +264,7 @@ void					add_process(t_process **processes, int start, int exec);
 **	GETTING
 */
 
-unsigned int			get_players_size(t_player *players);
+int						get_players_size(t_player *players);
 unsigned int			get_value_from_map(void *buf, unsigned int start,
 						unsigned int len);
 int						get_next_index(t_process *process, unsigned char *map,
