@@ -14,26 +14,17 @@
 
 int	ft_pstr(char *str, int len)
 {
-	int j;
-
-	j = 0;
 	if (len > 0)
 	{
-		while (j < len)
-		{
-			write(1, &str[j], 1);
-			j++;
-		}
+		write(1, &str, len);
+		return (len);
 	}
 	else
 	{
-		while (str[j] != '\0')
-		{
-			write(1, &str[j], 1);
-			j++;
-		}
+		write(1, &str, ft_strlen(str));
 	}
-	return (j);
+	return (ft_strlen(str));
+	
 }
 
 int	ft_pchar(int i, char c)
