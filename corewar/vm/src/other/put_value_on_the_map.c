@@ -22,6 +22,12 @@ static void	color_map_changes(t_core *core, int start, t_process *process)
 	position(start, &x, &y);
 	while (i < 4)
 	{
+		if (start + i >= 4096)
+		{
+			x = 3;
+			y = 2;
+			start = 0 - i;
+		}
 		core->clr[start + i] = process->player * -1;
 		attron(COLOR_PAIR(process->player * -1));
 		attron(A_BOLD);

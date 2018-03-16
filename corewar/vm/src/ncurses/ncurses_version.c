@@ -20,8 +20,9 @@ void	print_const_part(t_core *core)
 	mvprintw(45 + 2, 200, "CYCLE_DELTA : 50");
 	mvprintw(45 + 4, 200, "NBR_LIVES : 21");
 	mvprintw(45 + 6, 200, "MAX_CHECKS : %d", core->max_checks);
-	mvprintw(63, 201, "Q to fasten speed in pause mode");
-	mvprintw(64, 201, "W to slowen speed in pause mode");
+	mvprintw(62, 201, "Q to fasten speed in pause mode");
+	mvprintw(63, 201, "W to slowen speed in pause mode");
+	mvprintw(64, 201, "Press ESC to exit program");
 	refresh();
 }
 

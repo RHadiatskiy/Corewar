@@ -30,6 +30,7 @@ char		*initiate_color(void)
 
 	start_color();
 	init_color(COLOR_MAGENTA, 192, 192, 192);
+	init_color(COLOR_YELLOW, 700, 700, 0);
 	init_pair(10, COLOR_WHITE, COLOR_MAGENTA);
 	init_pair(1, COLOR_GREEN, COLOR_BLACK);
 	init_pair(2, COLOR_BLUE, COLOR_BLACK);
@@ -61,6 +62,7 @@ int			choose_players_color(t_player *players, char *clr, int players_num)
 	size = 4096 / players_num;
 	while (players)
 	{
+		attrset(A_NORMAL);
 		j = i;
 		while (j - i < (int)players->header->prog_size)
 			clr[j++] = pl;

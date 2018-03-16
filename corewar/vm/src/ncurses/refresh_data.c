@@ -17,7 +17,7 @@ void			key_code(t_core *core, int ch)
 	attrset(A_NORMAL | A_BOLD);
 	if (ch == 113)
 	{
-		if (core->speed_num < 10)
+		if (core->speed_num < 19)
 		{
 			core->speed /= 2;
 			core->speed_num++;
@@ -27,7 +27,7 @@ void			key_code(t_core *core, int ch)
 	}
 	if (ch == 119)
 	{
-		if (core->speed_num >= 0)
+		if (core->speed_num > 0)
 		{
 			core->speed *= 2;
 			core->speed_num--;
