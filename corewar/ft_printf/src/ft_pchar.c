@@ -33,7 +33,7 @@ int	ft_pstr(char *str, int len)
 			j++;
 		}
 	}
-	return (j);	
+	return (j);
 }
 
 int	ft_pchar(int i, char c)
