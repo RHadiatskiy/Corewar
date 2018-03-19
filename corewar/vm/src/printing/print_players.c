@@ -20,16 +20,15 @@ void			print_champ(t_core *core)
 
 void			print_champ_visual(t_core *core)
 {
-	int			y;
-
-	y = 53;
+	check_processes(core);
+	system("afplay src/sounds/gameover.mp3");
 	attrset(A_NORMAL);
 	attron(A_BOLD);
-	mvprintw(y, 200, "The winner is : ");
+	mvprintw(53, 200, "The winner is : ");
 	attron(COLOR_PAIR(core->champ->number));
-	mvprintw(y, 216, "%s", core->champ->header->prog_name);
+	mvprintw(53, 216, "%s", core->champ->header->prog_name);
 	attroff(COLOR_PAIR(core->champ->number));
-	mvprintw(y + 2, 200, "Press any key to quit.");
+	mvprintw(53 + 2, 200, "Press any key to quit.");
 	attroff(A_BOLD);
 	while (getch() == -1)
 		;
