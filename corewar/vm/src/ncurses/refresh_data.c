@@ -80,19 +80,9 @@ void			cycle_refresh(t_core *core)
 
 void			check_processes(t_core *core)
 {
-	int			i;
-	t_process	*tmp;
-
-	i = 0;
-	tmp = core->process ? core->process : NULL;
-	while (tmp)
-	{
-		++i;
-		tmp = tmp->next;
-	}
 	attron(A_BOLD);
 	mvprintw(11, 212, "          ");
-	mvprintw(11, 212, "%d", i);
+	mvprintw(11, 212, "%d", core->count_processes);
 	attroff(A_BOLD);
 	refresh();
 }
@@ -106,7 +96,7 @@ int				refre_map(t_core *core)
 	x = 0;
 	y = 2;
 	i = 0;
-	while (i < 4096)
+	while (i < MEM_SIZE)
 	{
 		x += 3;
 		attron(COLOR_PAIR(core->clr[i]));

@@ -35,6 +35,7 @@ int						command_fork(t_core *core, t_process *process)
 	{
 		value = ARGS[0].arg % IDX_MOD;
 		fork_process(&core->process, process, value);
+		core->count_processes++;
 		FLAGS->visual ? 0 : print_flag_v(core, process, value);
 	}
 	return (1);

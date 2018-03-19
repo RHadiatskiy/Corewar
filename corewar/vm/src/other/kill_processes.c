@@ -6,7 +6,7 @@
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 17:17:08 by rhadiats          #+#    #+#             */
-/*   Updated: 2018/01/09 17:17:10 by rhadiats         ###   ########.fr       */
+/*   Updated: 2018/03/19 20:21:06 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void				free_process(t_core *core, t_process *process)
 	process->reg ? free(process->reg) : 0;
 	process->args ? free(process->args) : 0;
 	process ? free(process) : 0;
+	core->count_processes ? core->count_processes-- : 0;
 }
 
 static void				free_kill_proc(int i)
@@ -31,6 +32,12 @@ static void				free_kill_proc(int i)
 		system("afplay -t 0.8 src/sounds/gunshot_exterior.mp3");
 	else
 		system("afplay -t 1 src/sounds/explosion.mp3");
+}
+
+static void				set_live_off(t_process **current, t_process **prew)
+{
+	(*current)->is_live = 0;
+	(*prew) = (*current);
 }
 
 void					kill_processes(t_core *core)
@@ -48,14 +55,14 @@ void					kill_processes(t_core *core)
 		if (!current->is_live && !(i = 0))
 		{
 			free_process(core, current);
-			(prew) ? (prew->next = next) : (core->process = next);
+			if (prew)
+				prew->next = next;
+			else
+				core->process = next;
 			i++;
 		}
 		else
-		{
-			current->is_live = 0;
-			prew = current;
-		}
+			set_live_off(&current, &prew);
 		current = next;
 		next = next ? next->next : NULL;
 	}

@@ -135,6 +135,7 @@ typedef struct			s_core
 	int					max_checks;
 	int					speed;
 	int					speed_num;
+	int					count_processes;
 	unsigned int		players_lives;
 	struct s_player		*champ;
 	struct s_player		*players;

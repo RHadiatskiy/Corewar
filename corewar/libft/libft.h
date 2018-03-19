@@ -6,7 +6,7 @@
 /*   By: rhadiats <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/28 21:13:10 by rhadiats          #+#    #+#             */
-/*   Updated: 2018/03/12 17:47:25 by rhadiats         ###   ########.fr       */
+/*   Updated: 2018/03/19 18:28:29 by rhadiats         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ unsigned int	ft_to_bin(unsigned int k);
 **	BSEMCHUK
 */
 
+void			ft_free(void *aim);
 void			ft_delete_deintegrated(char **deintegrated);
 char			*get_raw_line_fd(const int fd);
 char			**ft_split_whitespace(char const *s);
