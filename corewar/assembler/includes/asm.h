@@ -6,7 +6,7 @@
 /*   By: bsemchuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 14:33:25 by bsemchuk          #+#    #+#             */
-/*   Updated: 2018/03/20 18:32:28 by bsemchuk         ###   ########.fr       */
+/*   Updated: 2018/03/20 18:52:10 by bsemchuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define DEBUG_ARG1 "-debug"
 # define VERSION_ARG "-v"
 # define VERSION_ARG1 "-version"
-# define ASM_OUT_EXTENSION ".cor"
+# define ASM_OUT_EXTENSION ".cor.demo"
 # define ASM_IN_EXTENSION ".s"
 # define FIRST_ITEM 0
 # define MY_TRUE 1

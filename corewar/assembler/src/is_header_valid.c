@@ -6,7 +6,7 @@
 /*   By: bsemchuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 19:17:41 by bsemchuk          #+#    #+#             */
-/*   Updated: 2018/03/20 18:36:17 by bsemchuk         ###   ########.fr       */
+/*   Updated: 2018/03/20 19:12:49 by bsemchuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ int				is_header_valid(t_champion *header)
 	while (header->tlines[i].command_index == -1 &&\
 			(unsigned)i < header->lines_count)
 	{
+		header->tlines[i].linetype = HEADER_TYPE;
+		if (g_comment_written == 1 && g_name_written == 1)
+			break ;
 		if (ft_strequ(COMMENT_CMD_STRING, (const char *)\
 					header->tlines[i].deintegrated_line[0]))
 		{

@@ -6,7 +6,7 @@
 /*   By: bsemchuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 15:41:42 by bsemchuk          #+#    #+#             */
-/*   Updated: 2018/03/20 18:30:46 by bsemchuk         ###   ########.fr       */
+/*   Updated: 2018/03/20 18:56:51 by bsemchuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		print_debug(t_line *line)
 		ft_printf("%-20s: [%d]\n", "Command index", line->command_index);
 		ft_printf("%-20s: [", "Deintegrated");
 		print_deintegrated(line->deintegrated_line);
-		ft_printf("]\n%-20s: [%d]\n", "Linetype", line->linetype);
+		ft_printf("]\n");
 		ft_printf("%-20s: [", "Args");
 		if (line->args)
 			print_deintegrated(line->args);
