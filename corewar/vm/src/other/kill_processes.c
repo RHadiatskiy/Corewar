@@ -29,7 +29,7 @@ static void				free_process(t_core *core, t_process *process)
 static void				free_kill_proc(int i)
 {
 	if (i <= 20)
-		system("afplay -t 0.8 src/sounds/gunshot_exterior.mp3");
+		system("afplay -t 0.8 src/sounds/gunshot.mp3");
 	else
 		system("afplay -t 1 src/sounds/explosion.mp3");
 }

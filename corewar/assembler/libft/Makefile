@@ -38,13 +38,13 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ) 
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJ) 
+	@ranlib $(NAME)
 
 clean :
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean : clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all

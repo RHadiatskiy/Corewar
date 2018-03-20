@@ -26,11 +26,11 @@ RESET = "\x1b[0m"
 
 NAME = corewar
 
-CC= gcc -o
+CC = @gcc -o
 FLAGS = -Wall -Wextra -Werror -g
 NCFLAGS = -lncurses
 LIBFT = ../libft/libft.a
-LIBFTPRINTF= ../ft_printf/libftprintf.a
+LIBFTPRINTF = ../ft_printf/libftprintf.a
 
 SRC = src/main \
 		src/initial/init_core src/initial/init_flags \
@@ -80,11 +80,11 @@ ft_printf:
 	@make -C ../ft_printf
 
 vm: $(OBJ)
-	gcc -o $(NAME) $(FLAGS) $(OBJ) $(NCFLAGS) $(LIBFT) $(LIBFTPRINTF)
+	$(CC) $(NAME) $(FLAGS) $(OBJ) $(NCFLAGS) $(LIBFT) $(LIBFTPRINTF)
 	@echo $(GREEN) "\t\tVM has been compiled\n" $(RESET)
 
 %.o: %.c
-	gcc $(FLAGS) -c -o $@ $< 
+	@gcc $(FLAGS) -c -o $@ $< 
 
 clean:
 	@make -C ../libft clean
