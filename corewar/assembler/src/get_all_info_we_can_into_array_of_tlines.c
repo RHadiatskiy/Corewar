@@ -6,7 +6,7 @@
 /*   By: bsemchuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 15:37:44 by bsemchuk          #+#    #+#             */
-/*   Updated: 2018/03/12 15:39:28 by bsemchuk         ###   ########.fr       */
+/*   Updated: 2018/03/20 18:05:06 by bsemchuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 **	окрім line -- він видаляється там де і виділяється
 */
 
-int		get_all_info_we_can_into_array_of_tlines(t_line *tline)
+int				get_all_info_we_can_into_array_of_tlines(t_line *tline)
 {
 	deintegrate_split_trim(tline);
 	get_label_if_present(tline);

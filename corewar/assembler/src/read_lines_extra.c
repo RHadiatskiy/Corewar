@@ -6,7 +6,7 @@
 /*   By: bsemchuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 18:38:00 by bsemchuk          #+#    #+#             */
-/*   Updated: 2018/03/19 16:31:00 by bsemchuk         ###   ########.fr       */
+/*   Updated: 2018/03/20 18:24:23 by bsemchuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int				validate_line(t_line *line, t_champion *champion)
 {
 	if (!line->label && !line->cmd && line->line_content)
 	{
-		write(2, "Unknown command", 15);
+		write(2, "Unknown command\n", 16);
 		champion->nerrorline = line->id - 1;
 		champion->serrorline = line->line_content;
 		return (EXIT_FAILURE);

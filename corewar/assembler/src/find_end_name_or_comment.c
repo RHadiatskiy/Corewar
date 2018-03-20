@@ -6,7 +6,7 @@
 /*   By: bsemchuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:20:08 by bsemchuk          #+#    #+#             */
-/*   Updated: 2018/03/12 20:28:34 by bsemchuk         ###   ########.fr       */
+/*   Updated: 2018/03/20 18:20:39 by bsemchuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static int	searching_loop(t_champion *champion,
 	while (champion->tlines[++(*i)].command_index == -1)
 	{
 		line = (char *)champion->tlines[(*i)].line_content_trim;
+		champion->tlines[(*i)].linetype = HEADER_TYPE;
 		if (line[0] != '\0')
 		{
 			if (*total)

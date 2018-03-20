@@ -6,7 +6,7 @@
 /*   By: bsemchuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 14:33:25 by bsemchuk          #+#    #+#             */
-/*   Updated: 2018/03/19 18:55:10 by rhadiats         ###   ########.fr       */
+/*   Updated: 2018/03/20 18:32:28 by bsemchuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct			s_line
 	unsigned			id;
 	t_arg_type			argtype[4];
 	unsigned char		command_codage;
+	unsigned char		linetype : 1;
 }						t_line;
 
 typedef struct			s_label
