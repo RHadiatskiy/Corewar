@@ -17,12 +17,12 @@ int				main(int argc, char **argv)
 	t_core			*core;
 
 	core = init_core();
-	if (read_args(core, argc, argv))
+	if (read_args(core, argc, argv) && get_players_size(core->players))
 	{
 		load_processes(core);
 		load_players_on_the_map(core);
 		load_commands();
-		get_players_size(core->players) ? run(core) : 0;
+		run(core);
 	}
 	return (0);
 }

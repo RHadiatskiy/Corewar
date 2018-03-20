@@ -21,13 +21,15 @@ void					run(t_core *core)
 		{
 			core->max_checks = MAX_CHECKS;
 			core->cycle_to_die -= CYCLE_DELTA;
-			if (FLAGS->v && FLAGS->verbosity_two)
+			if (FLAGS->v && FLAGS->verbosity_two && !FLAGS->visual)
 				ft_printf("Cycle to die is now %d\n", core->cycle_to_die);
 			FLAGS->visual ? cycles_to_die_refresh(core->cycle_to_die) : 0;
 		}
 		core->players_lives = 0;
-		FLAGS->dump && FLAGS->dump_cycle == 0 ? print_map(core) : 0;
-		FLAGS->dump && FLAGS->dump_cycle == CYCLE ? 0 : run_players(core);
+		(FLAGS->dump && FLAGS->dump_cycle  == 0 && !FLAGS->visual) ?
+		print_map(core) : 0;
+		(FLAGS->dump && FLAGS->dump_cycle == CYCLE && !FLAGS->visual) ?
+		0 : run_players(core);
 		reset_players_lives(core->players);
 		kill_processes(core);
 		core->current_cycle = 1;

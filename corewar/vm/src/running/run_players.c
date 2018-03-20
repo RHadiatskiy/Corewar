@@ -28,7 +28,7 @@ void					run_players(t_core *core)
 	while (core->current_cycle <= core->cycle_to_die)
 	{
 		process = core->process ? core->process : NULL;
-		if (FLAGS->v && FLAGS->verbosity_two && CYCLE)
+		if (FLAGS->v && FLAGS->verbosity_two && CYCLE && !FLAGS->visual)
 			ft_printf("It is now cycle %d\n", CYCLE);
 		while (process)
 		{
@@ -37,7 +37,7 @@ void					run_players(t_core *core)
 		}
 		FLAGS->visual ? cycle_refresh(core) : 0;
 		(FLAGS->visual && core->current_cycle % 75 == 0) ? refre_map(core) : 0;
-		if (FLAGS->dump && CYCLE == FLAGS->dump_cycle)
+		if (FLAGS->dump && CYCLE == FLAGS->dump_cycle && !FLAGS->visual)
 		{
 			print_map(core);
 			break ;
