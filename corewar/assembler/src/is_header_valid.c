@@ -6,7 +6,7 @@
 /*   By: bsemchuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 19:17:41 by bsemchuk          #+#    #+#             */
-/*   Updated: 2018/03/20 19:12:49 by bsemchuk         ###   ########.fr       */
+/*   Updated: 2018/03/20 19:24:31 by bsemchuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,5 @@ int				is_header_valid(t_champion *header)
 				return (EXIT_FAILURE);
 		i++;
 	}
-	if (g_comment_written == 1 && g_name_written == 1)
-		return (EXIT_SUCCESS);
-	return (EXIT_FAILURE);
+	return (!(g_comment_written == 1 && g_name_written == 1));
 }
