@@ -26,10 +26,10 @@ void					run(t_core *core)
 			FLAGS->visual ? cycles_to_die_refresh(core->cycle_to_die) : 0;
 		}
 		core->players_lives = 0;
-		(FLAGS->dump && FLAGS->dump_cycle  == 0 && !FLAGS->visual) ?
-		print_map(core) : 0;
+		(FLAGS->dump && FLAGS->dump_cycle == 0 && !FLAGS->visual) ?
+			print_map(core) : 0;
 		(FLAGS->dump && FLAGS->dump_cycle == CYCLE && !FLAGS->visual) ?
-		0 : run_players(core);
+			0 : run_players(core);
 		reset_players_lives(core->players);
 		kill_processes(core);
 		core->current_cycle = 1;
