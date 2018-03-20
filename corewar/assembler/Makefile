@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+CC = @gcc
 
 NAME = asm
 
@@ -71,24 +71,24 @@ all: $(NAME)
 $(OBJS) : includes/asm.h ft_printf/includes/ft_printf.h
 
 $(NAME): $(OBJ)
-	make -C libft/
-	make -C ../ft_printf/
+	@make -C libft/
+	@make -C ../ft_printf/
 	$(CC) $(CFLAGS) $(OBJ) $(PRINTLIB) $(LIB) -o $(NAME)
 	@echo "\033[32;1m<<asm compiled>>\033[0m"
 
 %.o: $(SRAV)%.c
-	gcc -c $< -o $@
+	@gcc -c $< -o $@
 
 clean:
-	make clean -C libft/
-	make clean -C ../ft_printf/
-	rm -f $(OBJ)
+	@make clean -C libft/
+	@make clean -C ../ft_printf/
+	@rm -f $(OBJ)
+	@echo "\033[31m<<Deleted asm>>\033[31m"
 
 fclean: clean
-	make fclean -C libft/
-	make fclean -C ../ft_printf/
-	rm -rf $(NAME)
-	echo "\033[31m<<Deleted asm>>\033[31m"
+	@make fclean -C libft/
+	@make fclean -C ../ft_printf/
+	@rm -rf $(NAME)
 
 re: clean all
 
