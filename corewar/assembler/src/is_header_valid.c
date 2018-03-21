@@ -6,7 +6,7 @@
 /*   By: bsemchuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 19:17:41 by bsemchuk          #+#    #+#             */
-/*   Updated: 2018/03/20 19:24:31 by bsemchuk         ###   ########.fr       */
+/*   Updated: 2018/03/21 21:38:34 by bsemchuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,9 @@ int				is_header_valid(t_champion *header)
 	while (header->tlines[i].command_index == -1 &&\
 			(unsigned)i < header->lines_count)
 	{
-		header->tlines[i].linetype = HEADER_TYPE;
-		if (g_comment_written == 1 && g_name_written == 1)
-			break ;
-		if (ft_strequ(COMMENT_CMD_STRING, (const char *)\
+		if (!header->tlines[i].line_content_trim[0])
+			do_nothing();
+		else if (ft_strequ(COMMENT_CMD_STRING, (const char *)\
 					header->tlines[i].deintegrated_line[0]))
 		{
 			if (comment_comment(header, &i) == EXIT_FAILURE)
@@ -69,9 +68,14 @@ int				is_header_valid(t_champion *header)
 		}
 		else if (ft_strequ(NAME_CMD_STRING, (const char *)\
 				header->tlines[i].deintegrated_line[0]))
+		{
 			if (name_name(header, &i) == EXIT_FAILURE)
 				return (EXIT_FAILURE);
+		}
+		else
+			return (EXIT_FAILURE);
 		i++;
 	}
+	header->commands_start_line_id = i;
 	return (!(g_comment_written == 1 && g_name_written == 1));
 }

@@ -6,7 +6,7 @@
 /*   By: bsemchuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:16:37 by bsemchuk          #+#    #+#             */
-/*   Updated: 2018/03/19 19:15:29 by rhadiats         ###   ########.fr       */
+/*   Updated: 2018/03/21 19:07:57 by bsemchuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	are_flags_included(char **argv, int *i)
 			ft_strequ(argv[(*i)], VERSION_ARG1))
 	{
 		ft_putstr("Assembler by bsemchuk and daleksan. Version 2.02 final\n");
+		ft_putstr("As final as finish\n");
 		(*i)++;
 		return (2);
 	}

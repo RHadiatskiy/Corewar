@@ -6,7 +6,7 @@
 /*   By: bsemchuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 17:35:20 by bsemchuk          #+#    #+#             */
-/*   Updated: 2018/03/20 18:37:00 by bsemchuk         ###   ########.fr       */
+/*   Updated: 2018/03/21 18:54:41 by bsemchuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int				validate_lines(t_champion *header)
 {
 	unsigned	i;
 
-	i = 0;
-	while (header->tlines[i].linetype == HEADER_TYPE)
-		i++;
+	i = header->commands_start_line_id;
 	while (i < header->lines_count)
 	{
 		if (!header->tlines[i].line_content_trim[0])

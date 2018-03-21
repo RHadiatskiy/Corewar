@@ -6,7 +6,7 @@
 /*   By: bsemchuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 14:33:25 by bsemchuk          #+#    #+#             */
-/*   Updated: 2018/03/20 18:52:10 by bsemchuk         ###   ########.fr       */
+/*   Updated: 2018/03/21 21:04:03 by bsemchuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define ARG3 3
 # define START_QUOTES			'"'
 # define END_QUOTES				START_QUOTES
+# define SET_TO_ZEROABC(A, B, C) (A = 0, B = 0, C = 0)
 
 typedef struct			s_line
 {
@@ -115,6 +116,7 @@ typedef struct			s_champion
 	char				*out_filename;
 	t_line				*tlines;
 	int					champion_size;
+	int					commands_start_line_id;
 }						t_champion;
 
 int						validate_line(t_line *line, t_champion *champion);

@@ -83,12 +83,12 @@ clean:
 	@make clean -C libft/
 	@make clean -C ../ft_printf/
 	@rm -f $(OBJ)
-	@echo "\033[31m<<Deleted asm>>\033[31m"
 
 fclean: clean
 	@make fclean -C libft/
 	@make fclean -C ../ft_printf/
 	@rm -rf $(NAME)
+	@echo "\033[31m<<Deleted asm>>\033[31m"
 
 re: clean all
 
